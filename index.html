@@ -663,11 +663,22 @@ const headers = {
 };
 
 async function sb(path, method = 'GET', body = null, extra = '') {
+  const reqHeaders = { ...headers };
+  // Para POST, o Prefer:return=representation exige que a tabela tenha RLS permitindo SELECT
+  // Removemos para evitar erro 406
+  if (method === 'POST') reqHeaders['Prefer'] = 'return=minimal';
   const res = await fetch(`${SUPABASE_URL}${path}${extra}`, {
-    method, headers, body: body ? JSON.stringify(body) : null
+    method, headers: reqHeaders, body: body ? JSON.stringify(body) : null
   });
-  if (!res.ok) { console.error(await res.text()); return null; }
-  try { return await res.json(); } catch { return null; }
+  if (!res.ok) {
+    const err = await res.text();
+    console.error('Supabase error:', res.status, err);
+    return null;
+  }
+  try {
+    const text = await res.text();
+    return text ? JSON.parse(text) : true;
+  } catch { return true; }
 }
 
 // ═══════════════════════════════════════════════
@@ -796,13 +807,18 @@ function renderPsalms() {
 
 async function markPsalmRead() {
   if (psalmsRead.includes(currentPsalm)) { toast('Salmo ' + currentPsalm + ' já marcado!'); return; }
-  await sb('/salmos_log', 'POST', { salmo_numero: currentPsalm, tipo: 'diario', data: todayKey() });
+  toast('Salvando...');
+  const res = await sb('/salmos_log', 'POST', { salmo_numero: currentPsalm, tipo: 'diario', data: todayKey() });
+  if (res === null) {
+    toast('❌ Erro ao salvar. Verifique o Supabase.');
+    return;
+  }
   psalmsRead.push(currentPsalm);
   const next = currentPsalm >= 150 ? 1 : currentPsalm + 1;
   currentPsalm = next;
   localStorage.setItem('currentPsalm', next);
   renderPsalms();
-  toast('✓ Salmo marcado!');
+  toast('✓ Salmo ' + (next - 1 <= 0 ? 150 : next - 1) + ' salvo!');
 }
 
 function setPsalmManual() {
