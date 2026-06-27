@@ -5,113 +5,120 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Painel Espiritual</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Lato:wght@300;400;700&display=swap');
-  :root {
-    --bg:#0D1B2A; --surface:#162234; --surface2:#1E2E42; --surface3:#243348;
-    --gold:#C9A84C; --gold-light:#E8C96A; --gold-dim:#7A6230; --gold-bg:#1a220e;
-    --text:#E8EDF2; --text-dim:#7A8FA6;
-    --green:#2E7D52; --green-light:#5aaf82; --green-bg:#1a3a28;
-    --blue:#4A90D9; --radius:12px;
-  }
-  *{box-sizing:border-box;margin:0;padding:0;}
-  body{background:var(--bg);color:var(--text);font-family:'Lato',sans-serif;min-height:100vh;padding-bottom:80px;}
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Lato:wght@300;400;700&display=swap');
+:root{
+  --bg:#0D1B2A;--surface:#162234;--surface2:#1E2E42;--surface3:#243348;
+  --gold:#C9A84C;--gold-light:#E8C96A;--gold-dim:#7A6230;
+  --text:#E8EDF2;--text-dim:#7A8FA6;
+  --green:#2E7D52;--green-light:#5aaf82;--green-bg:#1a3a28;
+  --blue:#4A90D9;--radius:12px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--text);font-family:'Lato',sans-serif;min-height:100vh;padding-bottom:80px;}
 
-  /* HEADER */
-  .header{background:linear-gradient(135deg,#0D1B2A,#162234);border-bottom:1px solid var(--gold-dim);padding:18px 16px 12px;text-align:center;}
-  .header h1{font-family:'Cinzel',serif;font-size:20px;font-weight:400;color:var(--gold);letter-spacing:.15em;text-transform:uppercase;}
-  .header-date{font-size:12px;color:var(--text-dim);margin-top:4px;text-transform:capitalize;letter-spacing:.05em;}
+/* HEADER */
+.header{background:linear-gradient(135deg,#0D1B2A,#162234);border-bottom:1px solid var(--gold-dim);padding:16px 16px 12px;text-align:center;}
+.header h1{font-family:'Cinzel',serif;font-size:19px;font-weight:400;color:var(--gold);letter-spacing:.15em;text-transform:uppercase;}
+.header-date{font-size:11px;color:var(--text-dim);margin-top:3px;text-transform:capitalize;letter-spacing:.05em;}
 
-  /* NAV */
-  .nav{display:flex;overflow-x:auto;background:#0f1e2e;border-bottom:1px solid var(--surface2);scrollbar-width:none;}
-  .nav::-webkit-scrollbar{display:none;}
-  .nav-btn{background:none;border:none;border-bottom:2px solid transparent;color:var(--text-dim);padding:13px 15px;cursor:pointer;font-size:11px;font-family:'Lato',sans-serif;letter-spacing:.06em;white-space:nowrap;transition:color .2s;margin-bottom:-1px;}
-  .nav-btn.active{color:var(--gold);border-bottom-color:var(--gold);}
+/* NAV */
+.nav{display:flex;overflow-x:auto;background:#0f1e2e;border-bottom:1px solid var(--surface2);scrollbar-width:none;}
+.nav::-webkit-scrollbar{display:none;}
+.nav-btn{background:none;border:none;border-bottom:2px solid transparent;color:var(--text-dim);padding:12px 14px;cursor:pointer;font-size:11px;font-family:'Lato',sans-serif;letter-spacing:.05em;white-space:nowrap;transition:color .2s;margin-bottom:-1px;}
+.nav-btn.active{color:var(--gold);border-bottom-color:var(--gold);}
 
-  /* CONTENT */
-  .content{max-width:680px;margin:0 auto;padding:20px 16px;}
-  .tab{display:none;flex-direction:column;gap:14px;}
-  .tab.active{display:flex;}
+/* CONTENT */
+.content{max-width:680px;margin:0 auto;padding:18px 14px;}
+.tab{display:none;flex-direction:column;gap:14px;}
+.tab.active{display:flex;}
 
-  /* CARDS */
-  .card{background:var(--surface);border-radius:var(--radius);padding:20px;border:1px solid var(--surface2);}
-  .card-gold{background:linear-gradient(135deg,#1a2a1a,#162230);border-radius:var(--radius);padding:20px;border:1px solid var(--gold-dim);text-align:center;}
-  .card-ai{background:linear-gradient(135deg,#0f1e30,#162234);border-radius:var(--radius);padding:20px;border:1px solid #4A90D944;}
-  .card-label{font-size:10px;letter-spacing:.18em;color:var(--gold-dim);text-transform:uppercase;margin-bottom:12px;font-family:'Lato',sans-serif;}
-  .big-number{font-family:'Cinzel',serif;font-size:52px;color:var(--gold);line-height:1;margin-bottom:8px;}
-  .sub-label{font-size:13px;color:var(--text-dim);}
+/* CARDS */
+.card{background:var(--surface);border-radius:var(--radius);padding:18px;border:1px solid var(--surface2);}
+.card-gold{background:linear-gradient(135deg,#1a2a14,#162230);border-radius:var(--radius);padding:18px;border:1px solid var(--gold-dim);text-align:center;}
+.card-ai{background:linear-gradient(135deg,#0f1e30,#162234);border-radius:var(--radius);padding:18px;border:1px solid #4A90D944;}
+.card-label{font-size:10px;letter-spacing:.18em;color:var(--gold-dim);text-transform:uppercase;margin-bottom:12px;}
+.big-number{font-family:'Cinzel',serif;font-size:48px;color:var(--gold);line-height:1;margin-bottom:6px;}
+.sub-label{font-size:13px;color:var(--text-dim);}
 
-  /* PROGRESS */
-  .progress-bg{height:4px;background:var(--surface2);border-radius:2px;margin:10px 0 6px;overflow:hidden;}
-  .progress-fill{height:100%;background:linear-gradient(90deg,var(--gold-dim),var(--gold));border-radius:2px;transition:width .6s ease;}
+/* SECTION HEADER inside card */
+.sec-head{font-size:11px;letter-spacing:.14em;color:var(--gold-dim);text-transform:uppercase;margin:18px 0 10px;padding-top:14px;border-top:1px solid var(--surface2);}
+.sec-head:first-child{margin-top:0;padding-top:0;border-top:none;}
 
-  /* BUTTONS */
-  .btn{border:none;border-radius:8px;padding:10px 18px;cursor:pointer;font-family:'Lato',sans-serif;font-size:13px;letter-spacing:.04em;transition:opacity .2s;}
-  .btn:disabled{opacity:.4;cursor:default;}
-  .btn-primary{background:linear-gradient(135deg,var(--gold-dim),var(--gold));color:#0D1B2A;font-weight:700;}
-  .btn-ghost{background:none;border:1px solid var(--gold-dim);color:var(--text-dim);}
-  .btn-ghost-sm{background:none;border:1px solid var(--surface2);color:var(--text-dim);padding:5px 10px;font-size:11px;}
-  .btn-mark{background:var(--surface2);border:1px solid var(--green);color:var(--green-light);width:100%;padding:12px;margin-top:12px;font-size:14px;border-radius:8px;cursor:pointer;font-family:'Lato',sans-serif;}
-  .btn-full{width:100%;}
+/* PROGRESS */
+.progress-bg{height:4px;background:var(--surface2);border-radius:2px;margin:10px 0 6px;overflow:hidden;}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--gold-dim),var(--gold));border-radius:2px;transition:width .6s ease;}
 
-  /* INPUTS */
-  input[type=text],input[type=number],textarea,select{background:var(--surface2);border:1px solid #2a3a4a;color:var(--text);border-radius:8px;padding:10px 14px;font-family:'Lato',sans-serif;font-size:14px;outline:none;transition:border-color .2s;width:100%;}
-  input[type=text]:focus,textarea:focus,select:focus{border-color:var(--gold-dim);}
-  textarea{resize:vertical;line-height:1.6;}
+/* BUTTONS */
+.btn{border:none;border-radius:8px;padding:9px 16px;cursor:pointer;font-family:'Lato',sans-serif;font-size:13px;letter-spacing:.03em;transition:all .2s;}
+.btn-primary{background:linear-gradient(135deg,var(--gold-dim),var(--gold));color:#0D1B2A;font-weight:700;}
+.btn-ghost{background:none;border:1px solid var(--gold-dim);color:var(--text-dim);}
+.btn-ghost-sm{background:none;border:1px solid var(--surface2);color:var(--text-dim);padding:5px 10px;font-size:11px;border-radius:6px;cursor:pointer;font-family:'Lato',sans-serif;}
+.btn-mark{background:var(--surface2);border:1px solid var(--green);color:var(--green-light);width:100%;padding:11px;margin-top:10px;font-size:14px;border-radius:8px;cursor:pointer;font-family:'Lato',sans-serif;}
+.btn-full{width:100%;}
 
-  /* PSALMS GRID */
-  .psalms-grid{display:flex;flex-wrap:wrap;gap:3px;margin-top:10px;}
-  .psalm-cell{width:30px;height:30px;display:flex;align-items:center;justify-content:center;border-radius:4px;font-size:9px;background:var(--surface2);color:var(--text-dim);border:1px solid transparent;cursor:pointer;transition:all .15s;font-family:'Lato',sans-serif;}
-  .psalm-cell.done{background:var(--green-bg);color:var(--green-light);border-color:var(--green);}
-  .psalm-cell.current{background:#2a2010;color:var(--gold);border-color:var(--gold);font-weight:700;}
+/* INPUTS */
+input[type=text],input[type=number],textarea,select{background:var(--surface2);border:1px solid #2a3a4a;color:var(--text);border-radius:8px;padding:9px 13px;font-family:'Lato',sans-serif;font-size:14px;outline:none;transition:border-color .2s;width:100%;}
+input[type=text]:focus,textarea:focus,select:focus{border-color:var(--gold-dim);}
+textarea{resize:vertical;line-height:1.6;}
 
-  /* CHECKLIST */
-  .check-item{display:flex;align-items:center;gap:12px;padding:12px 14px;background:var(--surface2);border-radius:10px;border:1px solid var(--surface2);cursor:pointer;transition:all .2s;margin-bottom:8px;font-size:14px;}
-  .check-item.done{background:var(--green-bg);border-color:var(--green);color:var(--green-light);}
-  .check-item .ci-icon{font-size:17px;min-width:20px;text-align:center;}
-  .check-item .ci-label{flex:1;}
-  .check-item .ci-mark{margin-left:auto;font-size:17px;}
+/* PSALMS GRID */
+.psalms-grid{display:flex;flex-wrap:wrap;gap:3px;margin-top:8px;}
+.psalm-cell{width:29px;height:29px;display:flex;align-items:center;justify-content:center;border-radius:4px;font-size:9px;background:var(--surface2);color:var(--text-dim);border:1px solid transparent;cursor:pointer;transition:all .15s;}
+.psalm-cell.done{background:var(--green-bg);color:var(--green-light);border-color:var(--green);}
+.psalm-cell.current{background:#2a2010;color:var(--gold);border-color:var(--gold);font-weight:700;}
 
-  /* HOOPO */
-  .tap-container{text-align:center;padding:8px 0;}
-  .tap-btn{background:none;border:none;cursor:pointer;margin:18px auto;display:block;}
-  .tap-inner{width:150px;height:150px;border-radius:50%;background:radial-gradient(circle at 40% 40%,#1E3A5F,#0D1B2A);border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;box-shadow:0 0 30px #C9A84C44,0 0 60px #C9A84C11;transition:transform .15s ease,box-shadow .15s ease;}
-  .tap-btn:active .tap-inner{transform:scale(.93);box-shadow:0 0 15px #C9A84C22;}
-  .tap-symbol{font-size:60px;color:var(--gold);}
-  .session-count{font-family:'Cinzel',serif;font-size:56px;color:var(--gold);line-height:1;}
-  .hoopo-hint{font-size:12px;color:var(--text-dim);margin-top:8px;}
+/* CHECK ITEM */
+.check-item{display:flex;align-items:center;gap:11px;padding:11px 13px;background:var(--surface2);border-radius:9px;border:1px solid var(--surface2);cursor:pointer;transition:all .2s;margin-bottom:7px;font-size:14px;user-select:none;}
+.check-item.done{background:var(--green-bg);border-color:var(--green);color:var(--green-light);}
+.ci-icon{font-size:16px;min-width:18px;text-align:center;}
+.ci-label{flex:1;}
 
-  /* DECRETOS */
-  .decreto-card{background:var(--surface);border:1px solid var(--surface2);border-radius:12px;padding:16px;margin-bottom:10px;}
-  .decreto-card.completo{border-color:var(--green);background:var(--green-bg);}
-  .decreto-titulo{font-size:13px;color:var(--gold-dim);letter-spacing:.05em;margin-bottom:4px;font-style:normal;}
-  .decreto-texto{font-size:15px;color:var(--text);font-style:italic;margin-bottom:10px;line-height:1.6;}
-  .decreto-info{font-size:12px;color:var(--text-dim);margin-bottom:8px;}
-  .decreto-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+/* DASHBOARD CARDS */
+.dash-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:4px;}
+.dash-card{background:var(--surface2);border-radius:10px;padding:14px;border:1px solid #2a3a4a;text-align:center;}
+.dash-num{font-family:'Cinzel',serif;font-size:28px;color:var(--gold);line-height:1;margin-bottom:4px;}
+.dash-label{font-size:11px;color:var(--text-dim);letter-spacing:.05em;}
+.dash-item{display:flex;align-items:center;gap:10px;padding:10px 13px;background:var(--surface2);border-radius:9px;margin-bottom:7px;}
+.dash-item-icon{font-size:18px;min-width:24px;}
+.dash-item-info{flex:1;}
+.dash-item-title{font-size:13px;color:var(--text);}
+.dash-item-sub{font-size:11px;color:var(--text-dim);margin-top:2px;}
+.dash-dot{width:8px;height:8px;border-radius:50%;background:var(--surface3);}
+.dash-dot.done{background:var(--green-light);}
 
-  /* JOURNAL */
-  .journal-q{margin-bottom:14px;}
-  .journal-q label{display:block;font-size:11px;color:var(--gold-dim);letter-spacing:.08em;margin-bottom:6px;text-transform:uppercase;}
-  .period-toggle{display:flex;gap:8px;margin-bottom:16px;}
-  .period-btn{flex:1;padding:10px;border-radius:8px;border:1px solid var(--surface2);background:var(--surface2);color:var(--text-dim);cursor:pointer;font-family:'Lato',sans-serif;font-size:13px;transition:all .2s;}
-  .period-btn.active{background:#2a2010;border-color:var(--gold);color:var(--gold);}
+/* HOOPO HISTORY */
+.hoopo-bar-wrap{margin-top:14px;}
+.hoopo-bar-row{display:flex;align-items:center;gap:8px;margin-bottom:6px;}
+.hoopo-bar-label{font-size:11px;color:var(--text-dim);width:28px;text-align:right;}
+.hoopo-bar-bg{flex:1;height:20px;background:var(--surface2);border-radius:4px;overflow:hidden;}
+.hoopo-bar-fill{height:100%;background:linear-gradient(90deg,var(--gold-dim),var(--gold));border-radius:4px;transition:width .5s ease;}
+.hoopo-bar-val{font-size:11px;color:var(--text-dim);min-width:24px;}
 
-  /* HIST */
-  .hist-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--surface2);}
-  .hist-date{font-size:12px;color:var(--text-dim);flex:1;}
+/* DECRETOS */
+.decreto-card{background:var(--surface);border:1px solid var(--surface2);border-radius:11px;padding:15px;margin-bottom:10px;}
+.decreto-card.completo{border-color:var(--green);background:var(--green-bg);}
+.decreto-titulo-el{font-size:12px;color:var(--gold-dim);letter-spacing:.05em;margin-bottom:3px;}
+.decreto-texto-el{font-size:14px;color:var(--text);font-style:italic;margin-bottom:9px;line-height:1.6;}
+.decreto-info-el{font-size:12px;color:var(--text-dim);margin-bottom:7px;}
+.decreto-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
 
-  /* RESUMO */
-  .resumo-text{font-size:15px;line-height:1.9;color:var(--text);white-space:pre-wrap;}
+/* JOURNAL */
+.journal-q{margin-bottom:12px;}
+.journal-q label{display:block;font-size:11px;color:var(--gold-dim);letter-spacing:.07em;margin-bottom:5px;text-transform:uppercase;}
+.period-toggle{display:flex;gap:8px;margin-bottom:14px;}
+.period-btn{flex:1;padding:9px;border-radius:8px;border:1px solid var(--surface2);background:var(--surface2);color:var(--text-dim);cursor:pointer;font-family:'Lato',sans-serif;font-size:13px;transition:all .2s;}
+.period-btn.active{background:#2a2010;border-color:var(--gold);color:var(--gold);}
 
-  /* TOAST */
-  .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(100px);background:var(--surface);border:1px solid var(--gold-dim);color:var(--gold);padding:10px 20px;border-radius:20px;font-size:13px;transition:transform .3s ease;z-index:100;white-space:nowrap;}
-  .toast.show{transform:translateX(-50%) translateY(0);}
-  .toast.error{border-color:#c0392b;color:#e74c3c;}
+/* RESUMO */
+.resumo-text{font-size:14px;line-height:1.9;color:var(--text);white-space:pre-wrap;}
 
-  /* UTILS */
-  .row{display:flex;gap:10px;align-items:center;}
-  .mt8{margin-top:8px;} .mt12{margin-top:12px;} .mt16{margin-top:16px;}
-  .divider{height:1px;background:var(--surface2);margin:14px 0;}
-  .section-title{font-size:11px;letter-spacing:.14em;color:var(--gold-dim);text-transform:uppercase;margin-bottom:10px;}
+/* TOAST */
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(100px);background:var(--surface);border:1px solid var(--gold-dim);color:var(--gold);padding:9px 18px;border-radius:20px;font-size:13px;transition:transform .3s ease;z-index:100;white-space:nowrap;}
+.toast.show{transform:translateX(-50%) translateY(0);}
+.toast.err{border-color:#c0392b;color:#e74c3c;}
+
+.row{display:flex;gap:10px;align-items:center;}
+.mt8{margin-top:8px;}.mt10{margin-top:10px;}.mt14{margin-top:14px;}
 </style>
 </head>
 <body>
@@ -122,762 +129,855 @@
 </div>
 
 <nav class="nav">
-  <button class="nav-btn active" onclick="showTab('salmos',this)">✦ Salmos</button>
-  <button class="nav-btn" onclick="showTab('salmos-esp',this)">✧ Salmos Especiais</button>
+  <button class="nav-btn active" onclick="showTab('inicio',this)">🏠 Início</button>
+  <button class="nav-btn" onclick="showTab('salmos',this)">✦ Salmos</button>
   <button class="nav-btn" onclick="showTab('oracoes',this)">☽ Orações</button>
+  <button class="nav-btn" onclick="showTab('afirmacoes',this)">📜 Afirmações</button>
   <button class="nav-btn" onclick="showTab('hoopo',this)">◎ Ho'oponopono</button>
-  <button class="nav-btn" onclick="showTab('decretos',this)">📜 Decretos</button>
   <button class="nav-btn" onclick="showTab('diario',this)">✎ Diário</button>
-  <button class="nav-btn" onclick="showTab('resumo',this)">★ Evolução</button>
+  <button class="nav-btn" onclick="showTab('evolucao',this)">★ Evolução</button>
 </nav>
 
 <div class="content">
 
-  <!-- ═══ SALMOS ═══ -->
-  <div id="tab-salmos" class="tab active">
-    <div class="card-gold">
-      <div class="card-label">PROGRESSO — 150 SALMOS</div>
-      <div class="big-number" id="psalm-percent">0%</div>
-      <div class="progress-bg"><div class="progress-fill" id="psalm-bar" style="width:0%"></div></div>
-      <div class="sub-label" id="psalm-count">0 de 150 lidos</div>
+<!-- ══════════════ INÍCIO ══════════════ -->
+<div id="tab-inicio" class="tab active">
+  <div class="card-gold">
+    <div class="card-label">BOM DIA — SUA JORNADA DE HOJE</div>
+    <div id="dash-saudacao" style="font-family:'Cinzel',serif;font-size:16px;color:var(--gold-light);margin-bottom:14px"></div>
+    <div class="dash-grid">
+      <div class="dash-card">
+        <div class="dash-num" id="dash-salmos-lidos">0</div>
+        <div class="dash-label">Salmos lidos</div>
+      </div>
+      <div class="dash-card">
+        <div class="dash-num" id="dash-streak">0</div>
+        <div class="dash-label">Dias seguidos</div>
+      </div>
+      <div class="dash-card">
+        <div class="dash-num" id="dash-hoopo-hoje">0</div>
+        <div class="dash-label">Ho'oponopono hoje</div>
+      </div>
+      <div class="dash-card">
+        <div class="dash-num" id="dash-decretos-ativos">0</div>
+        <div class="dash-label">Decretos ativos</div>
+      </div>
     </div>
-    <div class="card">
-      <div class="card-label">SALMO DE HOJE</div>
-      <div class="row" style="margin-bottom:12px">
-        <div style="font-family:'Cinzel',serif;font-size:48px;color:var(--gold);line-height:1" id="psalm-current-num">16</div>
-        <div>
-          <div style="font-size:12px;color:var(--text-dim);margin-bottom:6px">Estou no salmo:</div>
-          <div class="row">
-            <input type="number" id="psalm-input" min="1" max="150" value="16" style="width:80px">
-            <button class="btn btn-ghost" onclick="setPsalmManual()">OK</button>
-          </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label">O QUE FALTA HOJE</div>
+    <div id="dash-falta"></div>
+  </div>
+
+  <div class="card">
+    <div class="card-label">O QUE JÁ FEZ HOJE ✓</div>
+    <div id="dash-feito"></div>
+  </div>
+</div>
+
+<!-- ══════════════ SALMOS ══════════════ -->
+<div id="tab-salmos" class="tab">
+  <div class="card-gold">
+    <div class="card-label">PROGRESSO — 150 SALMOS</div>
+    <div class="big-number" id="psalm-percent">0%</div>
+    <div class="progress-bg"><div class="progress-fill" id="psalm-bar" style="width:0%"></div></div>
+    <div class="sub-label" id="psalm-count">0 de 150 lidos</div>
+  </div>
+
+  <div class="card">
+    <div class="sec-head">SALMO DE HOJE</div>
+    <div class="row" style="margin-bottom:10px">
+      <div style="font-family:'Cinzel',serif;font-size:46px;color:var(--gold);line-height:1" id="psalm-current-num">16</div>
+      <div>
+        <div style="font-size:12px;color:var(--text-dim);margin-bottom:5px">Estou no salmo:</div>
+        <div class="row">
+          <input type="number" id="psalm-input" min="1" max="150" value="16" style="width:78px">
+          <button class="btn btn-ghost" onclick="setPsalmManual()">OK</button>
         </div>
       </div>
-      <div style="font-size:12px;color:var(--text-dim);margin-bottom:8px">Ao marcar, os salmos anteriores também serão marcados automaticamente.</div>
-      <button class="btn btn-mark" onclick="markPsalmRead()">✓ Marcar Salmo <span id="psalm-mark-num">16</span> como lido</button>
     </div>
-    <div class="card">
-      <div class="card-label">MAPA DOS 150 SALMOS</div>
-      <div class="psalms-grid" id="psalms-grid"></div>
-    </div>
+    <div style="font-size:12px;color:var(--text-dim);margin-bottom:8px">Ao marcar, os salmos anteriores também serão marcados automaticamente.</div>
+    <button class="btn btn-mark" onclick="markPsalmRead()">✓ Marcar Salmo <span id="psalm-mark-num">16</span> como lido</button>
+
+    <div class="sec-head">MAPA DOS 150 SALMOS</div>
+    <div class="psalms-grid" id="psalms-grid"></div>
+
+    <div class="sec-head">SALMOS DAS 15H</div>
+    <p style="font-size:12px;color:var(--text-dim);margin-bottom:10px">Ler na ordem: Salmo 57 → 91 → 141</p>
+    <div id="salmos-15h"></div>
+
+    <div class="sec-head">SALMOS COM MISSÃO</div>
+    <div id="salmos-missao"></div>
   </div>
-
-  <!-- ═══ SALMOS ESPECIAIS ═══ -->
-  <div id="tab-salmos-esp" class="tab">
-    <div class="card">
-      <div class="card-label">SALMOS DAS 15H</div>
-      <p style="font-size:13px;color:var(--text-dim);margin-bottom:14px">Ler na ordem: Salmo 57 → 91 → 141</p>
-      <div id="salmos-15h"></div>
-    </div>
-    <div class="card">
-      <div class="card-label">SALMOS COM MISSÃO</div>
-      <div id="salmos-missao"></div>
-    </div>
-  </div>
-
-  <!-- ═══ ORAÇÕES ═══ -->
-  <div id="tab-oracoes" class="tab">
-    <div class="card-gold">
-      <div class="card-label">SEQUÊNCIA DE ORAÇÕES</div>
-      <div class="big-number" id="prayer-streak">0</div>
-      <div class="sub-label">dias consecutivos</div>
-    </div>
-
-    <div class="card">
-      <div class="card-label">ORAÇÕES DA MANHÃ ☀</div>
-      <div id="oracoes-manha"></div>
-    </div>
-
-    <div class="card">
-      <div class="card-label">DECLARAÇÕES DA MANHÃ ✦</div>
-      <p style="font-size:12px;color:var(--text-dim);margin-bottom:12px">Marque as declarações que fez hoje</p>
-      <div id="declaracoes-manha"></div>
-    </div>
-
-    <div class="card">
-      <div class="card-label">ORAÇÕES DA NOITE ☽</div>
-      <div id="oracoes-noite"></div>
-    </div>
-
-    <div class="card">
-      <div class="card-label">DECLARAÇÕES DA NOITE ✦</div>
-      <p style="font-size:12px;color:var(--text-dim);margin-bottom:12px">Marque as declarações que fez hoje</p>
-      <div id="declaracoes-noite"></div>
-    </div>
-  </div>
-
-  <!-- ═══ HO'OPONOPONO ═══ -->
-  <div id="tab-hoopo" class="tab">
-    <div class="card-gold">
-      <div class="card-label">TOTAL ACUMULADO</div>
-      <div class="big-number" id="hoopo-total">0</div>
-      <div class="sub-label">repetições</div>
-    </div>
-    <div class="card tap-container">
-      <div class="card-label">SESSÃO ATUAL</div>
-      <div class="session-count" id="hoopo-session">0</div>
-      <button class="tap-btn" onclick="tapHoopo()">
-        <div class="tap-inner"><span class="tap-symbol">◎</span></div>
-      </button>
-      <div class="hoopo-hint">Toque após completar a frase sagrada</div>
-      <div style="margin-top:18px;padding:14px;background:var(--surface2);border-radius:8px;font-style:italic;font-size:14px;line-height:2;color:var(--gold-light);text-align:center">
-        Sinto muito · Me perdoa<br>Te amo · Sou grato
-      </div>
-      <div style="margin-top:14px;text-align:center">
-        <button class="btn btn-ghost-sm" onclick="resetHoopoSession()">Reiniciar sessão</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- ═══ DECRETOS ═══ -->
-  <div id="tab-decretos" class="tab">
-    <div class="card">
-      <div class="card-label">ADICIONAR DECRETO</div>
-      <div class="journal-q">
-        <label>Título (opcional)</label>
-        <input type="text" id="decreto-titulo-input" placeholder="Ex: Decreto da abundância">
-      </div>
-      <div class="journal-q mt8">
-        <label>Texto do decreto</label>
-        <textarea id="decreto-texto" rows="4" placeholder="Ex: Eu sou abundância em todas as formas. Eu mereço receber o melhor que a vida tem a oferecer..."></textarea>
-      </div>
-      <div class="row mt8">
-        <select id="decreto-tipo" style="flex:1" onchange="toggleDecretoDias()">
-          <option value="livre">Sem prazo (Eu sou...)</option>
-          <option value="com_prazo">Com prazo (dias)</option>
-        </select>
-        <input type="number" id="decreto-dias" placeholder="Dias" min="1" style="width:90px;display:none">
-      </div>
-      <button class="btn btn-primary mt12 btn-full" onclick="addDecreto()">Adicionar Decreto</button>
-    </div>
-    <div id="decretos-list"></div>
-  </div>
-
-  <!-- ═══ DIÁRIO ═══ -->
-  <div id="tab-diario" class="tab">
-    <div class="card">
-      <div class="card-label">PERÍODO</div>
-      <div class="period-toggle">
-        <button class="period-btn active" id="btn-manha" onclick="setPeriod('manha')">☀ Manhã</button>
-        <button class="period-btn" id="btn-noite" onclick="setPeriod('noite')">☽ Noite</button>
-      </div>
-      <div id="perguntas-manha">
-        <div class="journal-q"><label>Como estou chegando nesse dia?</label><textarea id="d-m1" rows="2" placeholder="Meu estado de espírito agora..."></textarea></div>
-        <div class="journal-q"><label>O que quero manifestar hoje?</label><textarea id="d-m2" rows="2" placeholder="Minhas intenções para hoje..."></textarea></div>
-        <div class="journal-q"><label>Minha intenção do dia é...</label><textarea id="d-m3" rows="2" placeholder="Me comprometo a..."></textarea></div>
-        <div class="journal-q"><label>Sou grato hoje por...</label><textarea id="d-m4" rows="2" placeholder="Gratidão por..."></textarea></div>
-      </div>
-      <div id="perguntas-noite" style="display:none">
-        <div class="journal-q"><label>Como foi meu dia?</label><textarea id="d-n1" rows="2" placeholder="O que vivenciei hoje..."></textarea></div>
-        <div class="journal-q"><label>O que de bom aconteceu, mesmo que pequeno?</label><textarea id="d-n2" rows="2" placeholder="Pequenas bênçãos do dia..."></textarea></div>
-        <div class="journal-q"><label>O que senti que evoluiu em mim?</label><textarea id="d-n3" rows="2" placeholder="Minha evolução hoje..."></textarea></div>
-        <div class="journal-q"><label>Amanhã eu pretendo...</label><textarea id="d-n4" rows="2" placeholder="Minha intenção para amanhã..."></textarea></div>
-      </div>
-      <button class="btn btn-primary btn-full mt12" onclick="saveJournal()">Salvar e receber orientação ✧</button>
-    </div>
-    <div id="ai-reply-box" style="display:none" class="card-ai">
-      <div class="card-label">ORIENTAÇÃO</div>
-      <div class="resumo-text" id="ai-reply-text"></div>
-    </div>
-    <div class="card" id="journal-history-box" style="display:none">
-      <div class="card-label">ENTRADAS ANTERIORES</div>
-      <div id="journal-history"></div>
-    </div>
-  </div>
-
-  <!-- ═══ EVOLUÇÃO ═══ -->
-  <div id="tab-resumo" class="tab">
-    <div class="card">
-      <div class="card-label">RESUMO SEMANAL DE EVOLUÇÃO</div>
-      <p style="font-size:13px;color:var(--text-dim);margin-bottom:16px;line-height:1.7">A IA analisa seus diários, orações, salmos e decretos da semana e gera um relatório profundo sobre sua jornada — o que evoluiu, o que pode melhorar, padrões que percebeu e visão do seu futuro espiritual.</p>
-      <button class="btn btn-primary btn-full" onclick="gerarResumo()">✧ Gerar análise desta semana</button>
-    </div>
-    <div id="resumo-box" style="display:none" class="card-ai">
-      <div class="card-label">SUA EVOLUÇÃO</div>
-      <div class="resumo-text" id="resumo-text"></div>
-    </div>
-    <div class="card" id="resumos-anteriores-box" style="display:none">
-      <div class="card-label">ANÁLISES ANTERIORES</div>
-      <div id="resumos-anteriores"></div>
-    </div>
-  </div>
-
 </div>
+
+<!-- ══════════════ ORAÇÕES ══════════════ -->
+<div id="tab-oracoes" class="tab">
+  <div class="card-gold">
+    <div class="card-label">SEQUÊNCIA DE ORAÇÕES</div>
+    <div class="big-number" id="prayer-streak">0</div>
+    <div class="sub-label">dias consecutivos</div>
+  </div>
+
+  <div class="card">
+    <div class="sec-head">ORAÇÕES DA MANHÃ ☀</div>
+    <div id="oracoes-manha"></div>
+
+    <div class="sec-head">ORAÇÕES DA NOITE ☽</div>
+    <div id="oracoes-noite"></div>
+  </div>
+</div>
+
+<!-- ══════════════ AFIRMAÇÕES ══════════════ -->
+<div id="tab-afirmacoes" class="tab">
+
+  <div class="card">
+    <div class="sec-head">DECLARAÇÕES DIÁRIAS ✦</div>
+    <p style="font-size:12px;color:var(--text-dim);margin-bottom:12px">Marque as que afirmou hoje</p>
+    <div id="declaracoes-lista"></div>
+  </div>
+
+  <div class="card">
+    <div class="sec-head">ADICIONAR DECRETO</div>
+    <div class="journal-q">
+      <label>Título (opcional)</label>
+      <input type="text" id="decreto-titulo-input" placeholder="Ex: Decreto da abundância">
+    </div>
+    <div class="journal-q mt8">
+      <label>Texto do decreto</label>
+      <textarea id="decreto-texto" rows="4" placeholder="Ex: Eu sou abundância em todas as formas. Eu mereço receber o melhor que a vida tem a oferecer..."></textarea>
+    </div>
+    <div class="row mt8">
+      <select id="decreto-tipo" style="flex:1" onchange="toggleDecretoDias()">
+        <option value="livre">Sem prazo (Eu sou...)</option>
+        <option value="com_prazo">Com prazo (dias)</option>
+      </select>
+      <input type="number" id="decreto-dias" placeholder="Dias" min="1" style="width:88px;display:none">
+    </div>
+    <button class="btn btn-primary btn-full mt10" onclick="addDecreto()">Adicionar Decreto</button>
+  </div>
+
+  <div id="decretos-list"></div>
+</div>
+
+<!-- ══════════════ HO'OPONOPONO ══════════════ -->
+<div id="tab-hoopo" class="tab">
+  <div class="card-gold">
+    <div class="card-label">TOTAL ACUMULADO</div>
+    <div class="big-number" id="hoopo-total">0</div>
+    <div class="sub-label">repetições</div>
+  </div>
+
+  <div class="card" style="text-align:center">
+    <div class="card-label">SESSÃO ATUAL</div>
+    <div class="session-count" style="font-family:'Cinzel',serif;font-size:54px;color:var(--gold);line-height:1" id="hoopo-session">0</div>
+    <button style="background:none;border:none;cursor:pointer;margin:16px auto;display:block;" onclick="tapHoopo()">
+      <div style="width:148px;height:148px;border-radius:50%;background:radial-gradient(circle at 40% 40%,#1E3A5F,#0D1B2A);border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;box-shadow:0 0 28px #C9A84C44;transition:transform .15s ease;" id="tap-inner">
+        <span style="font-size:58px;color:var(--gold)">◎</span>
+      </div>
+    </button>
+    <div style="font-size:12px;color:var(--text-dim)">Toque após completar a frase sagrada</div>
+    <div style="margin-top:16px;padding:13px;background:var(--surface2);border-radius:8px;font-style:italic;font-size:14px;line-height:2;color:var(--gold-light)">
+      Sinto muito · Me perdoa<br>Te amo · Sou grato
+    </div>
+    <div style="margin-top:12px">
+      <button class="btn-ghost-sm" onclick="resetHoopoSession()">Reiniciar sessão</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label">HISTÓRICO DA SEMANA</div>
+    <div class="hoopo-bar-wrap" id="hoopo-historico"></div>
+  </div>
+</div>
+
+<!-- ══════════════ DIÁRIO ══════════════ -->
+<div id="tab-diario" class="tab">
+  <div class="card">
+    <div class="card-label">PERÍODO</div>
+    <div class="period-toggle">
+      <button class="period-btn active" id="btn-manha" onclick="setPeriod('manha')">☀ Manhã</button>
+      <button class="period-btn" id="btn-noite" onclick="setPeriod('noite')">☽ Noite</button>
+    </div>
+
+    <div id="perguntas-manha">
+      <div class="journal-q"><label>Como estou chegando nesse dia?</label><textarea id="d-m1" rows="2" placeholder="Meu estado de espírito agora..."></textarea></div>
+      <div class="journal-q"><label>O que quero manifestar hoje?</label><textarea id="d-m2" rows="2" placeholder="Minhas intenções para hoje..."></textarea></div>
+      <div class="journal-q"><label>Minha intenção do dia é...</label><textarea id="d-m3" rows="2" placeholder="Me comprometo a..."></textarea></div>
+      <div class="journal-q"><label>Sou grato hoje por...</label><textarea id="d-m4" rows="2" placeholder="Gratidão por..."></textarea></div>
+    </div>
+
+    <div id="perguntas-noite" style="display:none">
+      <div class="journal-q"><label>Como foi meu dia?</label><textarea id="d-n1" rows="2" placeholder="O que vivenciei hoje..."></textarea></div>
+      <div class="journal-q"><label>O que de bom aconteceu, mesmo que pequeno?</label><textarea id="d-n2" rows="2" placeholder="Pequenas bênçãos do dia..."></textarea></div>
+      <div class="journal-q"><label>Qual foi o maior desafio de hoje e o que ele me ensinou?</label><textarea id="d-n3" rows="2" placeholder="O desafio foi... e aprendi que..."></textarea></div>
+      <div class="journal-q"><label>O que senti que evoluiu em mim?</label><textarea id="d-n4" rows="2" placeholder="Minha evolução hoje..."></textarea></div>
+      <div class="journal-q"><label>Amanhã eu pretendo...</label><textarea id="d-n5" rows="2" placeholder="Minha intenção para amanhã..."></textarea></div>
+    </div>
+
+    <button class="btn btn-primary btn-full mt10" onclick="saveJournal()">Salvar e receber orientação ✧</button>
+  </div>
+
+  <div id="ai-reply-box" style="display:none" class="card-ai">
+    <div class="card-label">ORIENTAÇÃO</div>
+    <div class="resumo-text" id="ai-reply-text"></div>
+  </div>
+
+  <div class="card" id="journal-history-box" style="display:none">
+    <div class="card-label">ENTRADAS ANTERIORES</div>
+    <div id="journal-history"></div>
+  </div>
+</div>
+
+<!-- ══════════════ EVOLUÇÃO ══════════════ -->
+<div id="tab-evolucao" class="tab">
+  <div class="card">
+    <div class="card-label">ANÁLISE SEMANAL DE EVOLUÇÃO</div>
+    <p style="font-size:13px;color:var(--text-dim);margin-bottom:14px;line-height:1.7">A IA analisa seus diários, orações e decretos da semana e gera uma análise profunda: conquistas, padrões, o que melhorar, visão do seu futuro espiritual e intenção para a próxima semana.</p>
+    <button class="btn btn-primary btn-full" onclick="gerarResumo()">✧ Gerar análise desta semana</button>
+  </div>
+
+  <div id="resumo-box" style="display:none" class="card-ai">
+    <div class="card-label">SUA EVOLUÇÃO</div>
+    <div class="resumo-text" id="resumo-text"></div>
+  </div>
+
+  <div class="card" id="resumos-anteriores-box" style="display:none">
+    <div class="card-label">ANÁLISES ANTERIORES</div>
+    <div id="resumos-anteriores"></div>
+  </div>
+</div>
+
+</div><!-- /content -->
 
 <div class="toast" id="toast"></div>
 
 <script>
-// ════════════════════════════════════════
+// ══════════════════════════════════════════
 // SUPABASE
-// ════════════════════════════════════════
-const SB_URL = 'https://kjnxjmxtsoafwdgiborp.supabase.co/rest/v1';
-const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtqbnhqbXh0c29hZndkZ2lib3JwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI0MTk5NDcsImV4cCI6MjA5Nzk5NTk0N30.2Oj_ykzw7YC8VMsSEdu_E538cMu3_fhhW4HQekWWXqE';
+// ══════════════════════════════════════════
+const SB_URL='https://kjnxjmxtsoafwdgiborp.supabase.co/rest/v1';
+const SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtqbnhqbXh0c29hZndkZ2lib3JwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI0MTk5NDcsImV4cCI6MjA5Nzk5NTk0N30.2Oj_ykzw7YC8VMsSEdu_E538cMu3_fhhW4HQekWWXqE';
 
-async function sb(path, method='GET', body=null, qs='') {
-  const h = {
+async function sb(path,method='GET',body=null,qs=''){
+  const h={
     'Content-Type':'application/json',
-    'apikey': SB_KEY,
-    'Authorization': `Bearer ${SB_KEY}`,
-    'Prefer': method==='POST' ? 'return=minimal' : 'return=representation'
+    'apikey':SB_KEY,
+    'Authorization':'Bearer '+SB_KEY,
+    'Prefer':method==='POST'?'return=minimal':'return=representation'
   };
-  try {
-    const r = await fetch(`${SB_URL}${path}${qs}`, {
-      method, headers:h, body: body ? JSON.stringify(body) : null
-    });
-    if (!r.ok) {
-      const e = await r.text();
-      console.error('SB Error', r.status, e);
-      return null;
-    }
-    const txt = await r.text();
-    if (!txt) return true;
-    return JSON.parse(txt);
-  } catch(e) {
-    console.error('SB fetch error', e);
-    return null;
-  }
+  try{
+    const r=await fetch(SB_URL+path+qs,{method,headers:h,body:body?JSON.stringify(body):null});
+    if(!r.ok){console.error('SB',r.status,await r.text());return null;}
+    const t=await r.text();
+    return t?JSON.parse(t):true;
+  }catch(e){console.error(e);return null;}
 }
 
-// ════════════════════════════════════════
+// ══════════════════════════════════════════
 // ESTADO
-// ════════════════════════════════════════
-let currentPsalm = 16;
-let psalmsRead = [];
-let hoopoTotal = 0;
-let hoopoSession = 0;
-let hoopoUnsaved = 0;
-let prayerLog = {}; // { manha: {id:bool}, noite: {id:bool} }
-let declaracaoLog = {}; // { manha: {id:bool}, noite: {id:bool} }
-let decretos = [];
-let journalPeriod = 'manha';
+// ══════════════════════════════════════════
+let currentPsalm=16, psalmsRead=[];
+let hoopoTotal=0, hoopoSession=0, hoopoUnsaved=0, hoopoHoje=0;
+let prayerLog={}, declaracaoLog={};
+let decretos=[];
+let journalPeriod='manha';
 
-function today() {
-  const d = new Date();
+function today(){
+  const d=new Date();
   return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
 }
 
-// ════════════════════════════════════════
-// ORAÇÕES PRÉ-CADASTRADAS
-// ════════════════════════════════════════
-const ORACOES_MANHA = [
-  { id:'salmos_manha',   nome:'Salmos da Manhã' },
-  { id:'pai_nosso',      nome:'Pai Nosso' },
-  { id:'sao_bento',      nome:'Oração de São Bento' },
-  { id:'sao_miguel',     nome:'Oração de São Miguel' },
-  { id:'santo_onofre',   nome:'Oração de Santo Onofre' },
+// ══════════════════════════════════════════
+// DADOS
+// ══════════════════════════════════════════
+const ORACOES_MANHA=[
+  {id:'salmos_m',   nome:'Salmos da Manhã'},
+  {id:'pai_nosso_m',nome:'Pai Nosso'},
+  {id:'sao_bento',  nome:'Oração de São Bento'},
+  {id:'sao_miguel', nome:'Oração de São Miguel'},
+  {id:'sto_onofre', nome:'Oração de Santo Onofre'},
 ];
-const ORACOES_NOITE = ORACOES_MANHA.map(o=>({...o, id:o.id+'_noite'}));
+const ORACOES_NOITE=ORACOES_MANHA.map(o=>({...o,id:o.id+'_n'}));
 
-const DECLARACOES = [
-  { id:'decl1', nome:'Eu sou saúde, paz e amor' },
-  { id:'decl2', nome:'Eu sou abundância e prosperidade' },
-  { id:'decl3', nome:'Eu sou guiado pelo divino' },
-  { id:'decl4', nome:'Eu sou grato por todas as bênçãos' },
-  { id:'decl5', nome:'Eu sou luz e amor em ação' },
-];
-
-// ════════════════════════════════════════
-// SALMOS ESPECIAIS
-// ════════════════════════════════════════
-const SALMOS_15H = [
-  { numero:57, nome:'Salmo 57' },
-  { numero:91, nome:'Salmo 91' },
-  { numero:141, nome:'Salmo 141' },
-];
-const SALMOS_MISSAO = [
-  { numero:111, nome:'Salmo 111', info:'Às 11:11 — durante 21 dias', dias:21 },
-  { numero:23,  nome:'Salmo 23',  info:'7 vezes seguidas — 7 dias — às 6h', dias:7 },
-  { numero:91,  nome:'Salmo 91',  info:'3 vezes seguidas — 33 dias', dias:33 },
-  { numero:24,  nome:'Salmo 24',  info:'Pela manhã, antes do café', dias:0 },
-  { numero:118, nome:'Salmo 118', info:'Todo domingo', dias:0 },
+const DECLARACOES=[
+  {id:'d1',nome:'Eu sou saúde, paz e amor'},
+  {id:'d2',nome:'Eu sou abundância e prosperidade'},
+  {id:'d3',nome:'Eu sou guiado pelo divino em tudo'},
+  {id:'d4',nome:'Eu sou grato por todas as bênçãos'},
+  {id:'d5',nome:'Eu sou luz e amor em ação'},
 ];
 
-// ════════════════════════════════════════
+const SALMOS_15H=[
+  {numero:57,nome:'Salmo 57'},
+  {numero:91,nome:'Salmo 91'},
+  {numero:141,nome:'Salmo 141'},
+];
+const SALMOS_MISSAO=[
+  {numero:111,nome:'Salmo 111',info:'Às 11:11 — durante 21 dias',dias:21},
+  {numero:23, nome:'Salmo 23', info:'7 vezes seguidas — 7 dias — às 6h',dias:7},
+  {numero:91, nome:'Salmo 91', info:'3 vezes seguidas — durante 33 dias',dias:33},
+  {numero:24, nome:'Salmo 24', info:'Pela manhã, antes do café',dias:0},
+  {numero:118,nome:'Salmo 118',info:'Todo domingo',dias:0},
+];
+
+// ══════════════════════════════════════════
 // INIT
-// ════════════════════════════════════════
-async function init() {
-  document.getElementById('header-date').textContent =
+// ══════════════════════════════════════════
+async function init(){
+  const h=new Date().getHours();
+  const s=h<12?'Bom dia ✦':h<18?'Boa tarde ✦':'Boa noite ✦';
+  document.getElementById('dash-saudacao').textContent=s;
+  document.getElementById('header-date').textContent=
     new Date().toLocaleDateString('pt-BR',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
-  await Promise.all([
-    loadPsalms(), loadPrayerLog(), loadHoopo(), loadDecretos(), loadJournalHistory(), loadResumos()
-  ]);
+
+  await Promise.all([loadPsalms(),loadPrayerLog(),loadHoopo(),loadDecretos(),loadJournalHistory(),loadResumos()]);
   renderOracoes();
   renderSalmosEsp();
+  renderDeclaracoes();
+  renderDashboard();
 }
 
-// ════════════════════════════════════════
+// ══════════════════════════════════════════
 // SALMOS
-// ════════════════════════════════════════
-async function loadPsalms() {
-  const data = await sb('/salmos_log','GET',null,'?tipo=eq.diario&select=salmo_numero');
-  if (data && Array.isArray(data)) {
-    psalmsRead = [...new Set(data.map(r=>r.salmo_numero))];
-  }
-  const s = localStorage.getItem('currentPsalm');
-  if (s) currentPsalm = parseInt(s);
+// ══════════════════════════════════════════
+async function loadPsalms(){
+  const data=await sb('/salmos_log','GET',null,'?tipo=eq.diario&select=salmo_numero');
+  if(data&&Array.isArray(data)) psalmsRead=[...new Set(data.map(r=>r.salmo_numero))];
+  const s=localStorage.getItem('currentPsalm');
+  if(s) currentPsalm=parseInt(s);
   renderPsalms();
 }
 
-function renderPsalms() {
-  const pct = Math.round(psalmsRead.length / 150 * 100);
-  document.getElementById('psalm-percent').textContent = pct+'%';
-  document.getElementById('psalm-bar').style.width = pct+'%';
-  document.getElementById('psalm-count').textContent = psalmsRead.length+' de 150 lidos';
-  document.getElementById('psalm-current-num').textContent = currentPsalm;
-  document.getElementById('psalm-input').value = currentPsalm;
-  document.getElementById('psalm-mark-num').textContent = currentPsalm;
+function renderPsalms(){
+  const pct=Math.round(psalmsRead.length/150*100);
+  document.getElementById('psalm-percent').textContent=pct+'%';
+  document.getElementById('psalm-bar').style.width=pct+'%';
+  document.getElementById('psalm-count').textContent=psalmsRead.length+' de 150 lidos';
+  document.getElementById('psalm-current-num').textContent=currentPsalm;
+  document.getElementById('psalm-input').value=currentPsalm;
+  document.getElementById('psalm-mark-num').textContent=currentPsalm;
+  document.getElementById('dash-salmos-lidos').textContent=psalmsRead.length;
 
-  const grid = document.getElementById('psalms-grid');
-  grid.innerHTML = '';
-  for (let i=1; i<=150; i++) {
-    const el = document.createElement('div');
-    el.className = 'psalm-cell'+(psalmsRead.includes(i)?' done':'')+(i===currentPsalm?' current':'');
-    el.textContent = i;
-    el.title = 'Salmo '+i;
-    el.onclick = ()=>{ currentPsalm=i; localStorage.setItem('currentPsalm',i); renderPsalms(); };
+  const grid=document.getElementById('psalms-grid');
+  grid.innerHTML='';
+  for(let i=1;i<=150;i++){
+    const el=document.createElement('div');
+    el.className='psalm-cell'+(psalmsRead.includes(i)?' done':'')+(i===currentPsalm?' current':'');
+    el.textContent=i;
+    el.onclick=()=>{currentPsalm=i;localStorage.setItem('currentPsalm',i);renderPsalms();};
     grid.appendChild(el);
   }
 }
 
-async function markPsalmRead() {
+async function markPsalmRead(){
   toast('Salvando...');
-  // Marca todos os salmos do 1 até o atual que ainda não foram marcados
-  const toMark = [];
-  for (let i=1; i<=currentPsalm; i++) {
-    if (!psalmsRead.includes(i)) toMark.push(i);
-  }
-  if (!toMark.length) { toast('Salmos já marcados!'); return; }
-
-  // Insere em batch — um por um (Supabase REST aceita array)
-  const rows = toMark.map(n=>({ salmo_numero:n, tipo:'diario', data:today() }));
-  const res = await sb('/salmos_log','POST',rows);
-  if (res === null) { toast('❌ Erro no Supabase. Verifique as policies (RLS).','error'); return; }
-
-  toMark.forEach(n => psalmsRead.push(n));
-  const next = currentPsalm >= 150 ? 1 : currentPsalm+1;
-  currentPsalm = next;
-  localStorage.setItem('currentPsalm', next);
+  const toMark=[];
+  for(let i=1;i<=currentPsalm;i++) if(!psalmsRead.includes(i)) toMark.push(i);
+  if(!toMark.length){toast('Salmos já marcados!');return;}
+  const rows=toMark.map(n=>({salmo_numero:n,tipo:'diario',data:today()}));
+  const res=await sb('/salmos_log','POST',rows);
+  if(res===null){toast('❌ Erro no Supabase','err');return;}
+  toMark.forEach(n=>psalmsRead.push(n));
+  const next=currentPsalm>=150?1:currentPsalm+1;
+  currentPsalm=next;
+  localStorage.setItem('currentPsalm',next);
   renderPsalms();
-  toast('✓ '+(toMark.length > 1 ? toMark.length+' salmos marcados!' : 'Salmo marcado!'));
+  renderDashboard();
+  toast('✓ '+(toMark.length>1?toMark.length+' salmos marcados!':'Salmo marcado!'));
 }
 
-function setPsalmManual() {
-  const n = parseInt(document.getElementById('psalm-input').value);
-  if (n>=1 && n<=150) { currentPsalm=n; localStorage.setItem('currentPsalm',n); renderPsalms(); }
+function setPsalmManual(){
+  const n=parseInt(document.getElementById('psalm-input').value);
+  if(n>=1&&n<=150){currentPsalm=n;localStorage.setItem('currentPsalm',n);renderPsalms();}
 }
 
-// ════════════════════════════════════════
+// ══════════════════════════════════════════
 // SALMOS ESPECIAIS
-// ════════════════════════════════════════
-async function renderSalmosEsp() {
-  // 15h
-  const box15 = document.getElementById('salmos-15h');
-  box15.innerHTML = '';
-  for (const s of SALMOS_15H) {
-    const data = await sb('/salmos_log','GET',null,`?salmo_numero=eq.${s.numero}&tipo=eq.esp15h&data=eq.${today()}`);
-    const done = data && data.length > 0;
-    const el = document.createElement('div');
-    el.innerHTML = `<div class="check-item ${done?'done':" "}" id="ci15-${s.numero}" onclick="markSalmoEsp(${s.numero},'esp15h','ci15-${s.numero}')">
-      <span class="ci-icon">${done?'✓':'○'}</span>
-      <span class="ci-label">${s.nome}</span>
-    </div>`;
+// ══════════════════════════════════════════
+async function renderSalmosEsp(){
+  const box15=document.getElementById('salmos-15h');
+  box15.innerHTML='';
+  for(const s of SALMOS_15H){
+    const data=await sb('/salmos_log','GET',null,`?salmo_numero=eq.${s.numero}&tipo=eq.esp15h&data=eq.${today()}`);
+    const done=data&&data.length>0;
+    const el=document.createElement('div');
+    el.className='check-item'+(done?' done':'');
+    el.id='ci15-'+s.numero;
+    el.innerHTML=`<span class="ci-icon">${done?'✓':'○'}</span><span class="ci-label">${s.nome}</span>`;
+    el.onclick=()=>markSalmoEsp(s.numero,'esp15h','ci15-'+s.numero);
     box15.appendChild(el);
   }
 
-  // Missão
-  const boxM = document.getElementById('salmos-missao');
-  boxM.innerHTML = '';
-  for (const s of SALMOS_MISSAO) {
-    const key = `sm_${s.numero}_${s.info.slice(0,10)}`;
-    const dias = parseInt(localStorage.getItem(key)||'0');
-    const pct = s.dias ? Math.min(100,Math.round(dias/s.dias*100)) : 0;
-    const completo = s.dias && dias >= s.dias;
-    const el = document.createElement('div');
-    el.innerHTML = `<div style="border:1px solid var(--surface2);border-radius:10px;padding:14px;margin-bottom:10px">
-      <div style="font-family:'Cinzel',serif;color:var(--gold);font-size:15px;margin-bottom:4px">${s.nome}</div>
-      <div style="font-size:12px;color:var(--text-dim);margin-bottom:8px">${s.info}</div>
-      ${s.dias ? `<div style="font-size:12px;color:var(--text-dim);margin-bottom:6px">${dias} / ${s.dias} dias</div>
-        <div class="progress-bg"><div class="progress-fill" style="width:${pct}%"></div></div>` : ''}
+  const boxM=document.getElementById('salmos-missao');
+  boxM.innerHTML='';
+  for(const s of SALMOS_MISSAO){
+    const key=`sm_${s.numero}_${s.dias}`;
+    const dias=parseInt(localStorage.getItem(key)||'0');
+    const pct=s.dias?Math.min(100,Math.round(dias/s.dias*100)):0;
+    const completo=s.dias&&dias>=s.dias;
+    const el=document.createElement('div');
+    el.innerHTML=`<div style="border:1px solid var(--surface2);border-radius:9px;padding:13px;margin-bottom:9px">
+      <div style="font-family:'Cinzel',serif;color:var(--gold);font-size:14px;margin-bottom:3px">${s.nome}</div>
+      <div style="font-size:12px;color:var(--text-dim);margin-bottom:7px">${s.info}</div>
+      ${s.dias?`<div style="font-size:12px;color:var(--text-dim);margin-bottom:5px">${dias}/${s.dias} dias</div>
+        <div class="progress-bg"><div class="progress-fill" style="width:${pct}%"></div></div>`:''}
       <button class="btn ${completo?'btn-ghost':'btn-primary'} mt8" onclick="markSalmoMissao('${key}',${s.dias},this)">
-        ${completo ? '✓ Concluído' : (s.dias ? 'Marcar dia de hoje' : 'Marcar como feito')}
-      </button>
-    </div>`;
+        ${completo?'✓ Concluído':s.dias?'Marcar dia de hoje':'Marcar como feito'}
+      </button></div>`;
     boxM.appendChild(el);
   }
 }
 
-async function markSalmoEsp(numero, tipo, elId) {
-  await sb('/salmos_log','POST',{ salmo_numero:numero, tipo, data:today() });
-  const el = document.getElementById(elId);
-  el.className = 'check-item done';
-  el.querySelector('.ci-icon').textContent = '✓';
+async function markSalmoEsp(numero,tipo,elId){
+  const res=await sb('/salmos_log','POST',{salmo_numero:numero,tipo,data:today()});
+  if(res===null){toast('Erro ao salvar','err');return;}
+  const el=document.getElementById(elId);
+  el.className='check-item done';
+  el.querySelector('.ci-icon').textContent='✓';
   toast('Salmo marcado!');
 }
 
-function markSalmoMissao(key, totalDias, btn) {
-  let dias = parseInt(localStorage.getItem(key)||'0')+1;
-  localStorage.setItem(key, dias);
-  if (totalDias && dias >= totalDias) { btn.textContent='✓ Concluído'; btn.className='btn btn-ghost mt8'; }
-  else btn.textContent = totalDias ? `Marcar dia de hoje (${dias}/${totalDias})` : 'Marcar como feito';
+function markSalmoMissao(key,totalDias,btn){
+  let dias=parseInt(localStorage.getItem(key)||'0')+1;
+  localStorage.setItem(key,dias);
+  if(totalDias&&dias>=totalDias){btn.textContent='✓ Concluído';btn.className='btn btn-ghost mt8';}
+  else btn.textContent=totalDias?`Marcar dia de hoje (${dias}/${totalDias})`:'Marcar como feito';
   toast('Dia '+dias+(totalDias?'/'+totalDias:'')+' marcado!');
 }
 
-// ════════════════════════════════════════
+// ══════════════════════════════════════════
 // ORAÇÕES
-// ════════════════════════════════════════
-async function loadPrayerLog() {
-  const data = await sb('/oracoes_log','GET',null,`?data=eq.${today()}`);
-  if (data) {
-    data.forEach(r => {
-      if (r.periodo==='manha') prayerLog.manha = r.oracoes_feitas||{};
-      if (r.periodo==='noite') prayerLog.noite = r.oracoes_feitas||{};
-      if (r.periodo==='decl_manha') declaracaoLog.manha = r.oracoes_feitas||{};
-      if (r.periodo==='decl_noite') declaracaoLog.noite = r.oracoes_feitas||{};
-    });
-  }
-  await calcPrayerStreak();
+// ══════════════════════════════════════════
+async function loadPrayerLog(){
+  const data=await sb('/oracoes_log','GET',null,`?data=eq.${today()}`);
+  if(data) data.forEach(r=>{
+    if(r.periodo==='manha') prayerLog.manha=r.oracoes_feitas||{};
+    if(r.periodo==='noite') prayerLog.noite=r.oracoes_feitas||{};
+    if(r.periodo==='decl') declaracaoLog.decl=r.oracoes_feitas||{};
+  });
+  await calcStreak();
 }
 
-async function calcPrayerStreak() {
-  const data = await sb('/oracoes_log','GET',null,'?select=data&order=data.desc&limit=60');
-  let streak = 0;
-  if (data) {
-    const dates = [...new Set(data.map(r=>r.data))].sort().reverse();
-    for (let i=0; i<60; i++) {
-      const d = new Date(); d.setDate(d.getDate()-i);
-      const k = d.toISOString().split('T')[0];
-      if (dates.includes(k)) streak++;
-      else break;
+async function calcStreak(){
+  const data=await sb('/oracoes_log','GET',null,'?select=data&order=data.desc&limit=60');
+  let streak=0;
+  if(data){
+    const dates=[...new Set(data.map(r=>r.data))].sort().reverse();
+    for(let i=0;i<60;i++){
+      const d=new Date();d.setDate(d.getDate()-i);
+      const k=d.toISOString().split('T')[0];
+      if(dates.includes(k))streak++;else break;
     }
   }
-  document.getElementById('prayer-streak').textContent = streak;
+  document.getElementById('prayer-streak').textContent=streak;
+  document.getElementById('dash-streak').textContent=streak;
 }
 
-function renderOracoes() {
-  renderCheckList('oracoes-manha', ORACOES_MANHA, 'manha', prayerLog, savePrayer);
-  renderCheckList('oracoes-noite', ORACOES_NOITE, 'noite', prayerLog, savePrayer);
-  renderCheckList('declaracoes-manha', DECLARACOES, 'decl_manha', declaracaoLog, saveDeclaracao);
-  renderCheckList('declaracoes-noite', DECLARACOES.map(d=>({...d,id:d.id+'_n'})), 'decl_noite', declaracaoLog, saveDeclaracao);
+function renderOracoes(){
+  renderChecklist('oracoes-manha',ORACOES_MANHA,prayerLog.manha||{},id=>toggleOracao(id,'manha'));
+  renderChecklist('oracoes-noite',ORACOES_NOITE,prayerLog.noite||{},id=>toggleOracao(id,'noite'));
 }
 
-function renderCheckList(containerId, lista, periodo, logObj, saveFn) {
-  const key = periodo.includes('decl') ? periodo.replace('decl_','') : periodo;
-  const log = logObj[key] || {};
-  const container = document.getElementById(containerId);
-  container.innerHTML = '';
-  lista.forEach(o => {
-    const feita = !!log[o.id];
-    const el = document.createElement('div');
-    el.className = 'check-item'+(feita?' done':'');
-    el.id = 'ci-'+containerId+'-'+o.id;
-    el.innerHTML = `<span class="ci-icon">${feita?'✓':'○'}</span><span class="ci-label">${o.nome}</span>`;
-    el.onclick = () => saveFn(o.id, periodo, containerId, logObj);
-    container.appendChild(el);
+function renderDeclaracoes(){
+  renderChecklist('declaracoes-lista',DECLARACOES,declaracaoLog.decl||{},id=>toggleDeclaracao(id));
+}
+
+function renderChecklist(containerId,lista,log,onToggle){
+  const c=document.getElementById(containerId);
+  if(!c)return;
+  c.innerHTML='';
+  lista.forEach(o=>{
+    const done=!!log[o.id];
+    const el=document.createElement('div');
+    el.className='check-item'+(done?' done':'');
+    el.id='ci-'+containerId+'-'+o.id;
+    el.innerHTML=`<span class="ci-icon">${done?'✓':'○'}</span><span class="ci-label">${o.nome}</span>`;
+    el.onclick=()=>onToggle(o.id);
+    c.appendChild(el);
   });
 }
 
-async function savePrayer(id, periodo, containerId, logObj) {
-  const key = periodo;
-  if (!logObj[key]) logObj[key] = {};
-  logObj[key][id] = !logObj[key][id];
-  await upsertOracaoLog(periodo, logObj[key]);
-  rerenderCheckItem(containerId, id, !!logObj[key][id]);
-  calcPrayerStreak();
+async function toggleOracao(id,periodo){
+  if(!prayerLog[periodo]) prayerLog[periodo]={};
+  prayerLog[periodo][id]=!prayerLog[periodo][id];
+  await upsertLog(periodo,prayerLog[periodo]);
+  const containerId='oracoes-'+periodo;
+  const lista=periodo==='manha'?ORACOES_MANHA:ORACOES_NOITE;
+  renderChecklist(containerId,lista,prayerLog[periodo],id2=>toggleOracao(id2,periodo));
+  renderDashboard();
+  calcStreak();
+  toast(prayerLog[periodo][id]?'✓ Marcado!':'Desmarcado');
 }
 
-async function saveDeclaracao(id, periodo, containerId, logObj) {
-  const key = periodo.replace('decl_','');
-  if (!logObj[key]) logObj[key] = {};
-  logObj[key][id] = !logObj[key][id];
-  await upsertOracaoLog(periodo, logObj[key]);
-  rerenderCheckItem(containerId, id, !!logObj[key][id]);
+async function toggleDeclaracao(id){
+  if(!declaracaoLog.decl) declaracaoLog.decl={};
+  declaracaoLog.decl[id]=!declaracaoLog.decl[id];
+  await upsertLog('decl',declaracaoLog.decl);
+  renderDeclaracoes();
+  renderDashboard();
+  toast(declaracaoLog.decl[id]?'✓ Declaração marcada!':'Desmarcado');
 }
 
-function rerenderCheckItem(containerId, id, feita) {
-  const el = document.getElementById('ci-'+containerId+'-'+id);
-  if (!el) return;
-  el.className = 'check-item'+(feita?' done':'');
-  el.querySelector('.ci-icon').textContent = feita?'✓':'○';
-  toast(feita?'✓ Marcado!':'Desmarcado');
+async function upsertLog(periodo,dados){
+  const ex=await sb('/oracoes_log','GET',null,`?data=eq.${today()}&periodo=eq.${periodo}`);
+  if(ex&&ex.length>0) await sb('/oracoes_log','PATCH',{oracoes_feitas:dados},`?data=eq.${today()}&periodo=eq.${periodo}`);
+  else await sb('/oracoes_log','POST',{data:today(),periodo,oracoes_feitas:dados});
 }
 
-async function upsertOracaoLog(periodo, dados) {
-  const existing = await sb('/oracoes_log','GET',null,`?data=eq.${today()}&periodo=eq.${periodo}`);
-  if (existing && existing.length > 0) {
-    await sb('/oracoes_log','PATCH',{ oracoes_feitas:dados },`?data=eq.${today()}&periodo=eq.${periodo}`);
-  } else {
-    await sb('/oracoes_log','POST',{ data:today(), periodo, oracoes_feitas:dados });
+// ══════════════════════════════════════════
+// HOOPONOPONO
+// ══════════════════════════════════════════
+async function loadHoopo(){
+  const data=await sb('/hoponopono_log','GET',null,'?select=quantidade,data');
+  if(data&&Array.isArray(data)){
+    hoopoTotal=data.reduce((a,r)=>a+r.quantidade,0);
+    hoopoHoje=data.filter(r=>r.data===today()).reduce((a,r)=>a+r.quantidade,0);
   }
+  document.getElementById('hoopo-total').textContent=hoopoTotal.toLocaleString('pt-BR');
+  document.getElementById('dash-hoopo-hoje').textContent=hoopoHoje;
+  renderHoopoHistorico(data||[]);
 }
 
-// ════════════════════════════════════════
-// HO'OPONOPONO
-// ════════════════════════════════════════
-async function loadHoopo() {
-  const data = await sb('/hoponopono_log','GET',null,'?select=quantidade');
-  if (data && Array.isArray(data)) hoopoTotal = data.reduce((a,r)=>a+r.quantidade,0);
-  document.getElementById('hoopo-total').textContent = hoopoTotal.toLocaleString('pt-BR');
+function renderHoopoHistorico(data){
+  const wrap=document.getElementById('hoopo-historico');
+  if(!wrap)return;
+  const dias=[];
+  for(let i=6;i>=0;i--){
+    const d=new Date();d.setDate(d.getDate()-i);
+    const k=d.toISOString().split('T')[0];
+    const total=data.filter(r=>r.data===k).reduce((a,r)=>a+r.quantidade,0);
+    dias.push({label:d.toLocaleDateString('pt-BR',{weekday:'short'}).slice(0,3),total,key:k});
+  }
+  const max=Math.max(...dias.map(d=>d.total),1);
+  wrap.innerHTML='';
+  dias.forEach(d=>{
+    const pct=Math.round(d.total/max*100);
+    const el=document.createElement('div');
+    el.className='hoopo-bar-row';
+    el.innerHTML=`<span class="hoopo-bar-label">${d.label}</span>
+      <div class="hoopo-bar-bg"><div class="hoopo-bar-fill" style="width:${pct}%"></div></div>
+      <span class="hoopo-bar-val">${d.total||''}</span>`;
+    wrap.appendChild(el);
+  });
 }
 
-async function tapHoopo() {
-  hoopoTotal++; hoopoSession++; hoopoUnsaved++;
-  document.getElementById('hoopo-total').textContent = hoopoTotal.toLocaleString('pt-BR');
-  document.getElementById('hoopo-session').textContent = hoopoSession;
-  if (hoopoUnsaved >= 10) { await flushHoopo(); }
+async function tapHoopo(){
+  hoopoTotal++;hoopoSession++;hoopoUnsaved++;hoopoHoje++;
+  document.getElementById('hoopo-total').textContent=hoopoTotal.toLocaleString('pt-BR');
+  document.getElementById('hoopo-session').textContent=hoopoSession;
+  document.getElementById('dash-hoopo-hoje').textContent=hoopoHoje;
+  const inner=document.getElementById('tap-inner');
+  inner.style.transform='scale(.93)';
+  setTimeout(()=>inner.style.transform='scale(1)',150);
+  if(hoopoUnsaved>=10) await flushHoopo();
 }
 
-async function flushHoopo() {
-  if (!hoopoUnsaved) return;
-  await sb('/hoponopono_log','POST',{ data:today(), quantidade:hoopoUnsaved });
-  hoopoUnsaved = 0;
+async function flushHoopo(){
+  if(!hoopoUnsaved)return;
+  await sb('/hoponopono_log','POST',{data:today(),quantidade:hoopoUnsaved});
+  hoopoUnsaved=0;
 }
 
-async function resetHoopoSession() {
+async function resetHoopoSession(){
   await flushHoopo();
-  hoopoSession = 0;
-  document.getElementById('hoopo-session').textContent = 0;
+  hoopoSession=0;
+  document.getElementById('hoopo-session').textContent=0;
   toast('Sessão reiniciada');
 }
 
-window.addEventListener('beforeunload', ()=>{ if(hoopoUnsaved>0) flushHoopo(); });
+window.addEventListener('beforeunload',()=>{if(hoopoUnsaved>0)flushHoopo();});
 
-// ════════════════════════════════════════
+// ══════════════════════════════════════════
 // DECRETOS
-// ════════════════════════════════════════
-async function loadDecretos() {
-  const data = await sb('/decretos','GET',null,'?ativo=eq.true&order=created_at.desc');
-  if (data && Array.isArray(data)) decretos = data;
+// ══════════════════════════════════════════
+async function loadDecretos(){
+  const data=await sb('/decretos','GET',null,'?ativo=eq.true&order=created_at.desc');
+  if(data&&Array.isArray(data)) decretos=data;
   renderDecretos();
+  document.getElementById('dash-decretos-ativos').textContent=decretos.length;
 }
 
-function renderDecretos() {
-  const container = document.getElementById('decretos-list');
-  if (!decretos.length) {
-    container.innerHTML = '<div class="card"><p style="color:var(--text-dim);font-size:14px;line-height:1.6">Nenhum decreto cadastrado ainda.<br>Adicione seu primeiro decreto acima.</p></div>';
+function renderDecretos(){
+  const c=document.getElementById('decretos-list');
+  if(!decretos.length){
+    c.innerHTML='<div class="card"><p style="color:var(--text-dim);font-size:14px">Nenhum decreto cadastrado ainda.</p></div>';
     return;
   }
-  container.innerHTML = '';
-  decretos.forEach(d => {
-    const pct = d.tipo==='com_prazo' && d.dias_total ? Math.min(100,Math.round(d.dias_feitos/d.dias_total*100)) : 0;
-    const completo = d.tipo==='com_prazo' && d.dias_feitos >= d.dias_total;
-    const el = document.createElement('div');
-    el.className = 'decreto-card'+(completo?' completo':'');
-    el.innerHTML = `
-      ${d.titulo ? `<div class="decreto-titulo">✦ ${d.titulo}</div>` : ''}
-      <div class="decreto-texto">"${d.texto}"</div>
-      ${d.tipo==='com_prazo' ? `
-        <div class="decreto-info">${d.dias_feitos} / ${d.dias_total} dias — ${pct}%</div>
-        <div class="progress-bg"><div class="progress-fill" style="width:${pct}%"></div></div>
-      ` : '<div class="decreto-info">Decreto contínuo</div>'}
+  c.innerHTML='';
+  decretos.forEach(d=>{
+    const pct=d.tipo==='com_prazo'&&d.dias_total?Math.min(100,Math.round(d.dias_feitos/d.dias_total*100)):0;
+    const completo=d.tipo==='com_prazo'&&d.dias_feitos>=d.dias_total;
+    const el=document.createElement('div');
+    el.className='decreto-card'+(completo?' completo':'');
+    el.innerHTML=`
+      ${d.titulo?`<div class="decreto-titulo-el">✦ ${d.titulo}</div>`:''}
+      <div class="decreto-texto-el">"${d.texto}"</div>
+      ${d.tipo==='com_prazo'?`<div class="decreto-info-el">${d.dias_feitos}/${d.dias_total} dias — ${pct}%</div>
+        <div class="progress-bg"><div class="progress-fill" style="width:${pct}%"></div></div>`
+        :'<div class="decreto-info-el">Decreto contínuo</div>'}
       <div class="decreto-actions mt8">
-        ${!completo ? `<button class="btn btn-primary" onclick="marcarDecreto('${d.id}',${d.dias_feitos},${d.dias_total||0},'${d.tipo}')">
-          ${d.tipo==='com_prazo' ? '+ Marcar hoje' : '✓ Afirmar'}
-        </button>` : '<span style="color:var(--green-light);font-size:13px">✓ Missão concluída!</span>'}
-        <button class="btn btn-ghost-sm" onclick="removeDecreto('${d.id}')">Remover</button>
+        ${!completo?`<button class="btn btn-primary" onclick="marcarDecreto('${d.id}',${d.dias_feitos},${d.dias_total||0},'${d.tipo}')">
+          ${d.tipo==='com_prazo'?'+ Marcar hoje':'✓ Afirmar'}</button>`
+          :'<span style="color:var(--green-light);font-size:13px">✓ Missão concluída!</span>'}
+        <button class="btn-ghost-sm" onclick="removeDecreto('${d.id}')">Remover</button>
       </div>`;
-    container.appendChild(el);
+    c.appendChild(el);
   });
 }
 
-function toggleDecretoDias() {
-  document.getElementById('decreto-dias').style.display =
-    document.getElementById('decreto-tipo').value==='com_prazo' ? 'block' : 'none';
+function toggleDecretoDias(){
+  document.getElementById('decreto-dias').style.display=
+    document.getElementById('decreto-tipo').value==='com_prazo'?'block':'none';
 }
 
-async function addDecreto() {
-  const titulo = document.getElementById('decreto-titulo-input').value.trim();
-  const texto = document.getElementById('decreto-texto').value.trim();
-  const tipo = document.getElementById('decreto-tipo').value;
-  const dias = parseInt(document.getElementById('decreto-dias').value)||null;
-  if (!texto) { toast('Escreva o texto do decreto','error'); return; }
-  const res = await sb('/decretos','POST',{ titulo:titulo||null, texto, tipo, dias_total:tipo==='com_prazo'?dias:null, dias_feitos:0, ativo:true });
-  if (res===null) { toast('❌ Erro ao salvar','error'); return; }
+async function addDecreto(){
+  const titulo=document.getElementById('decreto-titulo-input').value.trim();
+  const texto=document.getElementById('decreto-texto').value.trim();
+  const tipo=document.getElementById('decreto-tipo').value;
+  const dias=parseInt(document.getElementById('decreto-dias').value)||null;
+  if(!texto){toast('Escreva o texto do decreto','err');return;}
+  toast('Salvando...');
+  const res=await sb('/decretos','POST',{titulo:titulo||null,texto,tipo,dias_total:tipo==='com_prazo'?dias:null,dias_feitos:0,ativo:true});
+  if(res===null){toast('❌ Erro ao salvar. Verifique o Supabase.','err');return;}
   await loadDecretos();
   document.getElementById('decreto-titulo-input').value='';
   document.getElementById('decreto-texto').value='';
   document.getElementById('decreto-dias').value='';
+  document.getElementById('decreto-tipo').value='livre';
+  document.getElementById('decreto-dias').style.display='none';
   toast('Decreto adicionado! ✦');
 }
 
-async function marcarDecreto(id, diasFeitos, diasTotal, tipo) {
-  const novos = diasFeitos+1;
-  await sb('/decretos','PATCH',{ dias_feitos:novos },`?id=eq.${id}`);
-  decretos = decretos.map(d=>d.id===id?{...d,dias_feitos:novos}:d);
+async function marcarDecreto(id,diasFeitos,diasTotal,tipo){
+  const novos=diasFeitos+1;
+  await sb('/decretos','PATCH',{dias_feitos:novos},`?id=eq.${id}`);
+  decretos=decretos.map(d=>d.id===id?{...d,dias_feitos:novos}:d);
   renderDecretos();
   toast(tipo==='com_prazo'?`Dia ${novos}/${diasTotal} marcado!`:'✓ Afirmado!');
 }
 
-async function removeDecreto(id) {
-  await sb('/decretos','PATCH',{ ativo:false },`?id=eq.${id}`);
-  decretos = decretos.filter(d=>d.id!==id);
+async function removeDecreto(id){
+  await sb('/decretos','PATCH',{ativo:false},`?id=eq.${id}`);
+  decretos=decretos.filter(d=>d.id!==id);
   renderDecretos();
+  document.getElementById('dash-decretos-ativos').textContent=decretos.length;
   toast('Decreto removido');
 }
 
-// ════════════════════════════════════════
-// DIÁRIO
-// ════════════════════════════════════════
-function setPeriod(p) {
-  journalPeriod = p;
-  document.getElementById('btn-manha').className='period-btn'+(p==='manha'?' active':'');
-  document.getElementById('btn-noite').className='period-btn'+(p==='noite'?' active':'');
-  document.getElementById('perguntas-manha').style.display = p==='manha'?'block':'none';
-  document.getElementById('perguntas-noite').style.display = p==='noite'?'block':'none';
+// ══════════════════════════════════════════
+// DASHBOARD
+// ══════════════════════════════════════════
+function renderDashboard(){
+  const mLog=prayerLog.manha||{};
+  const nLog=prayerLog.noite||{};
+  const dLog=declaracaoLog.decl||{};
+
+  const allItems=[
+    {icon:'✦',title:'Salmos',sub:`Salmo atual: ${currentPsalm}`,done:psalmsRead.includes(currentPsalm-1)},
+    {icon:'☀',title:'Orações da manhã',sub:ORACOES_MANHA.filter(o=>mLog[o.id]).length+'/'+ORACOES_MANHA.length+' feitas',done:ORACOES_MANHA.every(o=>mLog[o.id])},
+    {icon:'☽',title:'Orações da noite',sub:ORACOES_NOITE.filter(o=>nLog[o.id]).length+'/'+ORACOES_NOITE.length+' feitas',done:ORACOES_NOITE.every(o=>nLog[o.id])},
+    {icon:'📜',title:'Declarações',sub:DECLARACOES.filter(d=>dLog[d.id]).length+'/'+DECLARACOES.length+' afirmadas',done:DECLARACOES.every(d=>dLog[d.id])},
+    {icon:'◎',title:"Ho'oponopono",sub:`${hoopoHoje} repetições hoje`,done:hoopoHoje>0},
+  ];
+
+  const falta=allItems.filter(i=>!i.done);
+  const feito=allItems.filter(i=>i.done);
+
+  const faltaEl=document.getElementById('dash-falta');
+  const feitoEl=document.getElementById('dash-feito');
+
+  if(falta.length===0){
+    faltaEl.innerHTML='<div style="text-align:center;color:var(--green-light);font-size:14px;padding:10px">🎉 Tudo feito hoje! Incrível!</div>';
+  } else {
+    faltaEl.innerHTML=falta.map(i=>`
+      <div class="dash-item">
+        <span class="dash-item-icon">${i.icon}</span>
+        <div class="dash-item-info">
+          <div class="dash-item-title">${i.title}</div>
+          <div class="dash-item-sub">${i.sub}</div>
+        </div>
+      </div>`).join('');
+  }
+
+  feitoEl.innerHTML=feito.length?feito.map(i=>`
+    <div class="dash-item" style="opacity:.7">
+      <span class="dash-item-icon">${i.icon}</span>
+      <div class="dash-item-info">
+        <div class="dash-item-title" style="color:var(--green-light)">${i.title} ✓</div>
+        <div class="dash-item-sub">${i.sub}</div>
+      </div>
+    </div>`).join('')
+    :'<div style="font-size:13px;color:var(--text-dim);padding:6px">Nada feito ainda. Comece sua jornada! 🌅</div>';
 }
 
-async function saveJournal() {
-  const ids = journalPeriod==='manha' ? ['d-m1','d-m2','d-m3','d-m4'] : ['d-n1','d-n2','d-n3','d-n4'];
-  const perguntas = journalPeriod==='manha'
-    ? ['Como estou chegando nesse dia?','O que quero manifestar hoje?','Minha intenção do dia é...','Sou grato hoje por...']
-    : ['Como foi meu dia?','O que de bom aconteceu?','O que senti que evoluiu em mim?','Amanhã eu pretendo...'];
+// ══════════════════════════════════════════
+// DIÁRIO
+// ══════════════════════════════════════════
+function setPeriod(p){
+  journalPeriod=p;
+  document.getElementById('btn-manha').className='period-btn'+(p==='manha'?' active':'');
+  document.getElementById('btn-noite').className='period-btn'+(p==='noite'?' active':'');
+  document.getElementById('perguntas-manha').style.display=p==='manha'?'block':'none';
+  document.getElementById('perguntas-noite').style.display=p==='noite'?'block':'none';
+}
 
-  const respostas = {};
-  let textoCompleto = '';
-  ids.forEach((id,i) => {
-    const val = document.getElementById(id).value.trim();
-    respostas[perguntas[i]] = val;
-    if (val) textoCompleto += `${perguntas[i]}\n${val}\n\n`;
+async function saveJournal(){
+  const ids=journalPeriod==='manha'?['d-m1','d-m2','d-m3','d-m4']:['d-n1','d-n2','d-n3','d-n4','d-n5'];
+  const perguntas=journalPeriod==='manha'
+    ?['Como estou chegando nesse dia?','O que quero manifestar hoje?','Minha intenção do dia é...','Sou grato hoje por...']
+    :['Como foi meu dia?','O que de bom aconteceu?','Qual foi o maior desafio e o que ele me ensinou?','O que evoluiu em mim?','Amanhã eu pretendo...'];
+
+  const respostas={};
+  let texto='';
+  ids.forEach((id,i)=>{
+    const v=document.getElementById(id).value.trim();
+    respostas[perguntas[i]]=v;
+    if(v) texto+=`${perguntas[i]}\n${v}\n\n`;
   });
-  if (!textoCompleto.trim()) { toast('Preencha ao menos uma resposta','error'); return; }
+  if(!texto.trim()){toast('Preencha ao menos uma resposta','err');return;}
 
-  await sb('/diario','POST',{ periodo:journalPeriod, respostas, data:today() });
+  await sb('/diario','POST',{periodo:journalPeriod,respostas,data:today()});
 
-  const replyBox = document.getElementById('ai-reply-box');
-  const replyText = document.getElementById('ai-reply-text');
-  replyBox.style.display='block';
-  replyText.textContent='Recebendo orientação...';
+  const box=document.getElementById('ai-reply-box');
+  const txt=document.getElementById('ai-reply-text');
+  box.style.display='block';
+  txt.textContent='Recebendo orientação...';
 
-  try {
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({
-        model:'claude-sonnet-4-6', max_tokens:1000,
-        system:`Você é um guia espiritual acolhedor que apoia a jornada espiritual do usuário. Ele pratica lei da atração, salmos, Ho'oponopono e decretos. Responda em português com profundidade e encorajamento. 2 a 4 parágrafos. Seja específico ao que ele escreveu.`,
-        messages:[{ role:'user', content:`Período: ${journalPeriod==='manha'?'Manhã':'Noite'}\n\n${textoCompleto}` }]
+  try{
+    const res=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        model:'claude-sonnet-4-6',max_tokens:1000,
+        system:`Você é um guia espiritual acolhedor. O usuário pratica lei da atração, salmos, Ho'oponopono e decretos. Responda em português com profundidade e encorajamento. 2 a 4 parágrafos. Seja específico ao que ele escreveu.`,
+        messages:[{role:'user',content:`Período: ${journalPeriod==='manha'?'Manhã':'Noite'}\n\n${texto}`}]
       })
     });
-    const data = await res.json();
-    replyText.textContent = data.content?.map(c=>c.text||'').join('\n') || 'Não foi possível conectar.';
-  } catch { replyText.textContent='Reflexão salva. Não foi possível conectar à IA agora.'; }
+    const data=await res.json();
+    txt.textContent=data.content?.map(c=>c.text||'').join('\n')||'Não foi possível conectar.';
+  }catch{txt.textContent='Reflexão salva. Não foi possível conectar à IA agora.';}
 
   ids.forEach(id=>document.getElementById(id).value='');
   toast('Diário salvo! ✧');
   await loadJournalHistory();
 }
 
-async function loadJournalHistory() {
-  const data = await sb('/diario','GET',null,'?order=created_at.desc&limit=10');
-  if (!data || !data.length) return;
+async function loadJournalHistory(){
+  const data=await sb('/diario','GET',null,'?order=created_at.desc&limit=10');
+  if(!data||!data.length)return;
   document.getElementById('journal-history-box').style.display='block';
-  const list = document.getElementById('journal-history');
+  const list=document.getElementById('journal-history');
   list.innerHTML='';
-  data.forEach(e => {
-    const el = document.createElement('div');
-    el.style.cssText='padding:12px 0;border-bottom:1px solid var(--surface2)';
-    const periodo = e.periodo==='manha'?'☀ Manhã':'☽ Noite';
-    const prim = e.respostas ? Object.values(e.respostas)[0]||'' : '';
-    const dt = new Date(e.created_at);
-    el.innerHTML=`<div style="font-size:11px;color:var(--text-dim);margin-bottom:4px">
-        ${dt.toLocaleDateString('pt-BR',{day:'numeric',month:'short'})} — ${periodo}
-      </div>
-      <div style="font-size:14px;color:#9BAFC0;line-height:1.5">${prim.slice(0,100)}${prim.length>100?'...':''}</div>`;
+  data.forEach(e=>{
+    const el=document.createElement('div');
+    el.style.cssText='padding:11px 0;border-bottom:1px solid var(--surface2)';
+    const per=e.periodo==='manha'?'☀ Manhã':'☽ Noite';
+    const prim=e.respostas?Object.values(e.respostas)[0]||'':'';
+    const dt=new Date(e.created_at);
+    el.innerHTML=`<div style="font-size:11px;color:var(--text-dim);margin-bottom:3px">${dt.toLocaleDateString('pt-BR',{day:'numeric',month:'short'})} — ${per}</div>
+      <div style="font-size:13px;color:#9BAFC0;line-height:1.5">${prim.slice(0,100)}${prim.length>100?'...':''}</div>`;
     list.appendChild(el);
   });
 }
 
-// ════════════════════════════════════════
-// EVOLUÇÃO / RESUMO
-// ════════════════════════════════════════
-async function loadResumos() {
-  const data = await sb('/resumos','GET',null,'?order=created_at.desc&limit=5');
-  if (!data || !data.length) return;
+// ══════════════════════════════════════════
+// EVOLUÇÃO
+// ══════════════════════════════════════════
+async function loadResumos(){
+  const data=await sb('/resumos','GET',null,'?order=created_at.desc&limit=5');
+  if(!data||!data.length)return;
   document.getElementById('resumos-anteriores-box').style.display='block';
-  const list = document.getElementById('resumos-anteriores');
+  const list=document.getElementById('resumos-anteriores');
   list.innerHTML='';
-  data.forEach(r => {
-    const el = document.createElement('div');
-    el.style.cssText='padding:14px 0;border-bottom:1px solid var(--surface2)';
-    el.innerHTML=`<div style="font-size:11px;color:var(--gold-dim);margin-bottom:8px;letter-spacing:.08em">
+  data.forEach(r=>{
+    const el=document.createElement('div');
+    el.style.cssText='padding:13px 0;border-bottom:1px solid var(--surface2)';
+    el.innerHTML=`<div style="font-size:11px;color:var(--gold-dim);margin-bottom:7px">
         ${new Date(r.semana_inicio+'T12:00').toLocaleDateString('pt-BR',{day:'numeric',month:'short'})} a
         ${new Date(r.semana_fim+'T12:00').toLocaleDateString('pt-BR',{day:'numeric',month:'short'})}
       </div>
-      <div style="font-size:14px;color:var(--text);line-height:1.7">${r.texto_ia.slice(0,200)}...</div>`;
+      <div style="font-size:13px;color:var(--text);line-height:1.7">${r.texto_ia.slice(0,200)}...</div>`;
     list.appendChild(el);
   });
 }
 
-async function gerarResumo() {
-  const box = document.getElementById('resumo-box');
-  const text = document.getElementById('resumo-text');
+async function gerarResumo(){
+  const box=document.getElementById('resumo-box');
+  const txt=document.getElementById('resumo-text');
   box.style.display='block';
-  text.textContent='Analisando sua semana espiritual...';
+  txt.textContent='Analisando sua semana espiritual...';
 
-  const d = new Date(); d.setDate(d.getDate()-7);
-  const inicio = d.toISOString().split('T')[0];
-  const [diarios, oracoes, salmos] = await Promise.all([
+  const d=new Date();d.setDate(d.getDate()-7);
+  const inicio=d.toISOString().split('T')[0];
+
+  const [diarios,oracoes,salmos,hoopos]=await Promise.all([
     sb('/diario','GET',null,`?created_at=gte.${inicio}&order=created_at.asc`),
     sb('/oracoes_log','GET',null,`?data=gte.${inicio}&order=data.asc`),
     sb('/salmos_log','GET',null,`?data=gte.${inicio}&tipo=eq.diario&select=salmo_numero,data`),
+    sb('/hoponopono_log','GET',null,`?data=gte.${inicio}&select=quantidade,data`),
   ]);
 
-  let ctx = '';
-  if (diarios && diarios.length) {
-    ctx += '=== DIÁRIO DA SEMANA ===\n';
-    diarios.forEach(e => {
-      const dt = new Date(e.created_at).toLocaleDateString('pt-BR',{weekday:'long',day:'numeric'});
-      ctx += `\n[${dt} — ${e.periodo==='manha'?'Manhã':'Noite'}]\n`;
-      if (e.respostas) Object.entries(e.respostas).forEach(([p,r])=>{ if(r) ctx+=`${p}: ${r}\n`; });
+  let ctx='';
+  if(diarios&&diarios.length){
+    ctx+='=== DIÁRIO DA SEMANA ===\n';
+    diarios.forEach(e=>{
+      const dt=new Date(e.created_at).toLocaleDateString('pt-BR',{weekday:'long',day:'numeric'});
+      ctx+=`\n[${dt} — ${e.periodo==='manha'?'Manhã':'Noite'}]\n`;
+      if(e.respostas) Object.entries(e.respostas).forEach(([p,r])=>{if(r)ctx+=`${p}: ${r}\n`;});
     });
   }
-  if (salmos && salmos.length) ctx += `\n=== SALMOS LIDOS ESTA SEMANA: ${salmos.length} ===\n`;
-  if (oracoes && oracoes.length) ctx += `\n=== DIAS COM ORAÇÕES: ${[...new Set(oracoes.map(r=>r.data))].length} ===\n`;
+  if(salmos&&salmos.length) ctx+=`\n=== SALMOS LIDOS NA SEMANA: ${salmos.length} ===\n`;
+  if(oracoes&&oracoes.length) ctx+=`\n=== DIAS COM ORAÇÕES: ${[...new Set(oracoes.map(r=>r.data))].length} ===\n`;
+  if(hoopos&&hoopos.length){
+    const totalH=hoopos.reduce((a,r)=>a+r.quantidade,0);
+    ctx+=`\n=== HO'OPONOPONO NA SEMANA: ${totalH} repetições ===\n`;
+  }
 
-  if (!ctx.trim()) { text.textContent='Nenhuma entrada encontrada esta semana. Continue praticando! 🙏'; return; }
+  if(!ctx.trim()){txt.textContent='Nenhuma entrada encontrada esta semana. Continue praticando! 🙏';return;}
 
-  try {
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({
-        model:'claude-sonnet-4-6', max_tokens:1500,
-        system:`Você é um guia espiritual profundo e perspicaz. Analise a semana espiritual da pessoa e escreva uma análise em 5 seções claras:
+  try{
+    const res=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        model:'claude-sonnet-4-6',max_tokens:1500,
+        system:`Você é um guia espiritual profundo. Analise a semana espiritual da pessoa e escreva em 5 seções:
 
-1. 🌟 CONQUISTAS DA SEMANA — o que evoluiu, o que foi bem
-2. 🔍 PADRÕES QUE PERCEBO — padrões emocionais ou mentais repetidos nos diários
-3. 💡 O QUE PODE MELHORAR — áreas de atenção, sugestões concretas e amorosas
-4. 🌱 VISÃO DO SEU FUTURO ESPIRITUAL — como essa prática está moldando quem você está se tornando
-5. ✦ INTENÇÃO PARA A PRÓXIMA SEMANA — uma intenção poderosa para continuar evoluindo
+🌟 CONQUISTAS DA SEMANA — o que evoluiu, o que foi consistente, celebre as vitórias
+🔍 PADRÕES QUE PERCEBO — padrões emocionais, mentais ou espirituais que aparecem nos relatos
+💡 O QUE PODE MELHORAR — sugestões concretas, amorosas e práticas para a jornada
+🌱 VISÃO DO SEU FUTURO ESPIRITUAL — como essa prática está moldando quem você está se tornando, o que está construindo
+✦ INTENÇÃO PARA A PRÓXIMA SEMANA — uma intenção poderosa e específica para continuar evoluindo
 
 Escreva em português, com profundidade, amor e clareza. Seja específico ao que a pessoa viveu.`,
-        messages:[{ role:'user', content:ctx }]
+        messages:[{role:'user',content:ctx}]
       })
     });
-    const data = await res.json();
-    const textoIA = data.content?.map(c=>c.text||'').join('\n')||'';
-    text.textContent = textoIA;
-    await sb('/resumos','POST',{ semana_inicio:inicio, semana_fim:today(), texto_ia:textoIA });
+    const data=await res.json();
+    const textoIA=data.content?.map(c=>c.text||'').join('\n')||'';
+    txt.textContent=textoIA;
+    await sb('/resumos','POST',{semana_inicio:inicio,semana_fim:today(),texto_ia:textoIA});
     await loadResumos();
-  } catch { text.textContent='Não foi possível gerar a análise agora. Tente novamente.'; }
+  }catch{txt.textContent='Não foi possível gerar a análise agora. Tente novamente.';}
 }
 
-// ════════════════════════════════════════
+// ══════════════════════════════════════════
 // NAV / TOAST
-// ════════════════════════════════════════
-function showTab(id, btn) {
+// ══════════════════════════════════════════
+function showTab(id,btn){
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
   document.getElementById('tab-'+id).classList.add('active');
-  if (btn) btn.classList.add('active');
+  if(btn)btn.classList.add('active');
 }
 
 let toastTimer;
-function toast(msg, type='') {
-  const el = document.getElementById('toast');
-  el.textContent = msg;
-  el.className = 'toast show'+(type==='error'?' error':'');
+function toast(msg,type=''){
+  const el=document.getElementById('toast');
+  el.textContent=msg;
+  el.className='toast show'+(type==='err'?' err':'');
   clearTimeout(toastTimer);
-  toastTimer = setTimeout(()=>el.classList.remove('show'), 2800);
+  toastTimer=setTimeout(()=>el.classList.remove('show'),2800);
 }
 
 // START
