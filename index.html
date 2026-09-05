@@ -112,7 +112,7 @@ textarea{resize:vertical;line-height:1.6;}
   <button class="nav-btn active" onclick="showTab('inicio',this)">🏠 Início</button>
   <button class="nav-btn" onclick="showTab('salmos',this)">✦ Salmos</button>
   <button class="nav-btn" onclick="showTab('hoopo',this)">◎ Ho'oponopono</button>
-  <button class="nav-btn" onclick="showTab('decretos',this)">📜 Decretos</button>
+
 </nav>
 
 <div class="content">
@@ -135,10 +135,7 @@ textarea{resize:vertical;line-height:1.6;}
         <div class="dash-num" id="dash-hoopo-hoje">0</div>
         <div class="dash-lbl">Ho'oponopono hoje</div>
       </div>
-      <div class="dash-card">
-        <div class="dash-num" id="dash-decretos-n">0</div>
-        <div class="dash-lbl">Decretos ativos</div>
-      </div>
+
     </div>
   </div>
 
@@ -231,30 +228,7 @@ textarea{resize:vertical;line-height:1.6;}
   </div>
 </div>
 
-<!-- ══ DECRETOS ══ -->
-<div id="tab-decretos" class="tab">
-  <div class="card">
-    <div class="sec-head">ADICIONAR DECRETO</div>
-    <div class="journal-q">
-      <label>Título (opcional)</label>
-      <input type="text" id="decreto-titulo-input" placeholder="Ex: Decreto da abundância">
-    </div>
-    <div class="journal-q mt8">
-      <label>Texto do decreto</label>
-      <textarea id="decreto-texto" rows="4" placeholder="Ex: Eu sou abundância em todas as formas..."></textarea>
-    </div>
-    <div class="row mt8">
-      <select id="decreto-tipo" style="flex:1" onchange="toggleDecretoDias()">
-        <option value="livre">Sem prazo (Eu sou...)</option>
-        <option value="com_prazo">Com prazo (dias)</option>
-      </select>
-      <input type="number" id="decreto-dias" placeholder="Dias" min="1" style="width:88px;display:none">
-    </div>
-    <button class="btn btn-primary btn-full mt10" onclick="addDecreto()">Adicionar Decreto</button>
-  </div>
 
-  <div id="decretos-list"></div>
-</div>
 
 </div>
 <div class="toast" id="toast"></div>
@@ -277,8 +251,6 @@ async function sb(path,method='GET',body=null,qs=''){
 let currentPsalm=16,psalmsRead=[];
 let hoopoTotal=0,hoopoSession=0,hoopoUnsaved=0,hoopoHoje=0;
 let prayerLog={manha:{},noite:{}},declaracaoLog={};
-let decretos=[];
-
 function today(){
   const d=new Date();
   return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
@@ -321,7 +293,7 @@ async function init(){
   document.getElementById('dash-saudacao').textContent=h<12?'Bom dia ✦':h<18?'Boa tarde ✦':'Boa noite ✦';
   document.getElementById('header-date').textContent=
     new Date().toLocaleDateString('pt-BR',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
-  await Promise.all([loadPsalms(),loadHoopo(),loadDecretos()]);
+  await Promise.all([loadPsalms(),loadHoopo()]);
   renderOracoes();
   renderDeclaracoes();
   renderSalmosEsp();
@@ -549,79 +521,7 @@ async function resetHoopoSession(){
 
 window.addEventListener('beforeunload',()=>{if(hoopoUnsaved>0)flushHoopo();});
 
-// ══ DECRETOS ══
-async function loadDecretos(){
-  const data=await sb('/decretos','GET',null,'?ativo=eq.true&order=created_at.desc');
-  if(data&&Array.isArray(data)) decretos=data;
-  renderDecretos();
-  document.getElementById('dash-decretos-n').textContent=decretos.length;
-}
 
-function renderDecretos(){
-  const c=document.getElementById('decretos-list');
-  if(!decretos.length){
-    c.innerHTML='<div class="card"><p style="color:var(--text-dim);font-size:14px">Nenhum decreto ainda. Adicione acima.</p></div>';return;
-  }
-  c.innerHTML='';
-  decretos.forEach(d=>{
-    const pct=d.tipo==='com_prazo'&&d.dias_total?Math.min(100,Math.round(d.dias_feitos/d.dias_total*100)):0;
-    const completo=d.tipo==='com_prazo'&&d.dias_feitos>=d.dias_total;
-    const el=document.createElement('div');
-    el.className='decreto-card'+(completo?' completo':'');
-    el.innerHTML=`
-      ${d.titulo?`<div class="decreto-titulo-el">✦ ${d.titulo}</div>`:''}
-      <div class="decreto-texto-el">"${d.texto}"</div>
-      ${d.tipo==='com_prazo'?`<div class="decreto-info-el">${d.dias_feitos}/${d.dias_total} dias — ${pct}%</div>
-        <div class="progress-bg"><div class="progress-fill" style="width:${pct}%"></div></div>`
-        :'<div class="decreto-info-el">Decreto contínuo</div>'}
-      <div class="decreto-actions mt8">
-        ${!completo?`<button class="btn btn-primary" onclick="marcarDecreto('${d.id}',${d.dias_feitos},${d.dias_total||0},'${d.tipo}')">
-          ${d.tipo==='com_prazo'?'+ Marcar hoje':'✓ Afirmar'}</button>`
-          :'<span style="color:var(--green-light);font-size:13px">✓ Missão concluída!</span>'}
-        <button class="btn-ghost-sm" onclick="removeDecreto('${d.id}')">Remover</button>
-      </div>`;
-    c.appendChild(el);
-  });
-}
-
-function toggleDecretoDias(){
-  document.getElementById('decreto-dias').style.display=
-    document.getElementById('decreto-tipo').value==='com_prazo'?'block':'none';
-}
-
-async function addDecreto(){
-  const titulo=document.getElementById('decreto-titulo-input').value.trim();
-  const texto=document.getElementById('decreto-texto').value.trim();
-  const tipo=document.getElementById('decreto-tipo').value;
-  const dias=parseInt(document.getElementById('decreto-dias').value)||null;
-  if(!texto){toast('Escreva o texto do decreto','err');return;}
-  toast('Salvando...');
-  const res=await sb('/decretos','POST',{titulo:titulo||null,texto,tipo,dias_total:tipo==='com_prazo'?dias:null,dias_feitos:0,ativo:true});
-  if(res===null){toast('❌ Erro ao salvar','err');return;}
-  await loadDecretos();
-  document.getElementById('decreto-titulo-input').value='';
-  document.getElementById('decreto-texto').value='';
-  document.getElementById('decreto-dias').value='';
-  document.getElementById('decreto-tipo').value='livre';
-  document.getElementById('decreto-dias').style.display='none';
-  toast('Decreto adicionado! ✦');
-}
-
-async function marcarDecreto(id,diasFeitos,diasTotal,tipo){
-  const novos=diasFeitos+1;
-  await sb('/decretos','PATCH',{dias_feitos:novos},`?id=eq.${id}`);
-  decretos=decretos.map(d=>d.id===id?{...d,dias_feitos:novos}:d);
-  renderDecretos();
-  toast(tipo==='com_prazo'?`Dia ${novos}/${diasTotal} marcado!`:'✓ Afirmado!');
-}
-
-async function removeDecreto(id){
-  await sb('/decretos','PATCH',{ativo:false},`?id=eq.${id}`);
-  decretos=decretos.filter(d=>d.id!==id);
-  renderDecretos();
-  document.getElementById('dash-decretos-n').textContent=decretos.length;
-  toast('Decreto removido');
-}
 
 // ══ NAV / TOAST ══
 function showTab(id,btn){
