@@ -65,8 +65,8 @@ margin-bottom:7px;font-size:13px;color:var(--dim);cursor:pointer}.check-item.don
 .protocol-hero{padding:22px;border-radius:22px;border:1px solid #ffffff12;background:radial-gradient(circle at 90% 0,#8de0cf20,transparent 32%),linear-gradient(145deg,#14243a,#0d192a)}
 .protocol-hero-kicker{font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--accent2)}
 .protocol-hero h2{font-size:24px;letter-spacing:-.04em;margin-top:8px}.protocol-hero p{font-size:13px;line-height:1.6;color:var(--dim);margin-top:8px}
-.protocol-filter{display:flex;gap:7px;overflow:auto;scrollbar-width:none}.protocol-filter::-webkit-scrollbar{display:none}
-.filter-chip{border:1px solid #ffffff12;border-radius:999px;padding:8px 12px;background:#ffffff08;color:var(--dim);font-size:11px;font-weight:600;white-space:nowrap;cursor:pointer}
+.protocol-filter{display:grid;grid-template-columns:1fr;gap:8px;overflow:visible}.protocol-filter::-webkit-scrollbar{display:none}
+.filter-chip{width:100%;text-align:left;border:1px solid #ffffff12;border-radius:12px;padding:11px 13px;background:#ffffff08;color:var(--dim);font-size:12px;font-weight:600;white-space:normal;cursor:pointer}
 .filter-chip.active{background:var(--accent2);color:#07111f;border-color:transparent}
 .protocol-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:14px}.protocol-card{min-width:0;padding:19px;border-radius:18px;border:1px solid #ffffff12;background:linear-gradient(145deg,#15263d,#0e1a2b);overflow:hidden}
 .protocol-card-top{display:flex;gap:14px;align-items:flex-start}.protocol-icon{width:44px;height:44px;flex:0 0 44px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:#b8d0ff12;border:1px solid #b8d0ff20}
@@ -253,7 +253,7 @@ margin-bottom:7px;font-size:13px;color:var(--dim);cursor:pointer}.check-item.don
         <button onclick="restartProtocol()">↺ Recomeçar protocolo</button>
       </div>
     </div>
-    <div class="session-note">A voz usa o recurso de leitura do próprio navegador. A prática também funciona apenas lendo e avançando manualmente.</div>
+    <div class="session-note">Escolha uma voz ou use “Sem voz — leitura manual” para repetir cada frase no seu próprio ritmo e avançar somente quando quiser.</div>
   </div>
 </div>
 
@@ -642,7 +642,8 @@ function renderProtocolPhrase(){
   document.getElementById('phrase-text').textContent=item.texto;
   document.getElementById('phrase-number').textContent=`Frase ${activePhraseIndex+1}`;
   document.getElementById('protocol-next-btn').textContent=activePhraseIndex===all.length-1?'Finalizar ✓':'Próxima →';
-  const b=document.getElementById('protocol-pause-btn');b.textContent='Ⅱ Pausar';b.classList.remove('active');protocolPaused=false;
+  const b=document.getElementById('protocol-pause-btn');b.classList.remove('active');protocolPaused=false;
+  updateProtocolVoiceControls();
 }
 let protocolVoices=[];
 
@@ -674,47 +675,85 @@ function refreshProtocolVoices(){
   const saved=localStorage.getItem('protocol_voice_name')||'';
   select.innerHTML='';
 
+  const manual=document.createElement('option');
+  manual.value='__silent__';
+  manual.textContent='Sem voz — leitura manual';
+  select.appendChild(manual);
+
   if(!protocolVoices.length){
     const op=document.createElement('option');
     op.value='';op.textContent='Voz padrão do navegador';
     select.appendChild(op);
-    return;
+  }else{
+    protocolVoices.forEach((v,i)=>{
+      const op=document.createElement('option');
+      op.value=v.name;
+      op.textContent=v.name+(v.lang?` — ${v.lang}`:'');
+      select.appendChild(op);
+    });
   }
 
-  protocolVoices.forEach((v,i)=>{
-    const op=document.createElement('option');
-    op.value=v.name;
-    op.textContent=v.name+(v.lang?` — ${v.lang}`:'');
-    select.appendChild(op);
-  });
-
-  if(saved && protocolVoices.some(v=>v.name===saved)){
+  if(saved==='__silent__'){
+    select.value='__silent__';
+  }else if(saved && protocolVoices.some(v=>v.name===saved)){
     select.value=saved;
-  }else{
+  }else if(protocolVoices.length){
     select.value=protocolVoices[0].name;
     localStorage.setItem('protocol_voice_name',protocolVoices[0].name);
+  }else{
+    select.value='__silent__';
+    localStorage.setItem('protocol_voice_name','__silent__');
   }
 }
 
 function setupProtocolVoices(){
-  if(!('speechSynthesis' in window))return;
+  if(!('speechSynthesis' in window)){
+    localStorage.setItem('protocol_voice_name','__silent__');
+    updateProtocolVoiceControls();
+    return;
+  }
   refreshProtocolVoices();
-  window.speechSynthesis.onvoiceschanged=refreshProtocolVoices;
+  updateProtocolVoiceControls();
+  window.speechSynthesis.onvoiceschanged=()=>{refreshProtocolVoices();updateProtocolVoiceControls();};
+}
+
+function protocolIsSilent(){
+  return (localStorage.getItem('protocol_voice_name')||'')==='__silent__';
 }
 
 function saveProtocolVoice(){
   const select=document.getElementById('protocol-voice-select');
-  if(select) localStorage.setItem('protocol_voice_name',select.value||'');
+  if(!select)return;
+  localStorage.setItem('protocol_voice_name',select.value||'');
+  if(select.value==='__silent__' && 'speechSynthesis' in window) window.speechSynthesis.cancel();
+  updateProtocolVoiceControls();
 }
 
 function getPtVoice(){
+  if(protocolIsSilent())return null;
   if(!('speechSynthesis' in window))return null;
   if(!protocolVoices.length)refreshProtocolVoices();
   const selected=localStorage.getItem('protocol_voice_name')||'';
   return protocolVoices.find(v=>v.name===selected)||protocolVoices[0]||null;
 }
 
+
+function updateProtocolVoiceControls(){
+  const pause=document.getElementById('protocol-pause-btn');
+  const test=document.querySelector('.voice-test');
+  if(!pause)return;
+  const silent=protocolIsSilent();
+  pause.disabled=silent;
+  pause.style.opacity=silent?'.42':'1';
+  pause.style.cursor=silent?'default':'pointer';
+  pause.textContent=silent?'Sem voz':'Ⅱ Pausar';
+  if(test){
+    test.textContent=silent?'Leitura manual':'Testar';
+  }
+}
+
 function testProtocolVoice(){
+  if(protocolIsSilent()){toast('Modo sem voz: leia e repita no seu tempo');return;}
   if(!('speechSynthesis' in window)){toast('Leitura em voz alta não disponível','err');return;}
   window.speechSynthesis.cancel();
   const u=new SpeechSynthesisUtterance('Esta é uma demonstração da voz selecionada para os protocolos.');
@@ -724,6 +763,7 @@ function testProtocolVoice(){
 }
 function speakProtocolPhrase(){
   const item=currentProtocolPhrase();if(!item)return;
+  if(protocolIsSilent())return;
   if(!('speechSynthesis'in window)){toast('Leitura em voz alta não disponível','err');return;}
   window.speechSynthesis.cancel();
   protocolUtterance=new SpeechSynthesisUtterance(item.texto);
@@ -732,8 +772,19 @@ function speakProtocolPhrase(){
   protocolUtterance.onend=()=>{protocolPaused=false;const b=document.getElementById('protocol-pause-btn');if(b){b.textContent='Ⅱ Pausar';b.classList.remove('active');}};
   window.speechSynthesis.speak(protocolUtterance);
 }
-function repeatProtocolPhrase(){speakProtocolPhrase();}
+function repeatProtocolPhrase(){
+  if(protocolIsSilent()){
+    const el=document.getElementById('phrase-text');
+    if(el){
+      el.animate([{opacity:.55,transform:'scale(.99)'},{opacity:1,transform:'scale(1)'}],{duration:420,easing:'ease-out'});
+    }
+    toast('Repita a frase no seu tempo');
+    return;
+  }
+  speakProtocolPhrase();
+}
 function toggleProtocolPause(){
+  if(protocolIsSilent())return;
   if(!('speechSynthesis'in window))return;
   const b=document.getElementById('protocol-pause-btn');
   if(window.speechSynthesis.paused){window.speechSynthesis.resume();protocolPaused=false;b.textContent='Ⅱ Pausar';b.classList.remove('active');}
