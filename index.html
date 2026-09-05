@@ -55,6 +55,12 @@ margin-bottom:7px;font-size:13px;color:var(--dim);cursor:pointer}.check-item.don
 .hoopo-bar-row{display:flex;align-items:center;gap:8px;margin-bottom:7px}.hoopo-bar-label{font-size:11px;color:var(--dim);width:32px;text-align:right}
 .hoopo-bar-bg{flex:1;height:18px;background:#ffffff0a;border-radius:6px;overflow:hidden}.hoopo-bar-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2))}
 .hoopo-bar-val{font-size:11px;color:var(--dim);min-width:26px}
+
+.voice-row{margin-top:13px;display:flex;align-items:center;gap:10px;padding:10px 11px;border-radius:12px;background:#ffffff07;border:1px solid #ffffff10}
+.voice-row label{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);white-space:nowrap}
+.voice-row select{flex:1;min-width:0;background:#102038;border:1px solid #ffffff12;color:var(--text);border-radius:10px;padding:8px 10px;font-size:11px}
+.voice-test{flex:0 0 auto;border:1px solid #ffffff14;background:#ffffff08;color:var(--text);border-radius:9px;padding:8px 10px;font-size:11px;font-weight:600;cursor:pointer}
+
 /* protocolos */
 .protocol-hero{padding:22px;border-radius:22px;border:1px solid #ffffff12;background:radial-gradient(circle at 90% 0,#8de0cf20,transparent 32%),linear-gradient(145deg,#14243a,#0d192a)}
 .protocol-hero-kicker{font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--accent2)}
@@ -62,10 +68,10 @@ margin-bottom:7px;font-size:13px;color:var(--dim);cursor:pointer}.check-item.don
 .protocol-filter{display:flex;gap:7px;overflow:auto;scrollbar-width:none}.protocol-filter::-webkit-scrollbar{display:none}
 .filter-chip{border:1px solid #ffffff12;border-radius:999px;padding:8px 12px;background:#ffffff08;color:var(--dim);font-size:11px;font-weight:600;white-space:nowrap;cursor:pointer}
 .filter-chip.active{background:var(--accent2);color:#07111f;border-color:transparent}
-.protocol-grid{display:grid;grid-template-columns:1fr;gap:10px}.protocol-card{padding:16px;border-radius:17px;border:1px solid #ffffff12;background:linear-gradient(145deg,#15263d,#0e1a2b)}
-.protocol-card-top{display:flex;gap:12px}.protocol-icon{width:42px;height:42px;flex:0 0 42px;border-radius:13px;display:flex;align-items:center;justify-content:center;background:#b8d0ff12;border:1px solid #b8d0ff20}
-.protocol-card-info{flex:1}.protocol-title{font-size:14px;font-weight:700;line-height:1.35}.protocol-desc{font-size:11px;color:var(--dim);line-height:1.5;margin-top:5px}
-.protocol-meta{display:flex;justify-content:space-between;font-size:10px;color:var(--dim);margin-top:12px}.protocol-open{width:100%;padding:10px;border:1px solid #ffffff12;border-radius:11px;background:#ffffff08;color:var(--text);font-weight:600;cursor:pointer}
+.protocol-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:14px}.protocol-card{min-width:0;padding:19px;border-radius:18px;border:1px solid #ffffff12;background:linear-gradient(145deg,#15263d,#0e1a2b);overflow:hidden}
+.protocol-card-top{display:flex;gap:14px;align-items:flex-start}.protocol-icon{width:44px;height:44px;flex:0 0 44px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:#b8d0ff12;border:1px solid #b8d0ff20}
+.protocol-card-info{flex:1;min-width:0}.protocol-title{font-size:15px;font-weight:700;line-height:1.42;overflow-wrap:anywhere}.protocol-desc{font-size:12px;color:var(--dim);line-height:1.62;margin-top:7px;overflow-wrap:anywhere}
+.protocol-meta{display:flex;justify-content:space-between;gap:12px;font-size:11px;color:var(--dim);margin-top:16px}.protocol-open{width:100%;padding:11px 13px;border:1px solid #ffffff12;border-radius:12px;background:#ffffff08;color:var(--text);font-weight:600;cursor:pointer}
 .protocol-list-view.hidden{display:none}.protocol-session{display:none}.protocol-session.active{display:block}.protocol-back{border:0;background:transparent;color:var(--dim);padding:4px 0 12px;cursor:pointer;font-size:12px}
 .session-card{overflow:hidden;border:1px solid #ffffff12;border-radius:22px;background:radial-gradient(circle at 50% -20%,#b8d0ff20,transparent 42%),linear-gradient(155deg,#14243a,#0b1727)}
 .session-head{padding:18px 18px 0}.session-title{font-size:15px;font-weight:700}.session-sub{display:flex;justify-content:space-between;margin-top:7px;font-size:11px;color:var(--dim)}
@@ -78,7 +84,7 @@ margin-bottom:7px;font-size:13px;color:var(--dim);cursor:pointer}.check-item.don
 .session-note{font-size:10px;line-height:1.5;text-align:center;color:var(--dim);margin-top:10px}
 .toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%) translateY(100px);z-index:100;background:#15253c;border:1px solid #ffffff16;color:var(--text);padding:10px 16px;border-radius:999px;font-size:12px;transition:.25s}
 .toast.show{transform:translateX(-50%) translateY(0)}.toast.err{color:var(--danger);border-color:#f39a9a55}
-@media(min-width:620px){.protocol-grid{grid-template-columns:1fr 1fr}.phrase-text{font-size:23px}}
+@media(min-width:620px){.phrase-text{font-size:23px}.protocol-card{padding:21px}}
 @media(max-width:460px){.content{padding:16px 11px}.nav-btn{min-width:95px}.phrase-stage{min-height:340px}.phrase-text{font-size:19px}.session-controls{grid-template-columns:1fr 1fr}.control-btn.primary{grid-column:1/-1;order:-1}}
 </style>
 </head>
@@ -120,18 +126,6 @@ margin-bottom:7px;font-size:13px;color:var(--dim);cursor:pointer}.check-item.don
       </div>
 
     </div>
-  </div>
-
-  <!-- LEMBRETES -->
-  <div class="card">
-    <div class="sec-head">ORAÇÕES DA MANHÃ ☀</div>
-    <div id="oracoes-manha"></div>
-
-    <div class="sec-head">ORAÇÕES DA NOITE ☽</div>
-    <div id="oracoes-noite"></div>
-
-    <div class="sec-head">DECLARAÇÕES DO DIA ✦</div>
-    <div id="declaracoes-lista"></div>
   </div>
 
   <!-- PROGRESSO DO DIA -->
@@ -237,6 +231,11 @@ margin-bottom:7px;font-size:13px;color:var(--dim);cursor:pointer}.check-item.don
       <div class="session-head">
         <div class="session-title" id="session-title"></div>
         <div class="session-sub"><span id="session-counter"></span><span id="session-source"></span></div>
+        <div class="voice-row">
+          <label for="protocol-voice-select">Voz</label>
+          <select id="protocol-voice-select" onchange="saveProtocolVoice()"></select>
+          <button class="voice-test" onclick="testProtocolVoice()">Testar</button>
+        </div>
       </div>
       <div class="session-progress"><div class="progress-bg"><div class="progress-fill" id="session-progress-bar" style="width:0%"></div></div></div>
       <div class="phrase-stage">
@@ -328,8 +327,7 @@ async function init(){
   document.getElementById('header-date').textContent=
     new Date().toLocaleDateString('pt-BR',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
   await Promise.all([loadPsalms(),loadHoopo(),loadPrayerLog(),loadProtocolos()]);
-  renderOracoes();
-  renderDeclaracoes();
+  setupProtocolVoices();
   renderSalmosEsp();
   renderDashboard();
 }
@@ -646,17 +644,90 @@ function renderProtocolPhrase(){
   document.getElementById('protocol-next-btn').textContent=activePhraseIndex===all.length-1?'Finalizar ✓':'Próxima →';
   const b=document.getElementById('protocol-pause-btn');b.textContent='Ⅱ Pausar';b.classList.remove('active');protocolPaused=false;
 }
+let protocolVoices=[];
+
+function scoreProtocolVoice(v){
+  const name=String(v.name||'').toLowerCase();
+  const lang=String(v.lang||'').toLowerCase();
+  let score=0;
+  if(lang==='pt-br')score+=100;
+  else if(lang.startsWith('pt'))score+=60;
+  if(name.includes('natural'))score+=45;
+  if(name.includes('neural'))score+=45;
+  if(name.includes('google'))score+=35;
+  if(name.includes('microsoft'))score+=28;
+  if(name.includes('francisca'))score+=18;
+  if(name.includes('antonio')||name.includes('antônio'))score+=16;
+  if(v.localService===false)score+=5;
+  return score;
+}
+
+function refreshProtocolVoices(){
+  if(!('speechSynthesis' in window))return;
+  protocolVoices=window.speechSynthesis.getVoices()
+    .filter(v=>String(v.lang||'').toLowerCase().startsWith('pt'))
+    .sort((a,b)=>scoreProtocolVoice(b)-scoreProtocolVoice(a));
+
+  const select=document.getElementById('protocol-voice-select');
+  if(!select)return;
+
+  const saved=localStorage.getItem('protocol_voice_name')||'';
+  select.innerHTML='';
+
+  if(!protocolVoices.length){
+    const op=document.createElement('option');
+    op.value='';op.textContent='Voz padrão do navegador';
+    select.appendChild(op);
+    return;
+  }
+
+  protocolVoices.forEach((v,i)=>{
+    const op=document.createElement('option');
+    op.value=v.name;
+    op.textContent=v.name+(v.lang?` — ${v.lang}`:'');
+    select.appendChild(op);
+  });
+
+  if(saved && protocolVoices.some(v=>v.name===saved)){
+    select.value=saved;
+  }else{
+    select.value=protocolVoices[0].name;
+    localStorage.setItem('protocol_voice_name',protocolVoices[0].name);
+  }
+}
+
+function setupProtocolVoices(){
+  if(!('speechSynthesis' in window))return;
+  refreshProtocolVoices();
+  window.speechSynthesis.onvoiceschanged=refreshProtocolVoices;
+}
+
+function saveProtocolVoice(){
+  const select=document.getElementById('protocol-voice-select');
+  if(select) localStorage.setItem('protocol_voice_name',select.value||'');
+}
+
 function getPtVoice(){
-  if(!('speechSynthesis'in window))return null;
-  const v=window.speechSynthesis.getVoices();
-  return v.find(x=>String(x.lang).toLowerCase()==='pt-br')||v.find(x=>String(x.lang).toLowerCase().startsWith('pt'))||null;
+  if(!('speechSynthesis' in window))return null;
+  if(!protocolVoices.length)refreshProtocolVoices();
+  const selected=localStorage.getItem('protocol_voice_name')||'';
+  return protocolVoices.find(v=>v.name===selected)||protocolVoices[0]||null;
+}
+
+function testProtocolVoice(){
+  if(!('speechSynthesis' in window)){toast('Leitura em voz alta não disponível','err');return;}
+  window.speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance('Esta é uma demonstração da voz selecionada para os protocolos.');
+  u.lang='pt-BR';u.rate=.9;u.pitch=1;
+  const voice=getPtVoice();if(voice)u.voice=voice;
+  window.speechSynthesis.speak(u);
 }
 function speakProtocolPhrase(){
   const item=currentProtocolPhrase();if(!item)return;
   if(!('speechSynthesis'in window)){toast('Leitura em voz alta não disponível','err');return;}
   window.speechSynthesis.cancel();
   protocolUtterance=new SpeechSynthesisUtterance(item.texto);
-  protocolUtterance.lang='pt-BR';protocolUtterance.rate=.88;protocolUtterance.pitch=1;
+  protocolUtterance.lang='pt-BR';protocolUtterance.rate=.91;protocolUtterance.pitch=.98;
   const voice=getPtVoice();if(voice)protocolUtterance.voice=voice;
   protocolUtterance.onend=()=>{protocolPaused=false;const b=document.getElementById('protocol-pause-btn');if(b){b.textContent='Ⅱ Pausar';b.classList.remove('active');}};
   window.speechSynthesis.speak(protocolUtterance);
