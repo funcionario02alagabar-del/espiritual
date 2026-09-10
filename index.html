@@ -220,11 +220,11 @@ margin-bottom:7px;font-size:13px;color:var(--dim);cursor:pointer}.check-item.don
 <div class="toast" id="toast"></div>
 
 <script>
-const SB_URL='https://kjnxjmxtsoafwgiborp.supabase.co/rest/v1';
-const SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtqbnhqbXh0c29hZndnaWJvcnAiLCJyb2xlIjoiYW5vbiIsImlhdCI6MTc4MjQxOTk0NywiZXhwIjoyMDk3OTk1OTQ3fQ.2Oj_ykzw7YC8VMsSEdu_E538cMu3_fhhW4HQekWWXqE';
+const SB_URL='https://kjnxjmxtsoafwdgiborp.supabase.co/rest/v1';
+const SB_KEY='sb_publishable_8DahORYy31-Y897trXYtyA_jNb3LO3B';
 
 async function sb(path,method='GET',body=null,qs='',diagnostic=false){
-  const h={'Content-Type':'application/json','apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,
+  const h={'Content-Type':'application/json','apikey':SB_KEY,
     'Prefer':method==='POST'?'return=minimal':'return=representation'};
   try{
     const r=await fetch(SB_URL+path+qs,{method,headers:h,body:body?JSON.stringify(body):null});
@@ -443,17 +443,22 @@ async function loadProtocolos(){
   const status=document.getElementById('protocolos-status');
   if(status)status.textContent='Carregando protocolos do banco...';
 
-  const result=await sb('/protocolos_quanticos','GET',null,'?ativo=eq.true&select=id,slug,titulo,categoria,descricao,ordem,frases,fechamento&order=ordem.asc',true);
+  const result=await sb('/protocolos_quanticos','GET',null,'?ativo=eq.true&select=id,slug,titulo,categoria,descricao,ordem,frases,fechamento&order=ordem.asc');
 
-  if(result && Array.isArray(result.data)){
-    protocolos=result.data.map(normalizeProtocol).filter(p=>p.slug&&protocolFullList(p).length>0);
+  if(result && !result.__sbError && Array.isArray(result)){
+    protocolos=result.map(normalizeProtocol).filter(p=>p.slug&&protocolFullList(p).length>0);
     protocolDataSource='supabase';
     if(status){
       status.textContent=`${protocolos.length} ${protocolos.length===1?'protocolo carregado':'protocolos carregados'} do banco.`;
     }
   }else{
     protocolos=[];protocolDataSource='erro';
-    const detalhe=result?.errorMessage?`<br><span style="opacity:.8">${result.errorMessage}</span>`:'';
+    let detalhe='';
+    if(result?.status){
+      detalhe=`<br><span style="opacity:.8">HTTP ${result.status}: ${String(result.message).replace(/[<>]/g,'')}</span>`;
+    }else if(result?.message){
+      detalhe=`<br><span style="opacity:.8">${String(result.message).replace(/[<>]/g,'')}</span>`;
+    }
     if(status){
       status.innerHTML='Não foi possível carregar os protocolos do Supabase.'+detalhe+
         '<br><button class="protocol-retry" type="button" onclick="loadProtocolos()">Tentar novamente</button>';
