@@ -220,30 +220,27 @@ margin-bottom:7px;font-size:13px;color:var(--dim);cursor:pointer}.check-item.don
 <div class="toast" id="toast"></div>
 
 <script>
-const SB_URL='https://phhbobixmezjnklmroyu.supabase.co/rest/v1';
-const SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBoaGJvYml4bWV6am5rbG1yb3l1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODU4NzgxMTMsImV4cCI6MjEwMTQ1NDExM30.zsa5ENOhwa4oG5Uz0Hg77pfdPN4LNcH1Ld4fix2hJ5I';
+const SB_URL='https://kjnxjmxtsoafwdgiborp.supabase.co/rest/v1';
+const SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtqbnhqbXh0c29hZndgib3JwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI0MTk5NDcsImV4cCI6MjA5Nzk5NTk0N30.2Oj_ykzw7YC8VMsSEdu_E538cMu3_fhhW4HQekWWXqA';
 
-async function sb(path,method='GET',body=null,qs=''){
+async function sb(path,method='GET',body=null,qs='',diagnostic=false){
   const h={'Content-Type':'application/json','apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,
     'Prefer':method==='POST'?'return=minimal':'return=representation'};
   try{
     const r=await fetch(SB_URL+path+qs,{method,headers:h,body:body?JSON.stringify(body):null});
-    if(!r.ok){console.error('SB',r.status,await r.text());return null;}
-    const t=await r.text();return t?JSON.parse(t):true;
-  }catch(e){console.error(e);return null;}
-}
-
-function localDateKey(d=new Date()){
-  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
-}
-function today(){return localDateKey();}
-function escapeHtml(v){return String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
-function parseJsonArray(v){
-  if(Array.isArray(v))return v;
-  if(typeof v==='string'){
-    try{const x=JSON.parse(v);return Array.isArray(x)?x:[];}catch(_){return [];}
+    const t=await r.text();
+    let parsed=true;
+    try{ parsed=t?JSON.parse(t):true; }catch(_){ parsed=t||true; }
+    if(!r.ok){
+      const errorMessage=`HTTP ${r.status}${parsed?.message?': '+parsed.message:(typeof parsed==='string'&&parsed?': '+parsed:'')}`;
+      console.error('SB',r.status,parsed);
+      return diagnostic?{data:null,status:r.status,errorMessage,response:parsed}:null;
+    }
+    return diagnostic?{data:parsed,status:r.status,errorMessage:null,response:parsed}:parsed;
+  }catch(e){
+    console.error('Supabase connection error',e);
+    return diagnostic?{data:null,status:0,errorMessage:'Falha de conexão com o Supabase.',response:null}:null;
   }
-  return [];
 }
 
 // ESTADO
@@ -445,16 +442,26 @@ function renderProtocolFilters(){
 async function loadProtocolos(){
   const status=document.getElementById('protocolos-status');
   if(status)status.textContent='Carregando protocolos do banco...';
-  const data=await sb('/protocolos_quanticos','GET',null,'?ativo=eq.true&select=id,slug,titulo,categoria,descricao,ordem,frases,fechamento&order=ordem.asc');
-  if(Array.isArray(data)){
-    protocolos=data.map(normalizeProtocol).filter(p=>p.slug&&protocolFullList(p).length>0);
+
+  const result=await sb('/protocolos_quanticos','GET',null,'?ativo=eq.true&select=id,slug,titulo,categoria,descricao,ordem,frases,fechamento&order=ordem.asc',true);
+
+  if(result && Array.isArray(result.data)){
+    protocolos=result.data.map(normalizeProtocol).filter(p=>p.slug&&protocolFullList(p).length>0);
     protocolDataSource='supabase';
-    if(status)status.textContent=`${protocolos.length} ${protocolos.length===1?'protocolo carregado':'protocolos carregados'} do banco.`;
+    if(status){
+      status.textContent=`${protocolos.length} ${protocolos.length===1?'protocolo carregado':'protocolos carregados'} do banco.`;
+    }
   }else{
     protocolos=[];protocolDataSource='erro';
-    if(status)status.innerHTML='Não foi possível carregar os protocolos do Supabase.<br><button class="protocol-retry" type="button" onclick="loadProtocolos()">Tentar novamente</button>';
+    const detalhe=result?.errorMessage?`<br><span style="opacity:.8">${result.errorMessage}</span>`:'';
+    if(status){
+      status.innerHTML='Não foi possível carregar os protocolos do Supabase.'+detalhe+
+        '<br><button class="protocol-retry" type="button" onclick="loadProtocolos()">Tentar novamente</button>';
+    }
+    console.error('Falha ao carregar protocolos:',result);
   }
-  renderProtocolFilters();renderProtocols();
+  renderProtocolFilters();
+  renderProtocols();
 }
 function filterProtocols(cat,btn){
   protocolCategory=cat;document.querySelectorAll('.filter-chip').forEach(x=>x.classList.remove('active'));if(btn)btn.classList.add('active');renderProtocols();
