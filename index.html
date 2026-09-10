@@ -10,6 +10,8 @@
   --bg:#07111f;--surface:#111f33;--surface2:#182940;--line:#263a55;
   --text:#f5f7fb;--dim:#9eabc0;--accent:#b8d0ff;--accent2:#8de0cf;
   --ok:#7bd5a6;--danger:#f39a9a;--radius:18px;
+  /* aliases usados por partes antigas do painel */
+  --gold:#b8d0ff;--gold-light:#dce8ff;--text-dim:#9eabc0;--green-light:#7bd5a6;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{min-height:100vh;padding-bottom:84px;color:var(--text);font-family:'Inter',system-ui,sans-serif;
@@ -69,18 +71,22 @@ margin-bottom:7px;font-size:13px;color:var(--dim);cursor:pointer}.check-item.don
 .filter-chip{flex:0 0 auto;text-align:center;border:1px solid #ffffff12;border-radius:999px;padding:9px 13px;background:#ffffff08;color:var(--dim);font-size:11px;font-weight:600;white-space:nowrap;cursor:pointer}
 .filter-chip.active{background:var(--accent2);color:#07111f;border-color:transparent}
 .protocol-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:14px}.protocol-card{min-width:0;padding:19px;border-radius:18px;border:1px solid #ffffff12;background:linear-gradient(145deg,#15263d,#0e1a2b);overflow:hidden}
-.protocol-card-top{display:flex;gap:14px;align-items:flex-start}.protocol-icon{width:44px;height:44px;flex:0 0 44px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:#b8d0ff12;border:1px solid #b8d0ff20}
+.protocol-card-top{display:flex;gap:14px;align-items:flex-start}.protocol-icon{width:44px;height:44px;flex:0 0 44px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:#b8d0ff12;border:1px solid #b8d0ff20;font-size:19px}
 .protocol-card-info{flex:1;min-width:0}.protocol-title{font-size:15px;font-weight:700;line-height:1.42;overflow-wrap:anywhere}.protocol-desc{font-size:12px;color:var(--dim);line-height:1.62;margin-top:7px;overflow-wrap:anywhere}
 .protocol-meta{display:flex;justify-content:space-between;gap:12px;font-size:11px;color:var(--dim);margin-top:16px}.protocol-open{width:100%;padding:11px 13px;border:1px solid #ffffff12;border-radius:12px;background:#ffffff08;color:var(--text);font-weight:600;cursor:pointer}
-.protocol-list-view.hidden{display:none}.protocol-session{display:none}.protocol-session.active{display:block}.protocol-back{border:0;background:transparent;color:var(--dim);padding:4px 0 12px;cursor:pointer;font-size:12px}
+.protocol-open:disabled{opacity:.55;cursor:default}.protocol-list-view.hidden{display:none}.protocol-session{display:none}.protocol-session.active{display:block}.protocol-back{border:0;background:transparent;color:var(--dim);padding:4px 0 12px;cursor:pointer;font-size:12px}
+.protocol-category{display:inline-flex;align-items:center;margin-top:9px;padding:5px 8px;border-radius:999px;background:#ffffff08;border:1px solid #ffffff10;color:var(--accent2);font-size:10px;font-weight:700;line-height:1;text-transform:capitalize}
+.protocol-empty,.protocol-error{padding:15px;border-radius:14px;border:1px solid #ffffff12;background:#ffffff06;font-size:12px;line-height:1.6;color:var(--dim)}
+.protocol-error{border-color:#f39a9a33;color:#f5c2c2}
+.protocol-retry{margin-top:10px;border:1px solid #ffffff14;background:#ffffff08;color:var(--text);border-radius:10px;padding:8px 11px;cursor:pointer;font-size:11px;font-weight:600}
 .session-card{overflow:hidden;border:1px solid #ffffff12;border-radius:22px;background:radial-gradient(circle at 50% -20%,#b8d0ff20,transparent 42%),linear-gradient(155deg,#14243a,#0b1727)}
 .session-head{padding:18px 18px 0}.session-title{font-size:15px;font-weight:700}.session-sub{display:flex;justify-content:space-between;margin-top:7px;font-size:11px;color:var(--dim)}
 .session-progress{padding:0 18px}.phrase-stage{min-height:300px;padding:28px 20px 24px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
-.phrase-tag{font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--accent2);margin-bottom:16px}.phrase-text{max-width:590px;font-size:22px;line-height:1.65;font-weight:500;letter-spacing:-.02em}
+.phrase-tag{font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--accent2);margin-bottom:16px}.phrase-text{max-width:590px;font-size:22px;line-height:1.65;font-weight:500;letter-spacing:-.02em;overflow-wrap:anywhere}
 .phrase-number{font-size:11px;color:var(--dim);margin-top:18px}.session-controls{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;padding:14px;border-top:1px solid #ffffff12;background:#00000012}
 .control-btn{min-height:48px;border:1px solid #ffffff12;border-radius:12px;background:#ffffff08;color:var(--text);font-size:12px;font-weight:700;cursor:pointer}
 .control-btn.primary{background:linear-gradient(135deg,#dce8ff,var(--accent));color:#07111f;border:0}.control-btn.pause.active{color:var(--accent2);border-color:#8de0cf55}
-.session-secondary{display:flex;justify-content:space-between;padding:0 14px 14px}.session-secondary button{border:0;background:transparent;color:var(--dim);font-size:11px;cursor:pointer}
+.control-btn:disabled{opacity:.42;cursor:default}.session-secondary{display:flex;justify-content:space-between;padding:0 14px 14px}.session-secondary button{border:0;background:transparent;color:var(--dim);font-size:11px;cursor:pointer}
 .session-note{font-size:10px;line-height:1.5;text-align:center;color:var(--dim);margin-top:10px}
 .toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%) translateY(100px);z-index:100;background:#15253c;border:1px solid #ffffff16;color:var(--text);padding:10px 16px;border-radius:999px;font-size:12px;transition:.25s}
 .toast.show{transform:translateX(-50%) translateY(0)}.toast.err{color:var(--danger);border-color:#f39a9a55}
@@ -101,41 +107,26 @@ margin-bottom:7px;font-size:13px;color:var(--dim);cursor:pointer}.check-item.don
   <button class="nav-btn" onclick="showTab('salmos',this)">✦ Salmos</button>
   <button class="nav-btn" onclick="showTab('hoopo',this)">◎ Ho'oponopono</button>
   <button class="nav-btn" onclick="showTab('protocolos',this)">◈ Protocolos</button>
-
 </nav>
 
 <div class="content">
 
 <!-- ══ INÍCIO ══ -->
 <div id="tab-inicio" class="tab active">
-
   <div class="card-gold">
-    <div id="dash-saudacao" style="font-family:'Cinzel',serif;font-size:17px;color:var(--gold-light);margin-bottom:14px"></div>
+    <div id="dash-saudacao" style="font-size:17px;color:var(--gold-light);margin-bottom:14px"></div>
     <div class="dash-grid">
-      <div class="dash-card">
-        <div class="dash-num" id="dash-salmos">0</div>
-        <div class="dash-lbl">Salmos lidos</div>
-      </div>
-      <div class="dash-card">
-        <div class="dash-num" id="dash-streak">0</div>
-        <div class="dash-lbl">Dias seguidos</div>
-      </div>
-      <div class="dash-card">
-        <div class="dash-num" id="dash-hoopo-hoje">0</div>
-        <div class="dash-lbl">Ho'oponopono hoje</div>
-      </div>
-
+      <div class="dash-card"><div class="dash-num" id="dash-salmos">0</div><div class="dash-lbl">Salmos lidos</div></div>
+      <div class="dash-card"><div class="dash-num" id="dash-streak">0</div><div class="dash-lbl">Dias seguidos</div></div>
+      <div class="dash-card"><div class="dash-num" id="dash-hoopo-hoje">0</div><div class="dash-lbl">Ho'oponopono hoje</div></div>
     </div>
   </div>
-
-  <!-- PROGRESSO DO DIA -->
   <div class="card">
     <div class="sec-head">O QUE FALTA HOJE</div>
     <div id="dash-falta"></div>
     <div class="sec-head">O QUE JÁ FEZ ✓</div>
     <div id="dash-feito"></div>
   </div>
-
 </div>
 
 <!-- ══ SALMOS ══ -->
@@ -146,29 +137,22 @@ margin-bottom:7px;font-size:13px;color:var(--dim);cursor:pointer}.check-item.don
     <div class="progress-bg"><div class="progress-fill" id="psalm-bar" style="width:0%"></div></div>
     <div class="sub-label" id="psalm-count">0 de 150 lidos</div>
   </div>
-
   <div class="card">
     <div class="sec-head">SALMO DE HOJE</div>
     <div class="row" style="margin-bottom:10px">
-      <div style="font-family:'Cinzel',serif;font-size:46px;color:var(--gold);line-height:1" id="psalm-current-num">16</div>
+      <div style="font-size:46px;color:var(--gold);line-height:1" id="psalm-current-num">16</div>
       <div>
         <div style="font-size:12px;color:var(--text-dim);margin-bottom:5px">Estou no salmo:</div>
-        <div class="row">
-          <input type="number" id="psalm-input" min="1" max="150" value="16" style="width:78px">
-          <button class="btn btn-ghost" onclick="setPsalmManual()">OK</button>
-        </div>
+        <div class="row"><input type="number" id="psalm-input" min="1" max="150" value="16" style="width:78px"><button class="btn btn-ghost" onclick="setPsalmManual()">OK</button></div>
       </div>
     </div>
     <div style="font-size:12px;color:var(--text-dim);margin-bottom:8px">Ao marcar, todos os salmos anteriores também serão marcados.</div>
     <button class="btn btn-mark" onclick="markPsalmRead()">✓ Marcar Salmo <span id="psalm-mark-num">16</span> como lido</button>
-
     <div class="sec-head">MAPA DOS 150 SALMOS</div>
     <div class="psalms-grid" id="psalms-grid"></div>
-
     <div class="sec-head">SALMOS DAS 15H</div>
     <p style="font-size:12px;color:var(--text-dim);margin-bottom:10px">Ler na ordem: Salmo 57 → 91 → 141</p>
     <div id="salmos-15h"></div>
-
     <div class="sec-head">SALMOS COM MISSÃO</div>
     <div id="salmos-missao"></div>
   </div>
@@ -176,37 +160,21 @@ margin-bottom:7px;font-size:13px;color:var(--dim);cursor:pointer}.check-item.don
 
 <!-- ══ HO'OPONOPONO ══ -->
 <div id="tab-hoopo" class="tab">
-  <div class="card-gold">
-    <div class="card-label">TOTAL ACUMULADO</div>
-    <div class="big-number" id="hoopo-total">0</div>
-    <div class="sub-label">repetições</div>
-  </div>
-
+  <div class="card-gold"><div class="card-label">TOTAL ACUMULADO</div><div class="big-number" id="hoopo-total">0</div><div class="sub-label">repetições</div></div>
   <div class="card" style="text-align:center">
     <div class="card-label">SESSÃO ATUAL</div>
-    <div style="font-family:'Cinzel',serif;font-size:54px;color:var(--gold);line-height:1" id="hoopo-session">0</div>
-    <button style="background:none;border:none;cursor:pointer;margin:16px auto;display:block;" onclick="tapHoopo()">
-      <div id="tap-inner" style="width:148px;height:148px;border-radius:50%;background:radial-gradient(circle at 40% 40%,#1E3A5F,#0D1B2A);border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;box-shadow:0 0 28px #C9A84C44;transition:transform .15s ease;">
-        <span style="font-size:58px;color:var(--gold)">◎</span>
-      </div>
+    <div style="font-size:54px;color:var(--gold);line-height:1" id="hoopo-session">0</div>
+    <button style="background:none;border:none;cursor:pointer;margin:16px auto;display:block" onclick="tapHoopo()">
+      <div id="tap-inner" style="width:148px;height:148px;border-radius:50%;background:radial-gradient(circle at 40% 40%,#1E3A5F,#0D1B2A);border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;box-shadow:0 0 28px #C9A84C44;transition:transform .15s ease"><span style="font-size:58px;color:var(--gold)">◎</span></div>
     </button>
     <div style="font-size:12px;color:var(--text-dim)">Toque após completar a frase sagrada</div>
-    <div style="margin-top:16px;padding:13px;background:var(--surface2);border-radius:8px;font-style:italic;font-size:14px;line-height:2;color:var(--gold-light)">
-      Sinto muito · Me perdoa<br>Te amo · Sou grato
-    </div>
-    <div style="margin-top:12px">
-      <button class="btn-ghost-sm" onclick="resetHoopoSession()">Reiniciar sessão</button>
-    </div>
+    <div style="margin-top:16px;padding:13px;background:var(--surface2);border-radius:8px;font-style:italic;font-size:14px;line-height:2;color:var(--gold-light)">Sinto muito · Me perdoa<br>Te amo · Sou grato</div>
+    <div style="margin-top:12px"><button class="btn-ghost-sm" onclick="resetHoopoSession()">Reiniciar sessão</button></div>
   </div>
-
-  <div class="card">
-    <div class="card-label">HISTÓRICO DA SEMANA</div>
-    <div id="hoopo-historico"></div>
-  </div>
+  <div class="card"><div class="card-label">HISTÓRICO DA SEMANA</div><div id="hoopo-historico"></div></div>
 </div>
 
-
-<!-- ══ PROTOCOLOS QUÂNTICOS ══ -->
+<!-- ══ PROTOCOLOS ══ -->
 <div id="tab-protocolos" class="tab">
   <div id="protocol-list-view" class="protocol-list-view">
     <div class="protocol-hero">
@@ -214,13 +182,7 @@ margin-bottom:7px;font-size:13px;color:var(--dim);cursor:pointer}.check-item.don
       <h2>Uma frase por vez, no seu ritmo.</h2>
       <p>Escolha um protocolo. Você pode repetir a frase, pausar a leitura em voz alta e avançar somente quando quiser.</p>
     </div>
-    <div class="protocol-filter">
-      <button class="filter-chip active" onclick="filterProtocols('todos',this)">Todos</button>
-      <button class="filter-chip" onclick="filterProtocols('dinheiro',this)">Dinheiro</button>
-      <button class="filter-chip" onclick="filterProtocols('emocional',this)">Emocional</button>
-      <button class="filter-chip" onclick="filterProtocols('bem-estar',this)">Bem-estar</button>
-      <button class="filter-chip" onclick="filterProtocols('hábitos',this)">Hábitos</button>
-    </div>
+    <div id="protocol-filter" class="protocol-filter"></div>
     <div id="protocolos-status" style="font-size:11px;color:var(--dim)"></div>
     <div id="protocolos-grid" class="protocol-grid"></div>
   </div>
@@ -248,22 +210,18 @@ margin-bottom:7px;font-size:13px;color:var(--dim);cursor:pointer}.check-item.don
         <button class="control-btn pause" id="protocol-pause-btn" onclick="toggleProtocolPause()">Ⅱ Pausar</button>
         <button class="control-btn primary" id="protocol-next-btn" onclick="nextProtocolPhrase()">Próxima →</button>
       </div>
-      <div class="session-secondary">
-        <button onclick="previousProtocolPhrase()">← Anterior</button>
-        <button onclick="restartProtocol()">↺ Recomeçar protocolo</button>
-      </div>
+      <div class="session-secondary"><button onclick="previousProtocolPhrase()">← Anterior</button><button onclick="restartProtocol()">↺ Recomeçar protocolo</button></div>
     </div>
-    <div class="session-note">Escolha uma voz ou use “Sem voz — leitura manual” para repetir cada frase no seu próprio ritmo e avançar somente quando quiser.</div>
+    <div class="session-note">“Sem voz — leitura manual” deixa o protocolo totalmente silencioso. A voz só é usada quando você escolhe uma voz do navegador.</div>
   </div>
 </div>
-
 
 </div>
 <div class="toast" id="toast"></div>
 
 <script>
 const SB_URL='https://kjnxjmxtsoafwdgiborp.supabase.co/rest/v1';
-const SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtqbnhqbXh0c29hZndkZ2lib3JwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI0MTk5NDcsImV4cCI6MjA5Nzk5NTk0N30.2Oj_ykzw7YC8VMsSEdu_E538cMu3_fhhW4HQekWWXqE';
+const SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtqbnhqbXh0c29hZndgib3JwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI0MTk5NDcsImV4cCI6MjA5Nzk5NTk0N30.2Oj_ykzw7YC8VMsSEdu_E538cMu3_fhhW4HQekWWXqE';
 
 async function sb(path,method='GET',body=null,qs=''){
   const h={'Content-Type':'application/json','apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,
@@ -275,57 +233,48 @@ async function sb(path,method='GET',body=null,qs=''){
   }catch(e){console.error(e);return null;}
 }
 
+function localDateKey(d=new Date()){
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+}
+function today(){return localDateKey();}
+function escapeHtml(v){return String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
+function parseJsonArray(v){
+  if(Array.isArray(v))return v;
+  if(typeof v==='string'){
+    try{const x=JSON.parse(v);return Array.isArray(x)?x:[];}catch(_){return [];}
+  }
+  return [];
+}
+
 // ESTADO
 let currentPsalm=16,psalmsRead=[];
 let hoopoTotal=0,hoopoSession=0,hoopoUnsaved=0,hoopoHoje=0;
 let prayerLog={manha:{},noite:{}},declaracaoLog={};
-function today(){
-  const d=new Date();
-  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
-}
 
 // DADOS
-const ORACOES_MANHA=[
-  {id:'om1',nome:'Salmos da Manhã'},
-  {id:'om2',nome:'Pai Nosso'},
-  {id:'om3',nome:'Oração de São Bento'},
-  {id:'om4',nome:'Oração de São Miguel'},
-  {id:'om5',nome:'Oração de Santo Onofre'},
-];
-const ORACOES_NOITE=[
-  {id:'on1',nome:'Salmos da Manhã'},
-  {id:'on2',nome:'Pai Nosso'},
-  {id:'on3',nome:'Oração de São Bento'},
-  {id:'on4',nome:'Oração de São Miguel'},
-  {id:'on5',nome:'Oração de Santo Onofre'},
-];
-const DECLARACOES=[
-  {id:'d1',nome:'Eu sou saúde, paz e amor'},
-  {id:'d2',nome:'Eu sou abundância e prosperidade'},
-  {id:'d3',nome:'Eu sou guiado pelo divino em tudo'},
-  {id:'d4',nome:'Eu sou grato por todas as bênçãos'},
-  {id:'d5',nome:'Eu sou luz e amor em ação'},
-];
+const ORACOES_MANHA=[{id:'om1',nome:'Salmos da Manhã'},{id:'om2',nome:'Pai Nosso'},{id:'om3',nome:'Oração de São Bento'},{id:'om4',nome:'Oração de São Miguel'},{id:'om5',nome:'Oração de Santo Onofre'}];
+const ORACOES_NOITE=[{id:'on1',nome:'Salmos da Manhã'},{id:'on2',nome:'Pai Nosso'},{id:'on3',nome:'Oração de São Bento'},{id:'on4',nome:'Oração de São Miguel'},{id:'on5',nome:'Oração de Santo Onofre'}];
+const DECLARACOES=[{id:'d1',nome:'Eu sou saúde, paz e amor'},{id:'d2',nome:'Eu sou abundância e prosperidade'},{id:'d3',nome:'Eu sou guiado pelo divino em tudo'},{id:'d4',nome:'Eu sou grato por todas as bênçãos'},{id:'d5',nome:'Eu sou luz e amor em ação'}];
 const SALMOS_15H=[{numero:57,nome:'Salmo 57'},{numero:91,nome:'Salmo 91'},{numero:141,nome:'Salmo 141'}];
 const SALMOS_MISSAO=[
   {numero:111,nome:'Salmo 111',info:'Às 11:11 — durante 21 dias',dias:21},
-  {numero:23, nome:'Salmo 23', info:'7 vezes seguidas — 7 dias — às 6h',dias:7},
-  {numero:91, nome:'Salmo 91', info:'3 vezes seguidas — durante 33 dias',dias:33},
-  {numero:24, nome:'Salmo 24', info:'Pela manhã, antes do café',dias:0},
-  {numero:118,nome:'Salmo 118',info:'Todo domingo',dias:0},
+  {numero:23,nome:'Salmo 23',info:'7 vezes seguidas — 7 dias — às 6h',dias:7},
+  {numero:91,nome:'Salmo 91',info:'3 vezes seguidas — durante 33 dias',dias:33},
+  {numero:24,nome:'Salmo 24',info:'Pela manhã, antes do café',dias:0},
+  {numero:118,nome:'Salmo 118',info:'Todo domingo',dias:0}
 ];
 
-// PROTOCOLOS
-const PROTOCOLOS_FALLBACK=[{"slug":"protocolo-quantico-estresse-trauma-insonia-para-dia-dificil","titulo":"PROTOCOLO QUANTICO - ESTRESSE, TRAUMA, INSÔNIA ( Para dia difícil)","categoria":"bem-estar","descricao":"Sequência para um dia difícil, com foco nas emoções e sensações do dia.","ordem":1,"frases":[{"numero":1,"texto":"Código alma a minha consciência permite todos sustos que eu senti hoje acabaram"},{"numero":2,"texto":"Código alma a minha consciência permite todos medos que eu senti hoje acabaram"},{"numero":3,"texto":"Código alma a minha consciência permite todas injustiças que eu senti hoje acabaram"},{"numero":4,"texto":"Código alma a minha consciência permite todos sustos que eu senti hoje acabaram"},{"numero":5,"texto":"Código alma a minha consciência permite todas raivas que eu senti hoje acabaram"},{"numero":6,"texto":"Código alma a minha consciência permite todas tristeza que eu senti hoje acabaram"},{"numero":7,"texto":"Código alma a minha consciência permite todas culpas que eu senti hoje acabaram"},{"numero":8,"texto":"Código alma a minha consciência permite todos arrependimentos que eu senti hoje acabaram"},{"numero":9,"texto":"Código alma a minha consciência permite todos prejuízos que eu senti hoje acabaram"},{"numero":10,"texto":"Código alma a minha consciência permite todas impotências que eu senti hoje acabaram"},{"numero":11,"texto":"Código alma a minha consciência permite todas invejas que eu senti hoje acabaram"},{"numero":12,"texto":"Código alma a minha consciência permite todos ciumes que eu senti hoje acabaram"},{"numero":13,"texto":"Código alma a minha consciência permite todas decepicões que eu senti hoje acabaram"},{"numero":14,"texto":"Código alma a minha consciência permite todas frustrações que eu senti hoje acabaram"},{"numero":15,"texto":"Código alma a minha consciência permite todas angustias que eu senti hoje acabaram"},{"numero":16,"texto":"Código alma a minha consciência permite todas pressões que eu senti hoje acabaram"},{"numero":17,"texto":"Código alma a minha consciência permite todas pressas que eu senti hoje acabaram"},{"numero":18,"texto":"Código alma a minha consciência permite todas cobranças que eu senti hoje acabaram"},{"numero":19,"texto":"Código alma a minha consciência permite todas preocupações que eu senti hoje acabaram"},{"numero":20,"texto":"Código alma a minha consciência permite todas carências que eu senti hoje acabaram"},{"numero":21,"texto":"Código alma a minha consciência permite todas revoltas que eu senti hoje acabaram"},{"numero":22,"texto":"Código alma a minha consciência permite toda vontade de sumir que eu senti hoje acabaram"},{"numero":23,"texto":"Código alma a minha consciência permite todos conflitos que eu senti hoje acabaram"},{"numero":24,"texto":"Código alma a minha consciência permite todas duvidas que eu senti hoje acabaram"},{"numero":25,"texto":"Código alma a minha consciência permite todo desespero que eu senti hoje acabaram"},{"numero":26,"texto":"Código alma a minha consciência permite todas toxinas que eu ingerir hoje acabaram"},{"numero":27,"texto":"Código corpo o meu inconsciente permite todas toxinas que eu ingerir hoje acabaram"},{"numero":28,"texto":"Código alma a minha consciência permite todos parasitas que eu ingerir hoje acabaram"},{"numero":29,"texto":"Código corpo o meu inconsciente permite todos parasitas que eu ingerir hoje acabaram"},{"numero":30,"texto":"Código alma a minha consciência permite todos metais pesado que eu ingerir hoje acabaram"},{"numero":31,"texto":"Código corpo o meu inconsciente permite todos metais pesado que eu ingerir hoje acabaram"},{"numero":32,"texto":"Código alma a minha consciência permite todas tensões musculares que eu senti hoje acabaram"},{"numero":33,"texto":"Código corpo o meu inconsciente permite todas tensões musculares que eu senti hoje acabaram"},{"numero":34,"texto":"Código alma a minha consciência permite todas dores que eu senti hoje acabaram"},{"numero":35,"texto":"Código corpo o meu inconsciente permite dores que eu senti hoje acabaram"},{"numero":36,"texto":"Código alma a minha consciência permite todas vergonhas que eu senti hoje acabaram"},{"numero":37,"texto":"Código alma a minha consciência permite todas humilhações que eu senti hoje acabaram"},{"numero":38,"texto":"Código alma a minha consciência permite todas acusações que eu senti hoje acabaram"},{"numero":39,"texto":"Código alma a minha consciência permite todas ameaças que eu senti hoje acabaram"},{"numero":40,"texto":"Código alma a minha consciência permite todas vinganças que eu senti hoje acabaram"},{"numero":41,"texto":"Código alma a minha consciência permite todos prazeres que eu senti hoje acabaram"},{"numero":42,"texto":"Código alma a minha consciência permite todas rejeições que eu senti hoje acabaram"},{"numero":43,"texto":"Código alma a minha consciência permite todas desaprovações que eu senti hoje acabaram"},{"numero":44,"texto":"Código alma a minha consciência permite todas expectativas que eu senti hoje acabaram"},{"numero":45,"texto":"Código alma a minha consciência permite todas inferioridades que eu senti hoje acabaram"},{"numero":46,"texto":"Código alma a minha consciência permite todas emoções negativas que eu recebi hoje acabaram"},{"numero":47,"texto":"Código alma a minha consciência permite todas emoções negativas que eu gerei hoje acabaram"},{"numero":48,"texto":"Código alma a minha consciência permite silenciar imediatamente as minhas emoções"},{"numero":49,"texto":"Código espírito a minha consciência permite silenciar imediatamente a minha mente"},{"numero":50,"texto":"Código espírito a minha consciência permite silenciar imediatamente os meus pensamentos"}],"fechamento":[]},{"slug":"protocolo-quantico-dependencia-emocional","titulo":"PROTOCOLO QUANTICO - DEPENDÊNCIA EMOCIONAL","categoria":"emocional","descricao":"Frases organizadas em blocos sobre doar, receber e equilíbrio emocional.","ordem":2,"frases":[{"numero":51,"texto":"Código alma a minha consciência permite tristezas que senti todas as vezes que me doei de mais acabaram"},{"numero":52,"texto":"Código alma a minha consciência permite raivas que senti todas as vezes que me doei de mais acabaram"},{"numero":53,"texto":"Código alma a minha consciência permite angustias que senti todas as vezes que me doei de mais acabaram"},{"numero":54,"texto":"Código alma a minha consciência permite vazio interior que senti todas as vezes que me doei de mais acabaram"},{"numero":55,"texto":"Código alma a minha consciência permite dependências que senti todas as vezes que me doei de mais acabaram"},{"numero":56,"texto":"Código alma a minha consciência permite carências que senti todas as vezes que me doei de mais acabaram"},{"numero":57,"texto":"Código alma a minha consciência permite injustiças que senti todas as vezes que me doei de mais acabaram"},{"numero":58,"texto":"Código alma a minha consciência permite preocupações que senti todas as vezes que me doei de mais acabaram"},{"numero":59,"texto":"Código alma a minha consciência permite desprezos que senti todas as vezes que me doei de mais acabaram"},{"numero":60,"texto":"Código alma a minha consciência permite abandonos que senti todas as vezes que me doei de mais acabaram"},{"numero":61,"texto":"Código alma a minha consciência permite rejeições que eu senti todas as vezes que me doei de mais acabaram"},{"numero":62,"texto":"Código alma a minha consciência permite desvalorização que eu senti todas as vezes que me doei de mais acabaram"},{"numero":63,"texto":"Código alma a minha consciência permite humilhações que eu senti todas as vezes que me doei de mais acabaram"},{"numero":64,"texto":"Código alma a minha consciência permite apegos que eu senti todas as vezes que me doei de mais acabaram"},{"numero":65,"texto":"Código alma a minha consciência permite inferioridades que eu senti todas as vezes que me doei de mais acabaram"},{"numero":66,"texto":"Código alma a minha consciência permite descepções que eu senti todas as vezes que me doei de mais acabaram"},{"numero":67,"texto":"Código alma a minha consciência permite frustrações que eu senti todas as vezes que me doei de mais acabaram"},{"numero":68,"texto":"Código alma a minha consciência permite prazeres que eu senti todas as vezes que me doei de mais acabaram"},{"numero":69,"texto":"Código alma a minha consciência permite perda de sentido da vida que eu senti todas as vezes que me doei de mais acabaram"},{"numero":70,"texto":"Código alma a minha consciência permite desânimos que eu senti todas as vezes que me doei de mais acabaram"},{"numero":71,"texto":"Código alma a minha consciência permite desejos que eu senti todas as vezes que me doei de mais acabaram"},{"numero":72,"texto":"Código alma a minha consciência permite nojos que eu senti todas as vezes que me doei de mais acabaram"},{"numero":73,"texto":"Código alma a minha consciência permite conflitos que eu senti todas as vezes que me doei de mais acabaram"},{"numero":74,"texto":"Código alma a minha consciência permite inocência que eu senti todas as vezes que me doei de mais acabaram"},{"numero":75,"texto":"Código alma a minha consciência permite traições que eu senti todas as vezes que me doei de mais acabaram"},{"numero":76,"texto":"Código alma a minha consciência permite cobranças que eu senti todas as vezes que me doei de mais acabaram"},{"numero":77,"texto":"Código alma a minha consciência permite vinganças que eu senti todas as vezes que me doei de mais acabaram"},{"numero":78,"texto":"Código alma a minha consciência permite amores negativos que eu senti todas as vezes que me doei de mais acabaram"},{"numero":79,"texto":"Código alma a minha consciência permite alegrias negativas que eu senti todas as vezes que me doei de mais acabaram"},{"numero":80,"texto":"Código alma a minha consciência permite culpas que eu senti todas as vezes que me doei de mais acabaram"},{"numero":81,"texto":"Código alma a minha consciência permite arrependimentos que eu senti todas as vezes que me doei de mais acabaram"},{"numero":82,"texto":"Código alma a minha consciência permite emoções negativas que eu recebi todas as vezes que me doei de mais acabaram"},{"numero":83,"texto":"Código alma a minha consciência permite emoções negativas que eu gerei todas as vezes que me doei de mais acabaram"},{"numero":84,"texto":"Código alma a minha consciência permite tristezas que eu senti todas as vezes que eu recebi mais acabaram"},{"numero":85,"texto":"Código alma a minha consciência permite raivas que eu senti todas as vezes que eu recebi mais acabaram"},{"numero":86,"texto":"Código alma a minha consciência permite angutias que eu senti todas as vezes que eu recebi mais acabaram"},{"numero":87,"texto":"Código alma a minha consciência permite vazio interior que eu senti todas as vezes que eu recebi mais acabaram"},{"numero":88,"texto":"Código alma a minha consciência permite dependências que eu senti todas as vezes que eu recebi mais acabaram"},{"numero":89,"texto":"Código alma a minha consciência permite carências que eu senti todas as vezes que eu recebi mais acabaram"},{"numero":90,"texto":"Código alma a minha consciência permite injustiças que eu senti todas as vezes que eu recebi mais acabaram"},{"numero":91,"texto":"Código alma a minha consciência permite preocupações que eu senti todas as vezes que eu recebi mais acabaram"},{"numero":92,"texto":"Código alma a minha consciência permite desprezos que eu senti todas as vezes que eu recebi mais acabaram"},{"numero":93,"texto":"Código alma a minha consciência permite abandonos que eu senti todas as vezes que eu recebi mais acabaram"},{"numero":94,"texto":"Código alma a minha consciência permite rejeições que eu senti todas as vezes que eu recebi mais acabaram"},{"numero":95,"texto":"Código alma a minha consciência permite desvalorização que eu senti todas as vezes que eu recebi mais acabaram"},{"numero":96,"texto":"Código alma a minha consciência permite humilhações que eu senti todas as vezes que eu recebi mais acabaram"},{"numero":97,"texto":"Código alma a minha consciência permite apegos que eu senti todas as vezes que eu recebi mais acabaram"},{"numero":98,"texto":"Código alma a minha consciência permite inferioridades que eu senti todas as vezes que eu recebi mais acabaram"},{"numero":99,"texto":"Código alma a minha consciência permite descepições que eu senti todas as vezes que eu recebi mais acabaram"},{"numero":100,"texto":"Código alma a minha consciência permite frustrações que eu senti todas as vezes que eu recebi mais acabaram"},{"numero":101,"texto":"Código alma a minha consciência permite prazeres que eu senti todas as vezes que eu recebi mais acabaram"},{"numero":102,"texto":"Código alma a minha consciência permite perda de sentido da vida que eu senti todas as vezes que eu recebi mais acabaram"},{"numero":103,"texto":"Código alma a minha consciência permite desanimos que eu senti todas as vezes que eu recebi mais acabaram"},{"numero":104,"texto":"Código alma a minha consciência permite desejos que eu senti todas as vezes que eu recebi mais acabaram"},{"numero":105,"texto":"Código alma a minha consciência permite nojos que eu senti todas as vezes que eu recebi mais acabaram"},{"numero":106,"texto":"Código alma a minha consciência permite conflitos que eu senti todas as vezes que eu recebi mais acabaram"},{"numero":107,"texto":"Código alma a minha consciência permite inocência que eu senti todas as vezes que eu recebi mais acabaram"},{"numero":108,"texto":"Código alma a minha consciência permite traições que eu senti todas as vezes que eu recebi mais acabaram"},{"numero":109,"texto":"Código alma a minha consciência permite cobranças que eu senti todas as vezes que eu recebi mais acabaram"},{"numero":110,"texto":"Código alma a minha consciência permite vinganças que eu senti todas as vezes que eu recebi mais acabaram"},{"numero":111,"texto":"Código alma a minha consciência permite amores negativos que eu senti todas as vezes que eu recebi mais acabaram"},{"numero":112,"texto":"Código alma a minha consciência permite alegrias negativas que eu senti todas as vezes que eu recebi mais acabaram"},{"numero":113,"texto":"Código alma a minha consciência permite culpas que eu senti todas as vezes que eu recebi mais acabaram"},{"numero":114,"texto":"Código alma a minha consciência permite arrependimentos que eu senti todas as vezes que eu recebi mais acabaram"},{"numero":115,"texto":"Código alma a minha consciência permite emoções negativas que eu recebi todas as vezes que eu recebi mais acabaram"},{"numero":116,"texto":"Código alma a minha consciência permite emoções negativas que eu gerei todas as vezes que eu recebi mais acabaram"},{"numero":117,"texto":"Código alma a minha consciência permite equilibrar o doar e receber todos os dias "},{"numero":118,"texto":"Código alma a minha consciência permite amar e ser amado todos os dias"}],"fechamento":[]},{"slug":"protocolo-quantico-traumas-infancias-relacionada-ao-dinheiro-pobreza-na-infancia","titulo":"PROTOCOLO QUANTICO - TRAUMAS INFANCIAS RELACIONADA AO DINHEIRO (POBREZA NA INFÂNCIA)","categoria":"dinheiro","descricao":"Frases relacionadas às experiências de pobreza e emoções da infância.","ordem":3,"frases":[{"numero":119,"texto":"Código alma a minha consciência permite pobreza que eu recebi do primeiro dia de minha existência até o final da infância acabaram"},{"numero":120,"texto":"Código alma a minha consciência permite tristezas que eu senti todas as vezes que eu me senti pobre na infância acabaram"},{"numero":121,"texto":"Código alma a minha consciência permite angustias que eu senti todas as vezes que eu me senti pobre na infância acabaram"},{"numero":122,"texto":"Código alma a minha consciência permite rejeições que eu senti todas as vezes que eu me senti pobre na infância acabaram"},{"numero":123,"texto":"Código alma a minha consciência permite desaprovações que eu senti todas as vezes que eu me senti pobre na infância acabaram"},{"numero":124,"texto":"Código alma a minha consciência permite culpas que eu senti todas as vezes que eu me senti pobre na infância acabaram"},{"numero":125,"texto":"Código alma a minha consciência permite vergonhas que eu senti todas as vezes que eu me senti pobre na infância acabaram"},{"numero":126,"texto":"Código alma a minha consciência permite preocupações que eu senti todas as vezes que eu me senti pobre na infância acabaram"},{"numero":127,"texto":"Código alma a minha consciência permite medos que eu senti todas as vezes que eu me senti pobre na infância acabaram"},{"numero":128,"texto":"Código alma a minha consciência permite desproteções que eu senti todas as vezes que eu me senti pobre na infância acabaram"},{"numero":129,"texto":"Código alma a minha consciência permite solidão que eu senti todas as vezes que eu me senti pobre na infância acabaram"},{"numero":130,"texto":"Código alma a minha consciência permite medo de morrer que eu senti todas as vezes que eu me senti pobre na infância acabaram"},{"numero":131,"texto":"Código alma a minha consciência permite descepções que eu senti todas as vezes que eu me senti pobre na infância acabaram"},{"numero":132,"texto":"Código alma a minha consciência permite frustrações que eu senti todas as vezes que eu me senti pobre na infância acabaram"},{"numero":133,"texto":"Código alma a minha consciência permite impotências que eu senti todas as vezes que eu me senti pobre na infância acabaram"},{"numero":134,"texto":"Código alma a minha consciência permite amores negativos que eu senti todas as vezes que eu me senti pobre na infância acabaram"},{"numero":135,"texto":"Código alma a minha consciência permite inferioridades que eu senti todas as vezes que eu me senti pobre na infância acabaram"},{"numero":136,"texto":"Código alma a minha consciência permite humilhações que eu senti todas as vezes que eu me senti pobre na infância acabaram"},{"numero":137,"texto":"Código alma a minha consciência permite nojos que eu senti todas as vezes que eu fui rejeitado na infância acabaram"},{"numero":138,"texto":"Código alma a minha consciência permite abandonos que eu senti todas as vezes que eu me senti pobre na infância acabaram"},{"numero":139,"texto":"Código alma a minha consciência permite sensação de ser feio que eu senti todas as vezes que eu me senti pobre na infância acabaram"},{"numero":140,"texto":"Código alma a minha consciência permite sensação de ser burro que eu senti todas as vezes que eu me senti pobre na infância acabaram"},{"numero":141,"texto":"Código alma a minha consciência permite incapacidades que eu senti todas as vezes que eu me senti pobre na infância acabaram"},{"numero":142,"texto":"Código alma a minha consciência permite carências que eu senti todas as vezes que eu me senti pobre na infância acabaram"},{"numero":143,"texto":"Código alma a minha consciência permite emoções negativas que eu recebi todas as vezes que eu me senti pobre na infância acabaram"},{"numero":144,"texto":"Código alma a minha consciência permite emoções negativas que eu gerei todas as vezes que eu me senti pobre na infância acabaram"},{"numero":145,"texto":"Código espírito a minha consciência permite crenças negativas que eu adquiri todas as vezes que eu me senti pobre na infância acabaram"},{"numero":146,"texto":"Código espírito a minha consciência permite condicionamentos negativas que eu adquiri todas as vezes que eu me senti pobre na infância acabaram"},{"numero":147,"texto":"Código espírito a minha consciência permite pensamentos negativas que eu adquiri todas as vezes que eu me senti pobre na infância acabaram"},{"numero":148,"texto":"Código alma a minha consciência permite emoções negativas que eu acessei nessa live acabaram"},{"numero":149,"texto":"Código alma a minha consciência permite sensações negativas que eu acessei nessa live acabaram"},{"numero":150,"texto":"Código espírito a minha consciência permite informações negativas que eu acessei nessa live acabaram"}],"fechamento":[]},{"slug":"protocolo-quantico-desbloqueio-emocional-dinheiro","titulo":"PROTOCOLO QUANTICO - DESBLOQUEIO EMOCIONAL - DINHEIRO","categoria":"dinheiro","descricao":"Sequências sobre culpa, arrependimento, punição e situações ligadas ao dinheiro.","ordem":4,"frases":[{"numero":151,"texto":"Código alma a minha consciência permite culpas que eu senti todas as vezes que eu abandonei os outros acabaram"},{"numero":152,"texto":"Código alma a minha consciência permite culpas que eu senti todas as vezes que eu rejeitei os outros acabaram"},{"numero":153,"texto":"Código alma a minha consciência permite culpas que eu senti todas as vezes que eu desprezei os outros acabaram"},{"numero":154,"texto":"Código alma a minha consciência permite culpas que eu senti todas as vezes que eu manipulei os outros acabaram"},{"numero":155,"texto":"Código alma a minha consciência permite culpas que eu senti todas as vezes que eu abusei dos outros acabaram"},{"numero":156,"texto":"Código alma a minha consciência permite culpas que eu senti todas as vezes que eu roubei os outros acabaram"},{"numero":157,"texto":"Código alma a minha consciência permite culpas que eu senti todas as vezes que eu trai os outros acabaram"},{"numero":158,"texto":"Código alma a minha consciência permite culpas que eu senti todas as vezes que eu menti para os outros acabaram"},{"numero":159,"texto":"Código alma a minha consciência permite culpas que eu senti todas as vezes que eu agredir os outros acabaram"},{"numero":160,"texto":"Código alma a minha consciência permite culpas que eu senti todas as vezes que eu xinguei os outros acabaram"},{"numero":161,"texto":"Código alma a minha consciência permite culpas que eu senti todas as vezes que eu humilhei os outros acabaram"},{"numero":162,"texto":"Código alma a minha consciência permite culpas que eu senti todas as vezes que eu invadi os outros acabaram"},{"numero":163,"texto":"Código alma a minha consciência permite culpas que eu senti todas as vezes que eu desrespeitei os outros acabaram"},{"numero":164,"texto":"Código alma a minha consciência permite culpas que eu senti todas as vezes que eu maltratei os outros acabaram"},{"numero":165,"texto":"Código alma a minha consciência permite culpas que eu senti todas as vezes que eu controlei os outros acabaram"},{"numero":166,"texto":"Código alma a minha consciência permite culpas que eu senti todas as vezes que eu assustei os outros acabaram"},{"numero":167,"texto":"Código alma a minha consciência permite culpas que eu senti todas as vezes que eu prejudiquei os outros acabaram"},{"numero":168,"texto":"Código alma a minha consciência permite culpas que eu senti todas as vezes que eu tive mais dinheiro do que os outros acabaram"},{"numero":169,"texto":"Código alma a minha consciência permite arrependimentos que eu senti todas as vezes que eu abandonei os outros acabaram"},{"numero":170,"texto":"Código alma a minha consciência permite arrependimentos que eu senti todas as vezes que eu rejeitei os outros acabaram"},{"numero":171,"texto":"Código alma a minha consciência permite arrependimentos que eu senti todas as vezes que eu desprezei os outros acabaram"},{"numero":172,"texto":"Código alma a minha consciência permite arrependimentos que eu senti todas as vezes que eu manipulei os outros acabaram"},{"numero":173,"texto":"Código alma a minha consciência permite arrependimentos que eu senti todas as vezes que eu abusei dos outros acabaram"},{"numero":174,"texto":"Código alma a minha consciência permite arrependimentos que eu senti todas as vezes que eu roubei os outros acabaram"},{"numero":175,"texto":"Código alma a minha consciência permite arrependimentos que eu senti todas as vezes que eu trai os outros acabaram"},{"numero":176,"texto":"Código alma a minha consciência permite arrependimentos que eu senti todas as vezes que eu menti para os outros acabaram"},{"numero":177,"texto":"Código alma a minha consciência permite arrependimentos que eu senti todas as vezes que eu agredir os outros acabaram"},{"numero":178,"texto":"Código alma a minha consciência permite arrependimentos que eu senti todas as vezes que eu xinguei os outros acabaram"},{"numero":179,"texto":"Código alma a minha consciência permite arrependimentos que eu senti todas as vezes que eu humilhei os outros acabaram"},{"numero":180,"texto":"Código alma a minha consciência permite arrependimentos que eu senti todas as vezes que eu invadi os outros acabaram"},{"numero":181,"texto":"Código alma a minha consciência permite arrependimentos que eu senti todas as vezes que eu desrespeitei os outros acabaram"},{"numero":182,"texto":"Código alma a minha consciência permite arrependimentos que eu senti todas as vezes que eu maltratei os outros acabaram"},{"numero":183,"texto":"Código alma a minha consciência permite arrependimentos que eu senti todas as vezes que eu tive mais dinheiro do que os outros acabaram"},{"numero":184,"texto":"Código alma a minha consciência permite punições que eu gerei todas as vezes que eu abandonei os outros acabaram"},{"numero":185,"texto":"Código alma a minha consciência permite punições que eu gerei todas as vezes que eu rejeitei os outros acabaram"},{"numero":186,"texto":"Código alma a minha consciência permite punições que eu gerei todas as vezes que eu desprezei os outros acabaram"},{"numero":187,"texto":"Código alma a minha consciência permite punições que eu gerei todas as vezes que eu manipulei os outros acabaram"},{"numero":188,"texto":"Código alma a minha consciência permite punições que eu gerei todas as vezes que eu abusei os outros acabaram"},{"numero":189,"texto":"Código alma a minha consciência permite punições que eu gerei todas as vezes que eu roubei os outros acabaram"},{"numero":190,"texto":"Código alma a minha consciência permite punições que eu gerei todas as vezes que eu trai os outros acabaram"},{"numero":191,"texto":"Código alma a minha consciência permite punições que eu gerei todas as vezes que eu meti os outros acabaram"},{"numero":192,"texto":"Código alma a minha consciência permite punições que eu gerei todas as vezes que eu agredi os outros acabaram"},{"numero":193,"texto":"Código alma a minha consciência permite punições que eu gerei todas as vezes que eu controlei os outros acabaram"},{"numero":194,"texto":"Código alma a minha consciência permite punições que eu gerei todas as vezes que eu assustei os outros acabaram"},{"numero":195,"texto":"Código alma a minha consciência permite punições que eu gerei todas as vezes que eu prejudiquei os outros acabaram"},{"numero":196,"texto":"Código alma a minha consciência permite punições que eu gerei todas as vezes que eu tive mais dinheiro os outros acabaram"},{"numero":197,"texto":"Código alma a minha consciência permite vinganças que eu senti todas as vezes que eu fui abandonado por causa do dinheiro acabaram"},{"numero":198,"texto":"Código alma a minha consciência permite vinganças que eu senti todas as vezes que eu fui rejeitado por causa do dinheiro acabaram"},{"numero":199,"texto":"Código alma a minha consciência permite vinganças que eu senti todas as vezes que eu fui desprezado por causa do dinheiro acabaram"},{"numero":200,"texto":"Código alma a minha consciência permite vinganças que eu senti todas as vezes que eu fui manipulado por causa do dinheiro acabaram"},{"numero":201,"texto":"Código alma a minha consciência permite vinganças que eu senti todas as vezes que eu fui abusado por causa do dinheiro acabaram"},{"numero":202,"texto":"Código alma a minha consciência permite vinganças que eu senti todas as vezes que eu fui roubado por causa do dinheiro acabaram"},{"numero":203,"texto":"Código alma a minha consciência permite vinganças que eu senti todas as vezes que eu fui traido por causa do dinheiro acabaram"},{"numero":204,"texto":"Código alma a minha consciência permite vinganças que eu senti todas as vezes que mentiram pra mim por causa do dinheiro acabaram"},{"numero":205,"texto":"Código alma a minha consciência permite vinganças que eu senti todas as vezes que eu fui agredido por causa do dinheiro acabaram"},{"numero":206,"texto":"Código alma a minha consciência permite vinganças que eu senti todas as vezes que me xingaram por causa do dinheiro acabaram"},{"numero":207,"texto":"Código alma a minha consciência permite vinganças que eu senti todas as vezes que eu fui humilhado por causa do dinheiro acabaram"},{"numero":208,"texto":"Código alma a minha consciência permite vinganças que eu senti todas as vezes que eu fui invadido por causa do dinheiro acabaram"},{"numero":209,"texto":"Código alma a minha consciência permite vinganças que eu senti todas as vezes que eu fui desrespeitado por causa do dinheiro acabaram"},{"numero":210,"texto":"Código alma a minha consciência permite vinganças que eu senti todas as vezes que eu fui maltrato por causa do dinheiro acabaram"},{"numero":211,"texto":"Código alma a minha consciência permite vinganças que eu senti todas as vezes que eu fui controlado por causa do dinheiro acabaram"},{"numero":212,"texto":"Código alma a minha consciência permite vinganças que eu senti todas as vezes que me assustaram por causa do dinheiro acabaram"},{"numero":213,"texto":"Código alma a minha consciência permite vinganças que eu senti todas as vezes que eu fui prejudicado por causa do dinheiro acabaram"},{"numero":214,"texto":"Código alma a minha consciência permite vinganças que eu senti todas as vezes que tinham mais dinheiro do que eu acabaram"},{"numero":215,"texto":"Código espírito a minha consciência permite crenças negativas que eu gerei todas as vezes que eu me culpei acabaram"},{"numero":216,"texto":"Código espírito a minha consciência permite crenças negativas que eu gerei todas as vezes que eu me arrependi acabaram"},{"numero":217,"texto":"Código espírito a minha consciência permite crenças negativas que eu gerei todas as vezes que eu me puni acabaram"},{"numero":218,"texto":"Código espírito a minha consciência permite acessar e emaranha com as informações positivas do dinheiro na quantidade ideal para mim"},{"numero":219,"texto":"Código alma minha consciência permite acessar e emaranha com as informações positivas do dinheiro na quantidade ideal para mim"}],"fechamento":[]},{"slug":"procrastinacao","titulo":"PROCRASTINAÇÃO","categoria":"hábitos","descricao":"Frases sobre distração, mudança, medo, escolha e evolução.","ordem":5,"frases":[{"numero":228,"texto":"Código alma a minha consciência permite prazeres que senti todas as vezes que me distrair acabaram"},{"numero":229,"texto":"Código alma a minha consciência permite pressões que senti todas as vezes que me distrair acabaram"},{"numero":230,"texto":"Código alma a minha consciência permite vergonhas que senti todas as vezes que me distrair acabaram"},{"numero":231,"texto":"Código alma a minha consciência permite culpas que senti todas as vezes que me distrair acabaram"},{"numero":232,"texto":"Código alma a minha consciência permite arrependimentos que senti todas as vezes que me distrair acabaram"},{"numero":233,"texto":"Código alma a minha consciência permite desânimos que senti todas as vezes que me distrair acabaram"},{"numero":234,"texto":"Código alma a minha consciência permite tristezas que senti todas as vezes que me distrair acabaram"},{"numero":235,"texto":"Código alma a minha consciência permite medos que senti todas as vezes que tentei fazer mais dinheiro acabaram"},{"numero":236,"texto":"Código alma a minha consciência permite medos que senti todas as vezes que tentei crescer na vida acabaram"},{"numero":237,"texto":"Código alma a minha consciência permite medos que senti todas as vezes que tentei evoluir acabaram"},{"numero":238,"texto":"Código alma a minha consciência permite medos que senti todas as vezes que tentei aprender algo novo acabaram"},{"numero":239,"texto":"Código alma a minha consciência permite medos que senti todas as vezes que tentei ficar mais saudavel acabaram"},{"numero":240,"texto":"Código alma a minha consciência permite medos que senti todas as vezes que tentei mudar para melhor acabaram"},{"numero":241,"texto":"Código alma a minha consciência permite medos de mudar os meus sentimentos acabaram"},{"numero":242,"texto":"Código alma a minha consciência permite medos de mudar as minhas crenças acabaram"},{"numero":243,"texto":"Código alma a minha consciência permite medos de errar acabaram"},{"numero":244,"texto":"Código alma a minha consciência permite resistencias em mudar as minhas crenças acabaram"},{"numero":245,"texto":"Código alma a minha consciência permite prazeres em ficar onde estou acabaram"},{"numero":246,"texto":"Código alma a minha consciência permite prazeres em continuar com a mesma renda acabaram"},{"numero":247,"texto":"Código alma a minha consciência permite prazeres em manter as mesmas amizades acabaram"},{"numero":248,"texto":"Código alma a minha consciência permite prazeres em morar no mesmo lugar acabaram"},{"numero":249,"texto":"Código alma a minha consciência permite prazeres em continuar sendo quem eu sou acabaram"},{"numero":250,"texto":"Código alma a minha consciência permite prazeres em continuar tendo o que eu ja tenho acabaram"},{"numero":251,"texto":"Código alma a minha consciência permite medos de fazer algo novo acabaram"},{"numero":252,"texto":"Código alma a minha consciência permite medos de experimentar algo novo acabaram"},{"numero":253,"texto":"Código alma a minha consciência permite medos de estudar algo novo acabaram"},{"numero":254,"texto":"Código alma a minha consciência permite medos de fazer novas escolhas acabaram"},{"numero":255,"texto":"Código alma a minha consciência permite medos de me arrepender de evoluir acabaram"},{"numero":256,"texto":"Código alma a minha consciência permite vergonhas em me arrepender em evoluir acabaram"},{"numero":257,"texto":"Código alma a minha consciência permite preguiças de evoluir acabaram"},{"numero":258,"texto":"Código alma a minha consciência permite medos de sentir medos acabaram"},{"numero":259,"texto":"Código alma a minha consciência permite medos de sentir frustrações acabaram"},{"numero":260,"texto":"Código alma a minha consciência permite medos de sentir vergonhas acabaram"},{"numero":261,"texto":"Código alma a minha consciência permite medos de sentir culpas acabaram"},{"numero":262,"texto":"Código alma a minha consciência permite medos de sentir arrependimentos acabaram"},{"numero":263,"texto":"Código alma a minha consciência permite medos de sentir incapaz acabaram"},{"numero":264,"texto":"Código alma a minha consciência permite medos de sentir abandono acabaram"},{"numero":265,"texto":"Código alma a minha consciência permite medos de sentir rejeições acabaram"},{"numero":266,"texto":"Código alma a minha consciência permite medos de sentir desaprovações acabaram"},{"numero":267,"texto":"Código alma a minha consciência permite medos de fazer novas escolhas acabaram"},{"numero":268,"texto":"Código alma a minha consciência permite medos de planejar a minha vida acabaram"},{"numero":269,"texto":"Código alma a minha consciência permite preguiças em planejar a minha vida acabaram"},{"numero":270,"texto":"Código alma a minha consciência permite desânimos em planejar a minha vida acabaram"},{"numero":271,"texto":"Código alma a minha consciência permite apegos pela minha vida como ela é acabaram"},{"numero":272,"texto":"Código alma a minha consciência permite eu já me observo em pleno crescimento"},{"numero":273,"texto":"Código alma a minha consciência permite eu já me observo feliz em sentir outras emoções "},{"numero":274,"texto":"Código alma a minha consciência permite eu já me observo flexível para mudar sempre que eu quiser"},{"numero":275,"texto":"Código alma a minha consciência permite eu já me observo fazendo novas escolhas"},{"numero":276,"texto":"Código espírito a minha consciência permite eu já me observo em plena mudança"},{"numero":277,"texto":"Código espírito a minha consciência permite eu já me observo fazendo novas escolhas com facilidade"},{"numero":278,"texto":"Código espírito a minha consciência permite eu já me observo com novas crenças e hábitos "},{"numero":279,"texto":"Código espírito a minha consciência permite eu já me observo com novos pensamentos e atitudes"},{"numero":280,"texto":"Código espírito a minha consciência local se conecta conecta com a consciência não local para acessar novas informações e evoluir imediatamente"}],"fechamento":[]},{"slug":"protocolo-quantico-para-escassez-financeira","titulo":"PROTOCOLO QUANTICO - PARA ESCASSEZ FINANCEIRA","categoria":"dinheiro","descricao":"Frases sobre crenças, emoções, escassez e relação com o dinheiro.","ordem":6,"frases":[{"numero":1,"texto":"Código alma a minha consciência permite toda desvalorização que eu senti e que me faz fugir do dinheiro acabaram"},{"numero":2,"texto":"Código alma a minha consciência permite todos pensamentos negativos que eu gerei e que me faz fugir do dinheiro acabaram"},{"numero":3,"texto":"Código alma a minha consciência permite todas emoções negativas que eu recebi e que me faz fugir do dinheiro acabaram"},{"numero":4,"texto":"Código alma a minha consciência permite todas emoções negativas que eu gerei e que me faz fugir do dinheiro acabaram"},{"numero":5,"texto":"Código alma a minha consciência permite todas crenças negativas que eu recebi e que me faz fugir do dinheiro acabaram"},{"numero":6,"texto":"Código alma a minha consciência permite todas crenças negativas que eu gerei e que me faz fugir do dinheiro acabaram"},{"numero":7,"texto":"Código alma a minha consciência permite toda escassez financeira que eu recebi do primeiro dia de minha existência até o final da infância acabaram"},{"numero":8,"texto":"Código espírito a minha consciência permite toda hereditariedade de escassez financeira que eu recebi do primeiro dia de minha existência até o final da infância acabaram"},{"numero":9,"texto":"Código alma a minha consciência permite todos medos relacionados ao dinheiro que eu recebi e que me faz fugir do dinheiro acabaram"},{"numero":10,"texto":"Código alma a minha consciência permite todos medos relacionados ao dinheiro que eu gerei e que me faz fugir do dinheiro acabaram"},{"numero":11,"texto":"Código alma a minha consciência permite todas culpas relacionadas ao dinheiro que eu recebi e que me faz fugir do dinheiro acabaram"},{"numero":12,"texto":"Código alma a minha consciência permite todas culpas relacionadas ao dinheiro que eu gerei e que me faz fugir do dinheiro acabaram"},{"numero":13,"texto":"Código alma a minha consciência permite todas vergonhas relacionadas ao dinheiro que eu recebi e que me faz fugir do dinheiro acabaram"},{"numero":14,"texto":"Código alma a minha consciência permite todas vergonhas relacionadas ao dinheiro que eu gerei e que me faz fugir do dinheiro acabaram"},{"numero":15,"texto":"Código alma a minha consciência permite todas rejeições relacionadas ao dinheiro que eu recebi e que me faz fugir do dinheiro acabaram"},{"numero":16,"texto":"Código alma a minha consciência permite todas rejeições relacionadas ao dinheiro que eu gerei e que me faz fugir do dinheiro acabaram"},{"numero":17,"texto":"Código alma a minha consciência permite todas inferioridades relacionadas ao dinheiro que eu recebi e que me faz fugir do dinheiro acabaram"},{"numero":18,"texto":"Código alma a minha consciência permite todas inferioridades relacionadas ao dinheiro que eu gerei e que me faz fugir do dinheiro acabaram"},{"numero":19,"texto":"Código alma a minha consciência permite todas incapacidades relacionadas ao dinheiro que eu recebi e que me faz fugir do dinheiro acabaram"},{"numero":20,"texto":"Código alma a minha consciência permite todas incapacidades relacionadas ao dinheiro que eu gerei e que me faz fugir do dinheiro acabaram"},{"numero":21,"texto":"Código alma a minha consciência permite todas inseguranças relacionadas ao dinheiro que eu recebi e que me faz fugir do dinheiro acabaram"},{"numero":22,"texto":"Código alma a minha consciência permite todas inseguranças relacionadas ao dinheiro que eu gerei e que me faz fugir do dinheiro acabaram"},{"numero":23,"texto":"Código alma a minha consciência permite todas preocupações relacionadas ao dinheiro que eu recebi e que me faz fugir do dinheiro acabaram"},{"numero":24,"texto":"Código alma a minha consciência permite todas preocupações relacionadas ao dinheiro que eu gerei e que me faz fugir do dinheiro acabaram"},{"numero":25,"texto":"Código alma a minha consciência permite todas angustias relacionadas ao dinheiro que eu recebi e que me faz fugir do dinheiro acabaram"},{"numero":26,"texto":"Código alma a minha consciência permite todas angustias relacionadas ao dinheiro que eu gerei e que me faz fugir do dinheiro acabaram"},{"numero":27,"texto":"Código alma a minha consciência permite todas frustrações relacionadas ao dinheiro que eu recebi e que me faz fugir do dinheiro acabaram"},{"numero":28,"texto":"Código alma a minha consciência permite todas frustrações relacionadas ao dinheiro que eu gerei e que me faz fugir do dinheiro acabaram"},{"numero":29,"texto":"Código alma a minha consciência permite todos medos de prosperar que eu gerei e que me faz fugir do dinheiro acabaram"},{"numero":30,"texto":"Código alma a minha consciência permite todas culpas de prosperar que eu gerei e que me faz fugir do dinheiro acabaram"},{"numero":31,"texto":"Código alma a minha consciência permite todo não merecimento que eu senti e que me faz fugir do dinheiro acabaram"},{"numero":32,"texto":"Código alma a minha consciência permite todas resistências em receber dinheiro que eu gerei e que me faz fugir do dinheiro acabaram"},{"numero":33,"texto":"Código alma a minha consciência permite todas resistências em guardar dinheiro que eu gerei e que me faz fugir do dinheiro acabaram"},{"numero":34,"texto":"Código alma a minha consciência permite todas resistências em ter mais dinheiro que eu gerei e que me faz fugir do dinheiro acabaram"},{"numero":35,"texto":"Código alma a minha consciência permite todos medos relacionados ao dinheiro que eu recebi do primeiro dia de minha existência até o final da infância acabaram"},{"numero":36,"texto":"Código alma a minha consciência permite todas inseguranças financeiras que eu recebi do primeiro dia de minha existência até o final da infância acabaram"},{"numero":37,"texto":"Código alma a minha consciência permite todas crenças de escassez que eu adquiri do primeiro dia de minha existência até o final da infância acabaram"},{"numero":38,"texto":"Código alma a minha consciência permite todos condicionamentos de escassez que eu adquiri do primeiro dia de minha existência até o final da infância acabaram"},{"numero":39,"texto":"Código espírito a minha consciência permite toda hereditariedade de medos relacionados ao dinheiro acabaram"},{"numero":40,"texto":"Código espírito a minha consciência permite toda hereditariedade de crenças negativas relacionadas ao dinheiro acabaram"},{"numero":41,"texto":"Código espírito a minha consciência permite toda hereditariedade de condicionamentos de escassez financeira acabaram"},{"numero":42,"texto":"Código alma a minha consciência permite todas resistências em ganhar dinheiro que eu gerei e que me faz fugir do dinheiro acabaram"},{"numero":43,"texto":"Código alma a minha consciência permite todas resistências em administrar dinheiro que eu gerei e que me faz fugir do dinheiro acabaram"},{"numero":44,"texto":"Código alma a minha consciência permite todos medos de perder tudo que eu gerei e que me faz fugir do dinheiro acabaram"},{"numero":45,"texto":"Código alma a minha consciência permite todas culpas por ter mais dinheiro que eu recebi e que me faz fugir do dinheiro acabaram"},{"numero":46,"texto":"Código alma a minha consciência permite todas vergonhas de prosperar que eu recebi e que me faz fugir do dinheiro acabaram"},{"numero":47,"texto":"Código alma a minha consciência permite todos pensamentos de que o dinheiro acaba que eu recebi e que me faz fugir do dinheiro acabaram"},{"numero":48,"texto":"Código alma a minha consciência permite todas crenças de que eu não mereço dinheiro que eu gerei e que me faz fugir do dinheiro acabaram"},{"numero":49,"texto":"Código alma a minha consciência permite todos condicionamentos negativos relacionados ao dinheiro que eu recebi e que me faz fugir do dinheiro acabaram"},{"numero":50,"texto":"Código alma a minha consciência permite todas emoções negativas relacionadas à prosperidade que eu gerei e que me faz fugir do dinheiro acabaram"}],"fechamento":[{"numero":1,"texto":"Código espírito a minha consciência permite acessar e emaranha com as informações positivas do dinheiro na quantidade ideal para mim"},{"numero":2,"texto":"Código alma minha consciência permite acessar e emaranha com as informações positivas do dinheiro na quantidade ideal para mim"}]},{"slug":"protocolo-quantico-emocoes-e-gatilhos-relacionados-ao-dinheiro","titulo":"PROTOCOLO QUANTICO - EMOÇÕES E GATILHOS RELACIONADOS AO DINHEIRO","categoria":"dinheiro","descricao":"Frases situacionais sobre emoções despertadas em experiências financeiras.","ordem":7,"frases":[{"numero":1,"texto":"Código alma a minha consciência permite medos que eu senti todas as vezes que eu pensei em ganhar mais dinheiro acabaram"},{"numero":2,"texto":"Código alma a minha consciência permite medos que eu senti todas as vezes que eu pensei em ter mais dinheiro acabaram"},{"numero":3,"texto":"Código alma a minha consciência permite medos que eu senti todas as vezes que eu pensei em prosperar acabaram"},{"numero":4,"texto":"Código alma a minha consciência permite angustias que eu senti todas as vezes que eu recebi dinheiro acabaram"},{"numero":5,"texto":"Código alma a minha consciência permite inseguranças que eu senti todas as vezes que eu tive dinheiro acabaram"},{"numero":6,"texto":"Código alma a minha consciência permite preocupações que eu senti todas as vezes que a minha renda aumentou acabaram"},{"numero":7,"texto":"Código alma a minha consciência permite vergonhas que eu senti todas as vezes que reconheceram o meu crescimento financeiro acabaram"},{"numero":8,"texto":"Código alma a minha consciência permite culpas que eu senti todas as vezes que eu tive mais dinheiro do que os outros acabaram"},{"numero":9,"texto":"Código alma a minha consciência permite vergonhas que eu senti todas as vezes que eu cobrei pelo meu trabalho acabaram"},{"numero":10,"texto":"Código alma a minha consciência permite culpas que eu senti todas as vezes que eu cobrei um valor maior pelo meu trabalho acabaram"},{"numero":11,"texto":"Código alma a minha consciência permite medos que eu senti todas as vezes que eu pedi um aumento acabaram"},{"numero":12,"texto":"Código alma a minha consciência permite angustias que eu senti todas as vezes que eu precisei negociar dinheiro acabaram"},{"numero":13,"texto":"Código alma a minha consciência permite rejeições que eu senti todas as vezes que alguém não quis pagar o meu valor acabaram"},{"numero":14,"texto":"Código alma a minha consciência permite desaprovações que eu senti todas as vezes que eu falei sobre dinheiro acabaram"},{"numero":15,"texto":"Código alma a minha consciência permite inferioridades que eu senti todas as vezes que eu comparei a minha renda com a renda dos outros acabaram"},{"numero":16,"texto":"Código alma a minha consciência permite incapacidades que eu senti todas as vezes que eu precisei colocar preço no meu trabalho acabaram"},{"numero":17,"texto":"Código alma a minha consciência permite medos que eu senti todas as vezes que eu tentei guardar dinheiro acabaram"},{"numero":18,"texto":"Código alma a minha consciência permite angustias que eu senti todas as vezes que eu vi dinheiro parado na minha conta acabaram"},{"numero":19,"texto":"Código alma a minha consciência permite culpas que eu senti todas as vezes que eu guardei dinheiro para mim acabaram"},{"numero":20,"texto":"Código alma a minha consciência permite preocupações que eu senti todas as vezes que eu pensei em investir dinheiro acabaram"},{"numero":21,"texto":"Código alma a minha consciência permite medos de perder dinheiro que eu senti todas as vezes que eu pensei em investir acabaram"},{"numero":22,"texto":"Código alma a minha consciência permite inseguranças que eu senti todas as vezes que eu planejei o meu futuro financeiro acabaram"},{"numero":23,"texto":"Código alma a minha consciência permite pressões que eu senti todas as vezes que eu precisei tomar decisões financeiras acabaram"},{"numero":24,"texto":"Código alma a minha consciência permite arrependimentos que eu senti todas as vezes que eu fiz escolhas relacionadas ao dinheiro acabaram"},{"numero":25,"texto":"Código alma a minha consciência permite culpas que eu senti todas as vezes que eu gastei dinheiro comigo acabaram"},{"numero":26,"texto":"Código alma a minha consciência permite vergonhas que eu senti todas as vezes que eu não consegui pagar alguma coisa acabaram"},{"numero":27,"texto":"Código alma a minha consciência permite angustias que eu senti todas as vezes que as contas chegaram acabaram"},{"numero":28,"texto":"Código alma a minha consciência permite desesperos que eu senti todas as vezes que eu tive dívidas acabaram"},{"numero":29,"texto":"Código alma a minha consciência permite humilhações que eu senti todas as vezes que eu precisei pedir ajuda financeira acabaram"},{"numero":30,"texto":"Código alma a minha consciência permite inferioridades que eu senti todas as vezes que eu não consegui comprar o que os outros tinham acabaram"},{"numero":31,"texto":"Código alma a minha consciência permite frustrações que eu senti todas as vezes que eu precisei desistir de comprar alguma coisa por falta de dinheiro acabaram"},{"numero":32,"texto":"Código alma a minha consciência permite raivas que eu senti todas as vezes que eu perdi dinheiro acabaram"},{"numero":33,"texto":"Código alma a minha consciência permite tristezas que eu senti todas as vezes que eu ouvi que não tinha dinheiro acabaram"},{"numero":34,"texto":"Código alma a minha consciência permite medos que eu senti todas as vezes que eu vi pessoas preocupadas com contas acabaram"},{"numero":35,"texto":"Código alma a minha consciência permite vergonhas que eu senti todas as vezes que eu não pude ter o que outras pessoas tinham acabaram"},{"numero":36,"texto":"Código alma a minha consciência permite rejeições que eu senti todas as vezes que eu me senti diferente dos outros por causa do dinheiro acabaram"},{"numero":37,"texto":"Código alma a minha consciência permite inferioridades que eu senti todas as vezes que eu comparei a condição financeira da minha família com a dos outros acabaram"},{"numero":38,"texto":"Código alma a minha consciência permite impotências que eu senti todas as vezes que eu quis ajudar financeiramente e não consegui acabaram"},{"numero":39,"texto":"Código alma a minha consciência permite preocupações que eu senti todas as vezes que eu presenciei conflitos relacionados ao dinheiro acabaram"},{"numero":40,"texto":"Código alma a minha consciência permite solidão que eu senti todas as vezes que eu me senti sem dinheiro acabaram"},{"numero":41,"texto":"Código alma a minha consciência permite medos que eu senti todas as vezes que surgiu uma oportunidade de ganhar mais dinheiro acabaram"},{"numero":42,"texto":"Código alma a minha consciência permite medos que eu senti todas as vezes que eu precisei mudar para crescer financeiramente acabaram"},{"numero":43,"texto":"Código alma a minha consciência permite vergonhas que eu senti todas as vezes que eu falei sobre os meus objetivos financeiros acabaram"},{"numero":44,"texto":"Código alma a minha consciência permite culpas que eu senti todas as vezes que eu priorizei a minha segurança financeira acabaram"},{"numero":45,"texto":"Código alma a minha consciência permite resistências que eu senti todas as vezes que surgiu uma nova oportunidade financeira acabaram"},{"numero":46,"texto":"Código alma a minha consciência permite apegos que eu senti todas as vezes que eu pensei em sair da minha renda atual acabaram"},{"numero":47,"texto":"Código alma a minha consciência permite todas emoções negativas que eu recebi todas as vezes que eu pensei em dinheiro acabaram"},{"numero":48,"texto":"Código alma a minha consciência permite todas emoções negativas que eu gerei todas as vezes que eu pensei em dinheiro acabaram"},{"numero":49,"texto":"Código alma a minha consciência permite medos que eu senti todas as vezes que eu precisei administrar mais dinheiro acabaram"},{"numero":50,"texto":"Código alma a minha consciência permite inseguranças que eu senti todas as vezes que eu imaginei uma vida com mais dinheiro acabaram"}],"fechamento":[{"numero":1,"texto":"Código espírito a minha consciência permite acessar e emaranha com as informações positivas do dinheiro na quantidade ideal para mim"},{"numero":2,"texto":"Código alma minha consciência permite acessar e emaranha com as informações positivas do dinheiro na quantidade ideal para mim"}]}];
-let protocolos=[],protocolDataSource='local',protocolCategory='todos';
+// PROTOCOLOS: banco = fonte principal. O fallback antigo foi removido para não esconder
+// protocolos novos quando a tabela já estiver abastecida.
+let protocolos=[],protocolDataSource='supabase',protocolCategory='todos';
 let activeProtocol=null,activePhraseIndex=0,protocolUtterance=null,protocolPaused=false;
+let protocolVoices=[];
 
 // INIT
 async function init(){
   const h=new Date().getHours();
   document.getElementById('dash-saudacao').textContent=h<12?'Bom dia':h<18?'Boa tarde':'Boa noite';
-  document.getElementById('header-date').textContent=
-    new Date().toLocaleDateString('pt-BR',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+  document.getElementById('header-date').textContent=new Date().toLocaleDateString('pt-BR',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
   await Promise.all([loadPsalms(),loadHoopo(),loadPrayerLog(),loadProtocolos()]);
   setupProtocolVoices();
   renderSalmosEsp();
@@ -335,12 +284,10 @@ async function init(){
 // ══ SALMOS ══
 async function loadPsalms(){
   const data=await sb('/salmos_log','GET',null,'?tipo=eq.diario&select=salmo_numero');
-  if(data&&Array.isArray(data)) psalmsRead=[...new Set(data.map(r=>r.salmo_numero))];
-  const s=localStorage.getItem('currentPsalm');
-  if(s) currentPsalm=parseInt(s);
+  if(data&&Array.isArray(data))psalmsRead=[...new Set(data.map(r=>r.salmo_numero))];
+  const s=localStorage.getItem('currentPsalm');if(s)currentPsalm=parseInt(s);
   renderPsalms();
 }
-
 function renderPsalms(){
   const pct=Math.round(psalmsRead.length/150*100);
   document.getElementById('psalm-percent').textContent=pct+'%';
@@ -350,218 +297,119 @@ function renderPsalms(){
   document.getElementById('psalm-input').value=currentPsalm;
   document.getElementById('psalm-mark-num').textContent=currentPsalm;
   document.getElementById('dash-salmos').textContent=psalmsRead.length;
-  const grid=document.getElementById('psalms-grid');
-  grid.innerHTML='';
+  const grid=document.getElementById('psalms-grid');grid.innerHTML='';
   for(let i=1;i<=150;i++){
     const el=document.createElement('div');
     el.className='psalm-cell'+(psalmsRead.includes(i)?' done':'')+(i===currentPsalm?' current':'');
-    el.textContent=i;
-    el.onclick=()=>{currentPsalm=i;localStorage.setItem('currentPsalm',i);renderPsalms();};
-    grid.appendChild(el);
+    el.textContent=i;el.onclick=()=>{currentPsalm=i;localStorage.setItem('currentPsalm',i);renderPsalms();};grid.appendChild(el);
   }
 }
-
 async function markPsalmRead(){
-  toast('Salvando...');
-  const toMark=[];
-  for(let i=1;i<=currentPsalm;i++) if(!psalmsRead.includes(i)) toMark.push(i);
+  toast('Salvando...');const toMark=[];for(let i=1;i<=currentPsalm;i++)if(!psalmsRead.includes(i))toMark.push(i);
   if(!toMark.length){toast('Já marcados!');return;}
   const res=await sb('/salmos_log','POST',toMark.map(n=>({salmo_numero:n,tipo:'diario',data:today()})));
   if(res===null){toast('❌ Erro no Supabase','err');return;}
-  toMark.forEach(n=>psalmsRead.push(n));
-  const next=currentPsalm>=150?1:currentPsalm+1;
-  currentPsalm=next;localStorage.setItem('currentPsalm',next);
-  renderPsalms();renderDashboard();
-  toast('✓ '+(toMark.length>1?toMark.length+' salmos marcados!':'Salmo marcado!'));
+  toMark.forEach(n=>psalmsRead.push(n));const next=currentPsalm>=150?1:currentPsalm+1;currentPsalm=next;localStorage.setItem('currentPsalm',next);
+  renderPsalms();renderDashboard();toast('✓ '+(toMark.length>1?toMark.length+' salmos marcados!':'Salmo marcado!'));
 }
-
-function setPsalmManual(){
-  const n=parseInt(document.getElementById('psalm-input').value);
-  if(n>=1&&n<=150){currentPsalm=n;localStorage.setItem('currentPsalm',n);renderPsalms();}
-}
+function setPsalmManual(){const n=parseInt(document.getElementById('psalm-input').value);if(n>=1&&n<=150){currentPsalm=n;localStorage.setItem('currentPsalm',n);renderPsalms();}}
 
 // ══ SALMOS ESPECIAIS ══
 async function renderSalmosEsp(){
-  const b15=document.getElementById('salmos-15h');
-  b15.innerHTML='';
+  const b15=document.getElementById('salmos-15h');b15.innerHTML='';
   for(const s of SALMOS_15H){
-    const data=await sb('/salmos_log','GET',null,`?salmo_numero=eq.${s.numero}&tipo=eq.esp15h&data=eq.${today()}`);
-    const done=data&&data.length>0;
-    const el=document.createElement('div');
-    el.className='check-item'+(done?' done':'');
-    el.id='ci15-'+s.numero;
-    el.innerHTML=`<span class="ci-icon">${done?'✓':'○'}</span><span class="ci-label">${s.nome}</span>`;
-    el.onclick=()=>markSalmoEsp(s.numero,'esp15h','ci15-'+s.numero);
-    b15.appendChild(el);
+    const data=await sb('/salmos_log','GET',null,`?salmo_numero=eq.${s.numero}&tipo=eq.esp15h&data=eq.${today()}`);const done=data&&data.length>0;
+    const el=document.createElement('div');el.className='check-item'+(done?' done':'');el.id='ci15-'+s.numero;
+    el.innerHTML=`<span class="ci-icon">${done?'✓':'○'}</span><span class="ci-label">${escapeHtml(s.nome)}</span>`;
+    el.onclick=()=>markSalmoEsp(s.numero,'esp15h','ci15-'+s.numero);b15.appendChild(el);
   }
-  const bM=document.getElementById('salmos-missao');
-  bM.innerHTML='';
+  const bM=document.getElementById('salmos-missao');bM.innerHTML='';
   for(const s of SALMOS_MISSAO){
-    const key=`sm_${s.numero}_${s.dias}`;
-    const dias=parseInt(localStorage.getItem(key)||'0');
-    const pct=s.dias?Math.min(100,Math.round(dias/s.dias*100)):0;
-    const completo=s.dias&&dias>=s.dias;
+    const key=`sm_${s.numero}_${s.dias}`,dias=parseInt(localStorage.getItem(key)||'0'),pct=s.dias?Math.min(100,Math.round(dias/s.dias*100)):0,completo=s.dias&&dias>=s.dias;
     const el=document.createElement('div');
     el.innerHTML=`<div style="border:1px solid var(--surface2);border-radius:9px;padding:13px;margin-bottom:9px">
-      <div style="font-family:'Cinzel',serif;color:var(--gold);font-size:14px;margin-bottom:3px">${s.nome}</div>
-      <div style="font-size:12px;color:var(--text-dim);margin-bottom:7px">${s.info}</div>
-      ${s.dias?`<div style="font-size:12px;color:var(--text-dim);margin-bottom:5px">${dias}/${s.dias} dias</div>
-        <div class="progress-bg"><div class="progress-fill" style="width:${pct}%"></div></div>`:''}
-      <button class="btn ${completo?'btn-ghost':'btn-primary'} mt8" onclick="markSalmoMissao('${key}',${s.dias},this)">
-        ${completo?'✓ Concluído':s.dias?'Marcar dia de hoje':'Marcar como feito'}
-      </button></div>`;
+      <div style="font-size:14px;color:var(--gold);margin-bottom:3px">${escapeHtml(s.nome)}</div>
+      <div style="font-size:12px;color:var(--text-dim);margin-bottom:7px">${escapeHtml(s.info)}</div>
+      ${s.dias?`<div style="font-size:12px;color:var(--text-dim);margin-bottom:5px">${dias}/${s.dias} dias</div><div class="progress-bg"><div class="progress-fill" style="width:${pct}%"></div></div>`:''}
+      <button class="btn ${completo?'btn-ghost':'btn-primary'} mt8" onclick="markSalmoMissao('${key}',${s.dias},this)">${completo?'✓ Concluído':s.dias?'Marcar dia de hoje':'Marcar como feito'}</button></div>`;
     bM.appendChild(el);
   }
 }
-
 async function markSalmoEsp(numero,tipo,elId){
-  const res=await sb('/salmos_log','POST',{salmo_numero:numero,tipo,data:today()});
-  if(res===null){toast('Erro ao salvar','err');return;}
-  const el=document.getElementById(elId);
-  el.className='check-item done';el.querySelector('.ci-icon').textContent='✓';
-  toast('Salmo marcado!');
+  const res=await sb('/salmos_log','POST',{salmo_numero:numero,tipo,data:today()});if(res===null){toast('Erro ao salvar','err');return;}
+  const el=document.getElementById(elId);el.className='check-item done';el.querySelector('.ci-icon').textContent='✓';toast('Salmo marcado!');
 }
-
 function markSalmoMissao(key,totalDias,btn){
-  let dias=parseInt(localStorage.getItem(key)||'0')+1;
-  localStorage.setItem(key,dias);
+  let dias=parseInt(localStorage.getItem(key)||'0')+1;localStorage.setItem(key,dias);
   if(totalDias&&dias>=totalDias){btn.textContent='✓ Concluído';btn.className='btn btn-ghost mt8';}
-  else btn.textContent=totalDias?`Marcar dia de hoje (${dias}/${totalDias})`:'Marcar como feito';
-  toast('Dia '+dias+(totalDias?'/'+totalDias:'')+' marcado!');
+  else btn.textContent=totalDias?`Marcar dia de hoje (${dias}/${totalDias})`:'Marcar como feito';toast('Dia '+dias+(totalDias?'/'+totalDias:'')+' marcado!');
 }
 
 // ══ ORAÇÕES ══
 async function loadPrayerLog(){
   const data=await sb('/oracoes_log','GET',null,`?data=eq.${today()}`);
-  if(data) data.forEach(r=>{
-    if(r.periodo==='manha') prayerLog.manha=r.oracoes_feitas||{};
-    if(r.periodo==='noite') prayerLog.noite=r.oracoes_feitas||{};
-    if(r.periodo==='decl')  declaracaoLog=r.oracoes_feitas||{};
-  });
+  if(data)data.forEach(r=>{if(r.periodo==='manha')prayerLog.manha=r.oracoes_feitas||{};if(r.periodo==='noite')prayerLog.noite=r.oracoes_feitas||{};if(r.periodo==='decl')declaracaoLog=r.oracoes_feitas||{};});
   await calcStreak();
 }
-
 async function calcStreak(){
-  const data=await sb('/oracoes_log','GET',null,'?select=data&order=data.desc&limit=60');
-  let streak=0;
-  if(data){
-    const dates=[...new Set(data.map(r=>r.data))].sort().reverse();
-    for(let i=0;i<60;i++){
-      const d=new Date();d.setDate(d.getDate()-i);
-      const k=d.toISOString().split('T')[0];
-      if(dates.includes(k))streak++;else break;
-    }
-  }
+  const data=await sb('/oracoes_log','GET',null,'?select=data&order=data.desc&limit=60');let streak=0;
+  if(data){const dates=[...new Set(data.map(r=>r.data))].sort().reverse();for(let i=0;i<60;i++){const d=new Date();d.setDate(d.getDate()-i);if(dates.includes(localDateKey(d)))streak++;else break;}}
   document.getElementById('dash-streak').textContent=streak;
 }
-
-function renderOracoes(){
-  renderLembrete('oracoes-manha', ORACOES_MANHA);
-  renderLembrete('oracoes-noite', ORACOES_NOITE);
-}
-
-function renderDeclaracoes(){
-  renderLembrete('declaracoes-lista', DECLARACOES);
-}
-
-function renderLembrete(cId, lista){
-  const c=document.getElementById(cId);if(!c)return;
-  c.innerHTML='';
-  lista.forEach(o=>{
-    const el=document.createElement('div');
-    el.style.cssText='display:flex;align-items:center;gap:10px;padding:10px 13px;background:var(--surface2);border-radius:9px;margin-bottom:7px;font-size:14px;color:var(--text-dim);';
-    el.innerHTML=`<span style="font-size:15px;min-width:18px">✦</span><span>${o.nome}</span>`;
-    c.appendChild(el);
-  });
-}
+function renderOracoes(){renderLembrete('oracoes-manha',ORACOES_MANHA);renderLembrete('oracoes-noite',ORACOES_NOITE)}
+function renderDeclaracoes(){renderLembrete('declaracoes-lista',DECLARACOES)}
+function renderLembrete(cId,lista){const c=document.getElementById(cId);if(!c)return;c.innerHTML='';lista.forEach(o=>{const el=document.createElement('div');el.style.cssText='display:flex;align-items:center;gap:10px;padding:10px 13px;background:var(--surface2);border-radius:9px;margin-bottom:7px;font-size:14px;color:var(--text-dim)';el.innerHTML=`<span style="font-size:15px;min-width:18px">✦</span><span>${escapeHtml(o.nome)}</span>`;c.appendChild(el);})}
 
 // ══ DASHBOARD ══
 function renderDashboard(){
-
   const items=[
-    {icon:'✦',title:'Salmos',sub:`Salmo atual: ${currentPsalm} — ${psalmsRead.length} lidos`,done:psalmsRead.includes(currentPsalm-1)||psalmsRead.length>0},
-    {icon:'◎',title:"Ho'oponopono",sub:`${hoopoHoje} repetições hoje`,done:hoopoHoje>0},
+    {icon:'✦',title:'Salmos',sub:`Salmo atual: ${currentPsalm} — ${psalmsRead.length} lidos`,done:psalmsRead.length>0},
+    {icon:'◎',title:"Ho'oponopono",sub:`${hoopoHoje} repetições hoje`,done:hoopoHoje>0}
   ];
-  const falta=items.filter(i=>!i.done);
-  const feito=items.filter(i=>i.done);
-  const fEl=document.getElementById('dash-falta');
-  const doEl=document.getElementById('dash-feito');
-  fEl.innerHTML=falta.length===0
-    ?'<div style="text-align:center;color:var(--green-light);font-size:14px;padding:8px">🎉 Tudo feito hoje!</div>'
-    :falta.map(i=>`<div class="dash-item"><span class="dash-icon">${i.icon}</span><div class="dash-info"><div class="dash-title">${i.title}</div><div class="dash-sub">${i.sub}</div></div></div>`).join('');
-  doEl.innerHTML=feito.length
-    ?feito.map(i=>`<div class="dash-item" style="opacity:.65"><span class="dash-icon">${i.icon}</span><div class="dash-info"><div class="dash-title" style="color:var(--green-light)">${i.title} ✓</div><div class="dash-sub">${i.sub}</div></div></div>`).join('')
-    :'<div style="font-size:13px;color:var(--text-dim);padding:4px">Nada ainda — comece sua jornada! 🌅</div>';
+  const falta=items.filter(i=>!i.done),feito=items.filter(i=>i.done),fEl=document.getElementById('dash-falta'),doEl=document.getElementById('dash-feito');
+  fEl.innerHTML=falta.length===0?'<div style="text-align:center;color:var(--green-light);font-size:14px;padding:8px">🎉 Tudo feito hoje!</div>':falta.map(i=>`<div class="dash-item"><span class="dash-icon">${i.icon}</span><div class="dash-info"><div class="dash-title">${escapeHtml(i.title)}</div><div class="dash-sub">${escapeHtml(i.sub)}</div></div></div>`).join('');
+  doEl.innerHTML=feito.length?feito.map(i=>`<div class="dash-item" style="opacity:.65"><span class="dash-icon">${i.icon}</span><div class="dash-info"><div class="dash-title" style="color:var(--green-light)">${escapeHtml(i.title)} ✓</div><div class="dash-sub">${escapeHtml(i.sub)}</div></div></div>`).join(''):'<div style="font-size:13px;color:var(--text-dim);padding:4px">Nada ainda — comece sua jornada! 🌅</div>';
 }
 
 // ══ HO'OPONOPONO ══
 async function loadHoopo(){
   const data=await sb('/hoponopono_log','GET',null,'?select=quantidade,data');
-  if(data&&Array.isArray(data)){
-    hoopoTotal=data.reduce((a,r)=>a+r.quantidade,0);
-    hoopoHoje=data.filter(r=>r.data===today()).reduce((a,r)=>a+r.quantidade,0);
-  }
-  document.getElementById('hoopo-total').textContent=hoopoTotal.toLocaleString('pt-BR');
-  document.getElementById('dash-hoopo-hoje').textContent=hoopoHoje;
-  renderHoopoHistorico(data||[]);
+  if(data&&Array.isArray(data)){hoopoTotal=data.reduce((a,r)=>a+Number(r.quantidade||0),0);hoopoHoje=data.filter(r=>r.data===today()).reduce((a,r)=>a+Number(r.quantidade||0),0);}
+  document.getElementById('hoopo-total').textContent=hoopoTotal.toLocaleString('pt-BR');document.getElementById('dash-hoopo-hoje').textContent=hoopoHoje;renderHoopoHistorico(data||[]);
 }
-
 function renderHoopoHistorico(data){
-  const wrap=document.getElementById('hoopo-historico');if(!wrap)return;
-  const dias=[];
-  for(let i=6;i>=0;i--){
-    const d=new Date();d.setDate(d.getDate()-i);
-    const k=d.toISOString().split('T')[0];
-    const total=data.filter(r=>r.data===k).reduce((a,r)=>a+r.quantidade,0);
-    dias.push({label:d.toLocaleDateString('pt-BR',{weekday:'short'}).slice(0,3),total});
-  }
-  const max=Math.max(...dias.map(d=>d.total),1);
-  wrap.innerHTML='';
-  dias.forEach(d=>{
-    const pct=Math.round(d.total/max*100);
-    const el=document.createElement('div');
-    el.className='hoopo-bar-row';
-    el.innerHTML=`<span class="hoopo-bar-label">${d.label}</span>
-      <div class="hoopo-bar-bg"><div class="hoopo-bar-fill" style="width:${pct}%"></div></div>
-      <span class="hoopo-bar-val">${d.total||''}</span>`;
-    wrap.appendChild(el);
-  });
+  const wrap=document.getElementById('hoopo-historico');if(!wrap)return;const dias=[];
+  for(let i=6;i>=0;i--){const d=new Date();d.setDate(d.getDate()-i);const k=localDateKey(d);const total=data.filter(r=>r.data===k).reduce((a,r)=>a+Number(r.quantidade||0),0);dias.push({label:d.toLocaleDateString('pt-BR',{weekday:'short'}).slice(0,3),total});}
+  const max=Math.max(...dias.map(d=>d.total),1);wrap.innerHTML='';
+  dias.forEach(d=>{const pct=Math.round(d.total/max*100),el=document.createElement('div');el.className='hoopo-bar-row';el.innerHTML=`<span class="hoopo-bar-label">${escapeHtml(d.label)}</span><div class="hoopo-bar-bg"><div class="hoopo-bar-fill" style="width:${pct}%"></div></div><span class="hoopo-bar-val">${d.total||''}</span>`;wrap.appendChild(el);});
 }
-
 async function tapHoopo(){
-  hoopoTotal++;hoopoSession++;hoopoUnsaved++;hoopoHoje++;
-  document.getElementById('hoopo-total').textContent=hoopoTotal.toLocaleString('pt-BR');
-  document.getElementById('hoopo-session').textContent=hoopoSession;
-  document.getElementById('dash-hoopo-hoje').textContent=hoopoHoje;
-  const inner=document.getElementById('tap-inner');
-  inner.style.transform='scale(.93)';setTimeout(()=>inner.style.transform='scale(1)',150);
-  if(hoopoUnsaved>=10) await flushHoopo();
-  renderDashboard();
+  hoopoTotal++;hoopoSession++;hoopoUnsaved++;hoopoHoje++;document.getElementById('hoopo-total').textContent=hoopoTotal.toLocaleString('pt-BR');document.getElementById('hoopo-session').textContent=hoopoSession;document.getElementById('dash-hoopo-hoje').textContent=hoopoHoje;
+  const inner=document.getElementById('tap-inner');inner.style.transform='scale(.93)';setTimeout(()=>inner.style.transform='scale(1)',150);if(hoopoUnsaved>=10)await flushHoopo();renderDashboard();
 }
-
 async function flushHoopo(){
-  if(!hoopoUnsaved)return;
-  await sb('/hoponopono_log','POST',{data:today(),quantidade:hoopoUnsaved});
-  hoopoUnsaved=0;
+  if(!hoopoUnsaved)return true;const qtd=hoopoUnsaved,res=await sb('/hoponopono_log','POST',{data:today(),quantidade:qtd});
+  if(res===null){toast('Não foi possível salvar o Ho\'oponopono','err');return false;}hoopoUnsaved=0;return true;
 }
-
-async function resetHoopoSession(){
-  await flushHoopo();hoopoSession=0;
-  document.getElementById('hoopo-session').textContent=0;
-  toast('Sessão reiniciada');
-}
-
+async function resetHoopoSession(){await flushHoopo();hoopoSession=0;document.getElementById('hoopo-session').textContent=0;toast('Sessão reiniciada');}
 window.addEventListener('beforeunload',()=>{if(hoopoUnsaved>0)flushHoopo();});
-
-
-
 
 // ══ PROTOCOLOS QUÂNTICOS ══
 function protocolStorageKey(slug){return 'protocol_progress_'+slug;}
 function protocolFullList(p){
-  const main=Array.isArray(p.frases)?p.frases:[];
-  const close=Array.isArray(p.fechamento)?p.fechamento:[];
+  const main=Array.isArray(p.frases)?p.frases:[],close=Array.isArray(p.fechamento)?p.fechamento:[];
   return [...main.map(x=>({...x,tipo:'principal'})),...close.map(x=>({...x,tipo:'fechamento'}))];
+}
+function normalizeProtocol(p){
+  return {...p,
+    slug:String(p.slug||'').trim(),
+    titulo:String(p.titulo||'Protocolo').trim(),
+    categoria:String(p.categoria||'outros').trim().toLowerCase(),
+    descricao:String(p.descricao||'').trim(),
+    frases:parseJsonArray(p.frases),
+    fechamento:parseJsonArray(p.fechamento),
+    ordem:Number.isFinite(Number(p.ordem))?Number(p.ordem):9999
+  };
 }
 function protocolDisplayTitle(t){
   const m={
@@ -572,267 +420,153 @@ function protocolDisplayTitle(t){
     'PROCRASTINAÇÃO':'Procrastinação',
     'PROTOCOLO QUANTICO - PARA ESCASSEZ FINANCEIRA':'Escassez Financeira',
     'PROTOCOLO QUANTICO - EMOÇÕES E GATILHOS RELACIONADOS AO DINHEIRO':'Emoções e Gatilhos — Dinheiro'
-  }; return m[t]||t;
+  };
+  return m[t]||String(t||'Protocolo').replace(/^PROTOCOLO QUANTICO\s*-\s*/i,'').replace(/\s+/g,' ').trim();
 }
-function protocolIcon(c){return c==='dinheiro'?'◇':c==='emocional'?'♡':c==='hábitos'?'↗':'◌';}
+function protocolCategoryLabel(c){
+  const m={'dinheiro':'Dinheiro','emocional':'Emocional','ansiedade':'Ansiedade','bem-estar':'Bem-estar','hábitos':'Hábitos','habitos':'Hábitos'};
+  return m[c]||String(c||'outros').replace(/[-_]+/g,' ').replace(/^./,x=>x.toUpperCase());
+}
+function protocolIcon(c){return c==='dinheiro'?'◇':c==='emocional'?'♡':c==='ansiedade'?'◌':c==='hábitos'||c==='habitos'?'↗':'◉';}
+
+function renderProtocolFilters(){
+  const wrap=document.getElementById('protocol-filter');if(!wrap)return;
+  const cats=[...new Set(protocolos.map(p=>p.categoria).filter(Boolean))];
+  const preferred=['dinheiro','emocional','ansiedade','bem-estar','hábitos','habitos'];
+  cats.sort((a,b)=>{const ia=preferred.indexOf(a),ib=preferred.indexOf(b);if(ia!==-1||ib!==-1)return (ia===-1?999:ia)-(ib===-1?999:ib);return a.localeCompare(b,'pt-BR');});
+  wrap.innerHTML='';
+  const allCats=['todos',...cats.filter(c=>c!=='todos')];
+  allCats.forEach(cat=>{
+    const btn=document.createElement('button');btn.className='filter-chip'+(protocolCategory===cat?' active':'');btn.textContent=cat==='todos'?'Todos':protocolCategoryLabel(cat);btn.type='button';btn.onclick=()=>filterProtocols(cat,btn);wrap.appendChild(btn);
+  });
+  if(!cats.length && protocolCategory!=='todos')protocolCategory='todos';
+}
 
 async function loadProtocolos(){
   const status=document.getElementById('protocolos-status');
+  if(status)status.textContent='Carregando protocolos do banco...';
   const data=await sb('/protocolos_quanticos','GET',null,'?ativo=eq.true&select=id,slug,titulo,categoria,descricao,ordem,frases,fechamento&order=ordem.asc');
-  if(data&&Array.isArray(data)&&data.length){
-    protocolos=data;protocolDataSource='supabase';
-    if(status)status.textContent='Protocolos carregados do banco.';
+  if(Array.isArray(data)){
+    protocolos=data.map(normalizeProtocol).filter(p=>p.slug&&protocolFullList(p).length>0);
+    protocolDataSource='supabase';
+    if(status)status.textContent=`${protocolos.length} ${protocolos.length===1?'protocolo carregado':'protocolos carregados'} do banco.`;
   }else{
-    protocolos=PROTOCOLOS_FALLBACK;protocolDataSource='local';
-    if(status)status.textContent='Usando os dados locais até a tabela do Supabase ser criada.';
+    protocolos=[];protocolDataSource='erro';
+    if(status)status.innerHTML='Não foi possível carregar os protocolos do Supabase.<br><button class="protocol-retry" type="button" onclick="loadProtocolos()">Tentar novamente</button>';
   }
-  renderProtocols();
+  renderProtocolFilters();renderProtocols();
 }
 function filterProtocols(cat,btn){
-  protocolCategory=cat;
-  document.querySelectorAll('.filter-chip').forEach(x=>x.classList.remove('active'));
-  if(btn)btn.classList.add('active');
-  renderProtocols();
+  protocolCategory=cat;document.querySelectorAll('.filter-chip').forEach(x=>x.classList.remove('active'));if(btn)btn.classList.add('active');renderProtocols();
 }
 function renderProtocols(){
   const grid=document.getElementById('protocolos-grid');if(!grid)return;
-  const list=protocolos.filter(p=>protocolCategory==='todos'||p.categoria===protocolCategory);
-  grid.innerHTML='';
+  const list=protocolos.filter(p=>protocolCategory==='todos'||p.categoria===protocolCategory);grid.innerHTML='';
+  if(!list.length){grid.innerHTML=protocolDataSource==='erro'?'<div class="protocol-error">Os protocolos não foram carregados. Verifique a conexão com o banco e tente novamente.</div>':'<div class="protocol-empty">Nenhum protocolo encontrado nesta categoria.</div>';return;}
   list.forEach(p=>{
-    const all=protocolFullList(p);
-    const saved=Math.min(parseInt(localStorage.getItem(protocolStorageKey(p.slug))||'0'),all.length);
-    const pct=all.length?Math.round(saved/all.length*100):0,done=saved>=all.length&&all.length>0;
+    const all=protocolFullList(p),saved=Math.min(Math.max(parseInt(localStorage.getItem(protocolStorageKey(p.slug))||'0',10)||0,0),all.length),pct=all.length?Math.round(saved/all.length*100):0,done=saved>=all.length&&all.length>0;
     const el=document.createElement('div');el.className='protocol-card';
-    el.innerHTML=`<div class="protocol-card-top"><div class="protocol-icon">${protocolIcon(p.categoria)}</div>
-      <div class="protocol-card-info"><div class="protocol-title">${protocolDisplayTitle(p.titulo)}</div>
-      <div class="protocol-desc">${p.descricao||''}</div></div></div>
+    el.innerHTML=`<div class="protocol-card-top"><div class="protocol-icon">${escapeHtml(protocolIcon(p.categoria))}</div>
+      <div class="protocol-card-info"><div class="protocol-title">${escapeHtml(protocolDisplayTitle(p.titulo))}</div>
+      <span class="protocol-category">${escapeHtml(protocolCategoryLabel(p.categoria))}</span>
+      <div class="protocol-desc">${escapeHtml(p.descricao||'')}</div></div></div>
       <div class="protocol-meta"><span>${all.length} frases</span><span>${done?'Concluído':pct+'%'}</span></div>
       <div class="progress-bg"><div class="progress-fill" style="width:${pct}%"></div></div>
-      <button class="protocol-open" onclick="openProtocol('${p.slug}',${done})">${done?'Recomeçar':'Iniciar / continuar'}</button>`;
-    grid.appendChild(el);
+      <button class="protocol-open" type="button">${done?'Recomeçar':'Iniciar / continuar'}</button>`;
+    el.querySelector('.protocol-open').onclick=()=>openProtocol(p.slug,done);grid.appendChild(el);
   });
 }
 function openProtocol(slug,restart=false){
-  const p=protocolos.find(x=>x.slug===slug);if(!p)return;
-  const all=protocolFullList(p);if(!all.length){toast('Este protocolo ainda não tem frases','err');return;}
-  activeProtocol=p;
-  let saved=parseInt(localStorage.getItem(protocolStorageKey(p.slug))||'0');
-  if(restart||saved>=all.length)saved=0;
-  activePhraseIndex=Math.max(0,Math.min(saved,all.length-1));
-  document.getElementById('protocol-list-view').classList.add('hidden');
-  document.getElementById('protocol-session').classList.add('active');
-  renderProtocolPhrase();speakProtocolPhrase();
+  const p=protocolos.find(x=>x.slug===slug);if(!p)return;const all=protocolFullList(p);if(!all.length){toast('Este protocolo ainda não tem frases','err');return;}
+  activeProtocol=p;let saved=parseInt(localStorage.getItem(protocolStorageKey(p.slug))||'0',10);if(restart||saved>=all.length)saved=0;activePhraseIndex=Math.max(0,Math.min(saved,all.length-1));
+  document.getElementById('protocol-list-view').classList.add('hidden');document.getElementById('protocol-session').classList.add('active');
+  renderProtocolPhrase();speakProtocolPhrase();window.scrollTo({top:0,behavior:'smooth'});
 }
 function closeProtocol(){
-  if('speechSynthesis'in window)window.speechSynthesis.cancel();
-  activeProtocol=null;protocolPaused=false;
-  document.getElementById('protocol-session').classList.remove('active');
-  document.getElementById('protocol-list-view').classList.remove('hidden');
-  renderProtocols();
+  if('speechSynthesis'in window)window.speechSynthesis.cancel();activeProtocol=null;protocolPaused=false;
+  document.getElementById('protocol-session').classList.remove('active');document.getElementById('protocol-list-view').classList.remove('hidden');renderProtocols();window.scrollTo({top:0,behavior:'smooth'});
 }
 function currentProtocolPhrase(){return activeProtocol?protocolFullList(activeProtocol)[activePhraseIndex]||null:null;}
 function renderProtocolPhrase(){
-  if(!activeProtocol)return;
-  const all=protocolFullList(activeProtocol),item=all[activePhraseIndex];if(!item)return;
+  if(!activeProtocol)return;const all=protocolFullList(activeProtocol),item=all[activePhraseIndex];if(!item)return;
   document.getElementById('session-title').textContent=protocolDisplayTitle(activeProtocol.titulo);
   document.getElementById('session-counter').textContent=`${activePhraseIndex+1} de ${all.length}`;
-  document.getElementById('session-source').textContent=protocolDataSource==='supabase'?'Banco':'Local';
+  document.getElementById('session-source').textContent=protocolDataSource==='supabase'?'Banco':'Erro';
   document.getElementById('session-progress-bar').style.width=((activePhraseIndex+1)/all.length*100)+'%';
   document.getElementById('phrase-tag').textContent=item.tipo==='fechamento'?'Fechamento':'Frase atual';
-  document.getElementById('phrase-text').textContent=item.texto;
-  document.getElementById('phrase-number').textContent=`Frase ${activePhraseIndex+1}`;
+  document.getElementById('phrase-text').textContent=item.texto||'';
+  document.getElementById('phrase-number').textContent=item.tipo==='fechamento'?`Fechamento ${all.slice(0,activePhraseIndex+1).filter(x=>x.tipo==='fechamento').length}`:`Frase ${activePhraseIndex+1}`;
   document.getElementById('protocol-next-btn').textContent=activePhraseIndex===all.length-1?'Finalizar ✓':'Próxima →';
-  const b=document.getElementById('protocol-pause-btn');b.classList.remove('active');protocolPaused=false;
-  updateProtocolVoiceControls();
+  const b=document.getElementById('protocol-pause-btn');b.classList.remove('active');protocolPaused=false;updateProtocolVoiceControls();
 }
-let protocolVoices=[];
 
 function scoreProtocolVoice(v){
-  const name=String(v.name||'').toLowerCase();
-  const lang=String(v.lang||'').toLowerCase();
-  let score=0;
-  if(lang==='pt-br')score+=100;
-  else if(lang.startsWith('pt'))score+=60;
-  if(name.includes('natural'))score+=45;
-  if(name.includes('neural'))score+=45;
-  if(name.includes('google'))score+=35;
-  if(name.includes('microsoft'))score+=28;
-  if(name.includes('francisca'))score+=18;
-  if(name.includes('antonio')||name.includes('antônio'))score+=16;
-  if(v.localService===false)score+=5;
-  return score;
+  const name=String(v.name||'').toLowerCase(),lang=String(v.lang||'').toLowerCase();let score=0;
+  if(lang==='pt-br')score+=100;else if(lang.startsWith('pt'))score+=60;if(name.includes('natural'))score+=45;if(name.includes('neural'))score+=45;if(name.includes('google'))score+=35;if(name.includes('microsoft'))score+=28;if(name.includes('francisca'))score+=18;if(name.includes('antonio')||name.includes('antônio'))score+=16;if(v.localService===false)score+=5;return score;
 }
-
 function refreshProtocolVoices(){
-  if(!('speechSynthesis' in window))return;
-  protocolVoices=window.speechSynthesis.getVoices()
-    .filter(v=>String(v.lang||'').toLowerCase().startsWith('pt'))
-    .sort((a,b)=>scoreProtocolVoice(b)-scoreProtocolVoice(a));
-
-  const select=document.getElementById('protocol-voice-select');
-  if(!select)return;
-
-  const saved=localStorage.getItem('protocol_voice_name')||'';
-  select.innerHTML='';
-
-  const manual=document.createElement('option');
-  manual.value='__silent__';
-  manual.textContent='Sem voz — leitura manual';
-  select.appendChild(manual);
-
-  if(!protocolVoices.length){
-    const op=document.createElement('option');
-    op.value='';op.textContent='Voz padrão do navegador';
-    select.appendChild(op);
-  }else{
-    protocolVoices.forEach((v,i)=>{
-      const op=document.createElement('option');
-      op.value=v.name;
-      op.textContent=v.name+(v.lang?` — ${v.lang}`:'');
-      select.appendChild(op);
-    });
-  }
-
-  if(saved==='__silent__'){
-    select.value='__silent__';
-  }else if(saved && protocolVoices.some(v=>v.name===saved)){
-    select.value=saved;
-  }else if(protocolVoices.length){
-    select.value=protocolVoices[0].name;
-    localStorage.setItem('protocol_voice_name',protocolVoices[0].name);
-  }else{
-    select.value='__silent__';
-    localStorage.setItem('protocol_voice_name','__silent__');
-  }
+  if(!('speechSynthesis'in window))return;
+  protocolVoices=window.speechSynthesis.getVoices().filter(v=>String(v.lang||'').toLowerCase().startsWith('pt')).sort((a,b)=>scoreProtocolVoice(b)-scoreProtocolVoice(a));
+  const select=document.getElementById('protocol-voice-select');if(!select)return;
+  const saved=localStorage.getItem('protocol_voice_name')||'__silent__';select.innerHTML='';
+  const manual=document.createElement('option');manual.value='__silent__';manual.textContent='Sem voz — leitura manual';select.appendChild(manual);
+  protocolVoices.forEach(v=>{const op=document.createElement('option');op.value=v.name;op.textContent=v.name+(v.lang?` — ${v.lang}`:'');select.appendChild(op);});
+  if(saved==='__silent__'){select.value='__silent__';}
+  else if(protocolVoices.some(v=>v.name===saved)){select.value=saved;}
+  else {select.value='__silent__';localStorage.setItem('protocol_voice_name','__silent__');}
 }
-
 function setupProtocolVoices(){
-  if(!('speechSynthesis' in window)){
-    localStorage.setItem('protocol_voice_name','__silent__');
-    updateProtocolVoiceControls();
-    return;
-  }
-  refreshProtocolVoices();
-  updateProtocolVoiceControls();
-  window.speechSynthesis.onvoiceschanged=()=>{refreshProtocolVoices();updateProtocolVoiceControls();};
+  if(!localStorage.getItem('protocol_voice_name'))localStorage.setItem('protocol_voice_name','__silent__');
+  if(!('speechSynthesis'in window)){updateProtocolVoiceControls();return;}
+  refreshProtocolVoices();updateProtocolVoiceControls();window.speechSynthesis.onvoiceschanged=()=>{refreshProtocolVoices();updateProtocolVoiceControls();};
 }
-
-function protocolIsSilent(){
-  return (localStorage.getItem('protocol_voice_name')||'')==='__silent__';
-}
-
+function protocolIsSilent(){return (localStorage.getItem('protocol_voice_name')||'__silent__')==='__silent__';}
 function saveProtocolVoice(){
-  const select=document.getElementById('protocol-voice-select');
-  if(!select)return;
-  localStorage.setItem('protocol_voice_name',select.value||'');
-  if(select.value==='__silent__' && 'speechSynthesis' in window) window.speechSynthesis.cancel();
-  updateProtocolVoiceControls();
+  const select=document.getElementById('protocol-voice-select');if(!select)return;localStorage.setItem('protocol_voice_name',select.value||'__silent__');if(select.value==='__silent__'&&'speechSynthesis'in window)window.speechSynthesis.cancel();updateProtocolVoiceControls();
 }
-
 function getPtVoice(){
-  if(protocolIsSilent())return null;
-  if(!('speechSynthesis' in window))return null;
-  if(!protocolVoices.length)refreshProtocolVoices();
-  const selected=localStorage.getItem('protocol_voice_name')||'';
-  return protocolVoices.find(v=>v.name===selected)||protocolVoices[0]||null;
+  if(protocolIsSilent()||!('speechSynthesis'in window))return null;if(!protocolVoices.length)refreshProtocolVoices();const selected=localStorage.getItem('protocol_voice_name')||'';return protocolVoices.find(v=>v.name===selected)||protocolVoices[0]||null;
 }
-
-
 function updateProtocolVoiceControls(){
-  const pause=document.getElementById('protocol-pause-btn');
-  const test=document.querySelector('.voice-test');
-  if(!pause)return;
-  const silent=protocolIsSilent();
-  pause.disabled=silent;
-  pause.style.opacity=silent?'.42':'1';
-  pause.style.cursor=silent?'default':'pointer';
-  pause.textContent=silent?'Sem voz':'Ⅱ Pausar';
-  if(test){
-    test.textContent=silent?'Leitura manual':'Testar';
-  }
+  const pause=document.getElementById('protocol-pause-btn'),test=document.querySelector('.voice-test');if(!pause)return;const silent=protocolIsSilent();
+  pause.disabled=silent;pause.style.opacity=silent?'.42':'1';pause.style.cursor=silent?'default':'pointer';pause.textContent=silent?'Sem voz':'Ⅱ Pausar';if(test)test.textContent=silent?'Leitura manual':'Testar';
 }
-
 function testProtocolVoice(){
-  if(protocolIsSilent()){toast('Modo sem voz: leia e repita no seu tempo');return;}
-  if(!('speechSynthesis' in window)){toast('Leitura em voz alta não disponível','err');return;}
-  window.speechSynthesis.cancel();
-  const u=new SpeechSynthesisUtterance('Esta é uma demonstração da voz selecionada para os protocolos.');
-  u.lang='pt-BR';u.rate=.9;u.pitch=1;
-  const voice=getPtVoice();if(voice)u.voice=voice;
-  window.speechSynthesis.speak(u);
+  if(protocolIsSilent()){toast('Modo sem voz: leia e repita no seu tempo');return;}if(!('speechSynthesis'in window)){toast('Leitura em voz alta não disponível','err');return;}
+  window.speechSynthesis.cancel();const u=new SpeechSynthesisUtterance('Esta é uma demonstração da voz selecionada para os protocolos.');u.lang='pt-BR';u.rate=.9;u.pitch=1;const voice=getPtVoice();if(voice)u.voice=voice;window.speechSynthesis.speak(u);
 }
 function speakProtocolPhrase(){
-  const item=currentProtocolPhrase();if(!item)return;
-  if(protocolIsSilent())return;
-  if(!('speechSynthesis'in window)){toast('Leitura em voz alta não disponível','err');return;}
-  window.speechSynthesis.cancel();
-  protocolUtterance=new SpeechSynthesisUtterance(item.texto);
-  protocolUtterance.lang='pt-BR';protocolUtterance.rate=.91;protocolUtterance.pitch=.98;
-  const voice=getPtVoice();if(voice)protocolUtterance.voice=voice;
-  protocolUtterance.onend=()=>{protocolPaused=false;const b=document.getElementById('protocol-pause-btn');if(b){b.textContent='Ⅱ Pausar';b.classList.remove('active');}};
-  window.speechSynthesis.speak(protocolUtterance);
+  const item=currentProtocolPhrase();if(!item||protocolIsSilent()||!('speechSynthesis'in window))return;window.speechSynthesis.cancel();
+  protocolUtterance=new SpeechSynthesisUtterance(item.texto||'');protocolUtterance.lang='pt-BR';protocolUtterance.rate=.91;protocolUtterance.pitch=.98;const voice=getPtVoice();if(voice)protocolUtterance.voice=voice;
+  protocolUtterance.onend=()=>{protocolPaused=false;const b=document.getElementById('protocol-pause-btn');if(b){b.textContent='Ⅱ Pausar';b.classList.remove('active');}};window.speechSynthesis.speak(protocolUtterance);
 }
 function repeatProtocolPhrase(){
-  if(protocolIsSilent()){
-    const el=document.getElementById('phrase-text');
-    if(el){
-      el.animate([{opacity:.55,transform:'scale(.99)'},{opacity:1,transform:'scale(1)'}],{duration:420,easing:'ease-out'});
-    }
-    toast('Repita a frase no seu tempo');
-    return;
-  }
-  speakProtocolPhrase();
+  if(protocolIsSilent()){const el=document.getElementById('phrase-text');if(el)el.animate([{opacity:.55,transform:'scale(.99)'},{opacity:1,transform:'scale(1)'}],{duration:420,easing:'ease-out'});toast('Repita a frase no seu tempo');return;}speakProtocolPhrase();
 }
 function toggleProtocolPause(){
-  if(protocolIsSilent())return;
-  if(!('speechSynthesis'in window))return;
-  const b=document.getElementById('protocol-pause-btn');
+  if(protocolIsSilent()||!('speechSynthesis'in window))return;const b=document.getElementById('protocol-pause-btn');
   if(window.speechSynthesis.paused){window.speechSynthesis.resume();protocolPaused=false;b.textContent='Ⅱ Pausar';b.classList.remove('active');}
   else if(window.speechSynthesis.speaking){window.speechSynthesis.pause();protocolPaused=true;b.textContent='▶ Continuar';b.classList.add('active');}
   else speakProtocolPhrase();
 }
 function nextProtocolPhrase(){
-  if(!activeProtocol)return;
-  const all=protocolFullList(activeProtocol);if('speechSynthesis'in window)window.speechSynthesis.cancel();
-  if(activePhraseIndex>=all.length-1){
-    localStorage.setItem(protocolStorageKey(activeProtocol.slug),String(all.length));
-    toast('✓ Protocolo concluído');closeProtocol();return;
-  }
-  activePhraseIndex++;
-  localStorage.setItem(protocolStorageKey(activeProtocol.slug),String(activePhraseIndex));
-  renderProtocolPhrase();speakProtocolPhrase();
+  if(!activeProtocol)return;const all=protocolFullList(activeProtocol);if('speechSynthesis'in window)window.speechSynthesis.cancel();
+  if(activePhraseIndex>=all.length-1){localStorage.setItem(protocolStorageKey(activeProtocol.slug),String(all.length));toast('✓ Protocolo concluído');closeProtocol();return;}
+  activePhraseIndex++;localStorage.setItem(protocolStorageKey(activeProtocol.slug),String(activePhraseIndex));renderProtocolPhrase();speakProtocolPhrase();
 }
 function previousProtocolPhrase(){
-  if(!activeProtocol||activePhraseIndex<=0)return;
-  if('speechSynthesis'in window)window.speechSynthesis.cancel();
-  activePhraseIndex--;
-  localStorage.setItem(protocolStorageKey(activeProtocol.slug),String(activePhraseIndex));
-  renderProtocolPhrase();speakProtocolPhrase();
+  if(!activeProtocol||activePhraseIndex<=0)return;if('speechSynthesis'in window)window.speechSynthesis.cancel();activePhraseIndex--;localStorage.setItem(protocolStorageKey(activeProtocol.slug),String(activePhraseIndex));renderProtocolPhrase();speakProtocolPhrase();
 }
 function restartProtocol(){
-  if(!activeProtocol)return;
-  if('speechSynthesis'in window)window.speechSynthesis.cancel();
-  activePhraseIndex=0;localStorage.setItem(protocolStorageKey(activeProtocol.slug),'0');
-  renderProtocolPhrase();speakProtocolPhrase();toast('Protocolo reiniciado');
+  if(!activeProtocol)return;if('speechSynthesis'in window)window.speechSynthesis.cancel();activePhraseIndex=0;localStorage.setItem(protocolStorageKey(activeProtocol.slug),'0');renderProtocolPhrase();speakProtocolPhrase();toast('Protocolo reiniciado');
 }
-
 
 // ══ NAV / TOAST ══
 function showTab(id,btn){
-  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
-  document.getElementById('tab-'+id).classList.add('active');
-  if(btn)btn.classList.add('active');
-  if(id==='protocolos')renderProtocols();
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');if(btn)btn.classList.add('active');if(id==='protocolos'){renderProtocolFilters();renderProtocols();}window.scrollTo({top:0,behavior:'smooth'});
 }
-
-let toastTimer;
-function toast(msg,type=''){
-  const el=document.getElementById('toast');
-  el.textContent=msg;el.className='toast show'+(type==='err'?' err':'');
-  clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('show'),2800);
-}
-
+let toastTimer;function toast(msg,type=''){const el=document.getElementById('toast');el.textContent=msg;el.className='toast show'+(type==='err'?' err':'');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('show'),2800);}
 init();
 </script>
 </body>
