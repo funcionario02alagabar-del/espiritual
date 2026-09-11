@@ -75,10 +75,11 @@ margin-bottom:7px;font-size:13px;color:var(--dim);cursor:pointer}.check-item.don
 .protocol-card-info{flex:1;min-width:0}.protocol-title{font-size:15px;font-weight:700;line-height:1.42;overflow-wrap:anywhere}.protocol-desc{font-size:12px;color:var(--dim);line-height:1.62;margin-top:7px;overflow-wrap:anywhere}
 .protocol-meta{display:flex;justify-content:space-between;gap:12px;font-size:11px;color:var(--dim);margin-top:16px}.protocol-open{width:100%;padding:11px 13px;border:1px solid #ffffff12;border-radius:12px;background:#ffffff08;color:var(--text);font-weight:600;cursor:pointer}
 .protocol-open:disabled{opacity:.55;cursor:default}.protocol-list-view.hidden{display:none}.protocol-session{display:none}.protocol-session.active{display:block}.protocol-back{border:0;background:transparent;color:var(--dim);padding:4px 0 12px;cursor:pointer;font-size:12px}
-.protocol-category{display:inline-flex;align-items:center;margin-top:9px;padding:5px 8px;border-radius:999px;background:#ffffff08;border:1px solid #ffffff10;color:var(--accent2);font-size:10px;font-weight:700;line-height:1;text-transform:capitalize}
+.protocol-category{display:inline-flex;align-items:center;margin-top:9px;padding:5px 8px;border-radius:999px;background:#ffffff08;border:1px solid #ffffff10;color:var(--accent2);font-size:10px;font-weight:700;line-height:1;text-transform:capitalize}.protocol-badges{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:9px}.protocol-badges .protocol-category{margin-top:0}.protocol-origin{display:inline-flex;align-items:center;padding:5px 8px;border-radius:999px;background:#ffffff05;border:1px solid #ffffff0d;color:var(--dim);font-size:9px;font-weight:600;line-height:1}.protocol-origin.created{color:var(--accent);border-color:#b8d0ff2a;background:#b8d0ff09}.protocol-origin.mixed{color:var(--accent2);border-color:#8de0cf2a;background:#8de0cf09}
 .protocol-empty,.protocol-error{padding:15px;border-radius:14px;border:1px solid #ffffff12;background:#ffffff06;font-size:12px;line-height:1.6;color:var(--dim)}
 .protocol-error{border-color:#f39a9a33;color:#f5c2c2}
 .protocol-retry{margin-top:10px;border:1px solid #ffffff14;background:#ffffff08;color:var(--text);border-radius:10px;padding:8px 11px;cursor:pointer;font-size:11px;font-weight:600}
+.protocol-variable-config{margin:14px 18px 0;padding:13px;border:1px solid #ffffff12;border-radius:14px;background:#ffffff06}.protocol-variable-label{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent2);margin-bottom:7px}.protocol-variable-config select,.protocol-variable-config input{width:100%;margin-top:5px}.protocol-variable-help{font-size:10px;line-height:1.5;color:var(--dim);margin-top:7px}.protocol-variable-selected{font-size:11px;color:var(--dim);margin-top:8px}.protocol-variable-selected strong{color:var(--text)}.protocol-custom-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}.protocol-custom-grid.is-hidden{display:none}@media(max-width:460px){.protocol-custom-grid{grid-template-columns:1fr}}
 .session-card{overflow:hidden;border:1px solid #ffffff12;border-radius:22px;background:radial-gradient(circle at 50% -20%,#b8d0ff20,transparent 42%),linear-gradient(155deg,#14243a,#0b1727)}
 .session-head{padding:18px 18px 0}.session-title{font-size:15px;font-weight:700}.session-sub{display:flex;justify-content:space-between;margin-top:7px;font-size:11px;color:var(--dim)}
 .session-progress{padding:0 18px}.phrase-stage{min-height:300px;padding:28px 20px 24px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
@@ -199,6 +200,7 @@ margin-bottom:7px;font-size:13px;color:var(--dim);cursor:pointer}.check-item.don
           <button class="voice-test" onclick="testProtocolVoice()">Testar</button>
         </div>
       </div>
+      <div id="protocol-variable-config" class="protocol-variable-config" hidden></div>
       <div class="session-progress"><div class="progress-bg"><div class="progress-fill" id="session-progress-bar" style="width:0%"></div></div></div>
       <div class="phrase-stage">
         <div class="phrase-tag" id="phrase-tag">Frase atual</div>
@@ -212,7 +214,7 @@ margin-bottom:7px;font-size:13px;color:var(--dim);cursor:pointer}.check-item.don
       </div>
       <div class="session-secondary"><button onclick="previousProtocolPhrase()">← Anterior</button><button onclick="restartProtocol()">↺ Recomeçar protocolo</button></div>
     </div>
-    <div class="session-note">“Sem voz — leitura manual” deixa o protocolo totalmente silencioso. A voz só é usada quando você escolhe uma voz do navegador.</div>
+    <div class="session-note">“Sem voz — leitura manual” deixa o protocolo totalmente silencioso. Nos protocolos com tema variável, você pode trocar o tema a qualquer momento.</div>
   </div>
 </div>
 
@@ -432,28 +434,62 @@ function normalizeProtocol(p){
     ativo:p.ativo!==false
   };
 }
-function protocolDisplayTitle(t){
-  const m={
-    'PROTOCOLO QUANTICO - ESTRESSE, TRAUMA, INSÔNIA ( Para dia difícil)':'Estresse, Trauma e Insônia',
-    'PROTOCOLO QUANTICO - DEPENDÊNCIA EMOCIONAL':'Dependência Emocional',
-    'PROTOCOLO QUANTICO - TRAUMAS INFANCIAS RELACIONADA AO DINHEIRO (POBREZA NA INFÂNCIA)':'Pobreza na Infância',
-    'PROTOCOLO QUANTICO - DESBLOQUEIO EMOCIONAL - DINHEIRO':'Desbloqueio Emocional — Dinheiro',
-    'PROCRASTINAÇÃO':'Procrastinação',
-    'PROTOCOLO QUANTICO - PARA ESCASSEZ FINANCEIRA':'Escassez Financeira',
-    'PROTOCOLO QUANTICO - EMOÇÕES E GATILHOS RELACIONADOS AO DINHEIRO':'Emoções e Gatilhos — Dinheiro'
+function protocolDisplayTitle(t, slug=''){
+  const bySlug={
+    'protocolo-quantico-estresse-trauma-insonia-para-dia-dificil':'Estresse, Trauma e Insônia',
+    'protocolo-quantico-dependencia-emocional':'Dependência Emocional',
+    'protocolo-quantico-traumas-infancias-relacionada-ao-dinheiro-pobreza-na-infancia':'Pobreza na Infância',
+    'protocolo-quantico-desbloqueio-emocional-dinheiro':'Desbloqueio Emocional — Dinheiro',
+    'procrastinacao':'Procrastinação',
+    'protocolo-quantico-vicios-emocionais-e-gerais':'Vícios Emocionais e Gerais',
+    'protocolo-quantico-vicios-emocionais-e-gerais-so-por-hoje':'Só por Hoje — Padrões e Comportamentos',
+    'protocolo-quantico-para-vendas':'Vendas',
+    'protocolo-quantico-para-escassez-financeira':'Escassez Financeira',
+    'protocolo-quantico-para-aliviar-a-ansiedade-vicio':'Ansiedade — Vício',
+    'protocolo-quantico-para-ansiedade-medo-de-errar':'Ansiedade — Medo de Errar',
+    'protocolo-quantico-para-ansiedade-sentir-incapaz':'Ansiedade — Sentir-se Incapaz',
+    'protocolo-quantico-para-ansiedade-sentir-impotente':'Ansiedade — Sentir-se Impotente',
+    'protocolo-quantico-para-escassez-financeira-criado-por-nos':'Escassez Financeira — Criado por Nós',
+    'protocolo-quantico-emocoes-e-gatilhos-relacionados-ao-dinheiro':'Emoções e Gatilhos — Dinheiro',
+    'protocolo-quantico-crencas-limitantes-sobre-sorte-jogos-e-ganhos':'Crenças Limitantes — Sorte, Jogos e Ganhos'
   };
-  return m[t]||String(t||'Protocolo').replace(/^PROTOCOLO QUANTICO\s*-\s*/i,'').replace(/\s+/g,' ').trim();
+  if(slug && bySlug[slug]) return bySlug[slug];
+  const cleaned=String(t||'Protocolo').replace(/^PROTOCOLO QUANTICO\s*-\s*/i,'').replace(/\s+/g,' ').trim().toLowerCase();
+  return cleaned.replace(/(^|[\s—-])([a-záàãâéêíóôõúç])/g,(_,sep,ch)=>sep+ch.toUpperCase());
 }
 function protocolCategoryLabel(c){
-  const m={'dinheiro':'Dinheiro','emocional':'Emocional','ansiedade':'Ansiedade','bem-estar':'Bem-estar','hábitos':'Hábitos','habitos':'Hábitos'};
-  return m[c]||String(c||'outros').replace(/[-_]+/g,' ').replace(/^./,x=>x.toUpperCase());
+  const m={
+    'dinheiro':'Dinheiro',
+    'ansiedade':'Ansiedade',
+    'dependencia_emocional':'Dependência Emocional',
+    'estresse':'Estresse',
+    'vicios':'Vícios',
+    'vendas':'Vendas',
+    'procrastinacao':'Procrastinação',
+    'habitos':'Hábitos',
+    'emocional':'Emocional',
+    'bem-estar':'Bem-estar',
+    'hábitos':'Hábitos',
+    'habitos':'Hábitos'
+  };
+  return m[c]||String(c||'Outros').replace(/[-_]+/g,' ').replace(/\b\w/g,x=>x.toUpperCase());
 }
-function protocolIcon(c){return c==='dinheiro'?'◇':c==='emocional'?'♡':c==='ansiedade'?'◌':c==='hábitos'||c==='habitos'?'↗':'◉';}
+function protocolOriginLabel(o){
+  return o==='criado_por_nos'?'Criado por nós':o==='misto'?'Material + complementos':'Material original';
+}
+function protocolCleanDescription(desc){
+  return String(desc||'')
+    .replace(/^Material original\s*[—-]\s*/i,'')
+    .replace(/^Frases criadas por nós\s*/i,'')
+    .replace(/^Protocolo criado por nós\s*/i,'')
+    .trim();
+}
+function protocolIcon(c){return c==='dinheiro'?'◇':c==='ansiedade'?'◌':c==='dependencia_emocional'?'♡':c==='estresse'?'◌':c==='vicios'?'∞':c==='vendas'?'◆':c==='procrastinacao'?'↗':'◉';}
 
 function renderProtocolFilters(){
   const wrap=document.getElementById('protocol-filter');if(!wrap)return;
   const cats=[...new Set(protocolos.map(p=>p.categoria).filter(Boolean))];
-  const preferred=['dinheiro','emocional','ansiedade','bem-estar','hábitos','habitos'];
+  const preferred=['dinheiro','ansiedade','vicios','habitos','estresse','dependencia_emocional','vendas','procrastinacao'];
   cats.sort((a,b)=>{const ia=preferred.indexOf(a),ib=preferred.indexOf(b);if(ia!==-1||ib!==-1)return (ia===-1?999:ia)-(ib===-1?999:ib);return a.localeCompare(b,'pt-BR');});
   wrap.innerHTML='';
   const allCats=['todos',...cats.filter(c=>c!=='todos')];
@@ -510,9 +546,9 @@ function renderProtocols(){
     const all=protocolFullList(p),saved=Math.min(Math.max(parseInt(localStorage.getItem(protocolStorageKey(p.slug))||'0',10)||0,0),all.length),pct=all.length?Math.round(saved/all.length*100):0,done=saved>=all.length&&all.length>0;
     const el=document.createElement('div');el.className='protocol-card';
     el.innerHTML=`<div class="protocol-card-top"><div class="protocol-icon">${escapeHtml(protocolIcon(p.categoria))}</div>
-      <div class="protocol-card-info"><div class="protocol-title">${escapeHtml(protocolDisplayTitle(p.titulo))}</div>
-      <span class="protocol-category">${escapeHtml(protocolCategoryLabel(p.categoria))}</span>
-      <div class="protocol-desc">${escapeHtml(p.descricao||'')}</div></div></div>
+      <div class="protocol-card-info"><div class="protocol-title">${escapeHtml(protocolDisplayTitle(p.titulo,p.slug))}</div>
+      <div class="protocol-badges"><span class="protocol-category">${escapeHtml(protocolCategoryLabel(p.categoria))}</span><span class="protocol-origin ${p.origem==='criado_por_nos'?'created':p.origem==='misto'?'mixed':''}">${escapeHtml(protocolOriginLabel(p.origem))}</span></div>
+      <div class="protocol-desc">${escapeHtml(protocolCleanDescription(p.descricao||''))}</div></div></div>
       <div class="protocol-meta"><span>${all.length} frases</span><span>${done?'Concluído':pct+'%'}</span></div>
       <div class="progress-bg"><div class="progress-fill" style="width:${pct}%"></div></div>
       <button class="protocol-open" type="button">${done?'Recomeçar':'Iniciar / continuar'}</button>`;
@@ -523,16 +559,196 @@ function openProtocol(slug,restart=false){
   const p=protocolos.find(x=>x.slug===slug);if(!p)return;const all=protocolFullList(p);if(!all.length){toast('Este protocolo ainda não tem frases','err');return;}
   activeProtocol=p;let saved=parseInt(localStorage.getItem(protocolStorageKey(p.slug))||'0',10);if(restart||saved>=all.length)saved=0;activePhraseIndex=Math.max(0,Math.min(saved,all.length-1));
   document.getElementById('protocol-list-view').classList.add('hidden');document.getElementById('protocol-session').classList.add('active');
-  renderProtocolPhrase();speakProtocolPhrase();window.scrollTo({top:0,behavior:'smooth'});
+  renderProtocolVariableConfig();renderProtocolPhrase();speakProtocolPhrase();window.scrollTo({top:0,behavior:'smooth'});
 }
 function closeProtocol(){
   if('speechSynthesis'in window)window.speechSynthesis.cancel();activeProtocol=null;protocolPaused=false;
-  document.getElementById('protocol-session').classList.remove('active');document.getElementById('protocol-list-view').classList.remove('hidden');renderProtocols();window.scrollTo({top:0,behavior:'smooth'});
+  document.getElementById('protocol-session').classList.remove('active');document.getElementById('protocol-list-view').classList.remove('hidden');const vc=document.getElementById('protocol-variable-config');if(vc){vc.hidden=true;vc.innerHTML='';}renderProtocols();window.scrollTo({top:0,behavior:'smooth'});
 }
 function currentProtocolPhrase(){return activeProtocol?protocolFullList(activeProtocol)[activePhraseIndex]||null:null;}
+const PROTOCOL_VARIABLES={
+  'protocolo-quantico-para-aliviar-a-ansiedade-vicio':{
+    type:'vicio',
+    storage:'protocol_variable_vicio',
+    title:'O que você deseja trabalhar hoje?',
+    help:'Escolha um tema. A frase será ajustada automaticamente para ficar natural.',
+    groups:[
+      {label:'Alimentação',items:[
+        {id:'doces',label:'Doces',acao:'comi doces',tema:'doces'},
+        {id:'refrigerante',label:'Refrigerante',acao:'tomei refrigerante',tema:'refrigerante'},
+        {id:'lanches',label:'Lanches',acao:'comi lanches',tema:'lanches'}
+      ]},
+      {label:'Comportamentos',items:[
+        {id:'procrastinacao',label:'Procrastinação',acao:'procrastinei',tema:'procrastinação'},
+        {id:'celular',label:'Celular',acao:'usei o celular',tema:'celular'},
+        {id:'redes-sociais',label:'Redes sociais',acao:'usei redes sociais',tema:'redes sociais'},
+        {id:'jogos',label:'Jogos',acao:'joguei jogos',tema:'jogos'},
+        {id:'compras',label:'Compras',acao:'fiz compras',tema:'compras'},
+        {id:'mentir',label:'Mentir',acao:'menti',tema:'mentiras'},
+        {id:'beber',label:'Beber',acao:'bebi',tema:'bebidas'},
+        {id:'apostar',label:'Apostar',acao:'apostei',tema:'apostas'},
+        {id:'jogar',label:'Jogar',acao:'joguei',tema:'jogar'}
+      ]},
+      {label:'Sexualidade',items:[
+        {id:'pornografia',label:'Pornografia',acao:'assisti pornografia',tema:'pornografia'},
+        {id:'masturbacao',label:'Masturbação',acao:'me masturbei',tema:'masturbação'},
+        {id:'conteudo-sexual',label:'Conteúdo sexual',acao:'consumi conteúdo sexual',tema:'conteúdo sexual'},
+        {id:'pensamentos-sexuais',label:'Pensamentos sexuais repetitivos',acao:'tive pensamentos sexuais repetitivos',tema:'pensamentos sexuais repetitivos'}
+      ]}
+    ]
+  },
+  'protocolo-quantico-para-ansiedade-medo-de-errar':{
+    type:'medo-errar',
+    storage:'protocol_variable_medo_errar',
+    title:'Onde você sente medo de errar?',
+    help:'Escolha a situação. O complemento será aplicado em todas as frases do protocolo.',
+    items:[
+      {id:'vender',label:'Ao vender',texto:'ao vender'},
+      {id:'trabalho',label:'No trabalho',texto:'no trabalho'},
+      {id:'falar-publico',label:'Ao falar em público',texto:'ao falar em público'},
+      {id:'estudos',label:'Nos estudos',texto:'nos estudos'},
+      {id:'relacionamentos',label:'Nos relacionamentos',texto:'nos relacionamentos'},
+      {id:'decisoes',label:'Ao tomar decisões',texto:'ao tomar decisões'},
+      {id:'apresentar',label:'Ao me apresentar',texto:'ao me apresentar'},
+      {id:'computador',label:'Ao usar o computador',texto:'ao usar o computador'}
+    ]
+  }
+};
+
+function getProtocolVariableConfig(p){
+  return PROTOCOL_VARIABLES[p?.slug]||null;
+}
+function protocolVariableStorageKey(p){
+  const cfg=getProtocolVariableConfig(p);return cfg?cfg.storage:null;
+}
+function findProtocolVariableOption(p,value){
+  const cfg=getProtocolVariableConfig(p);if(!cfg)return null;
+  const all=cfg.items?cfg.items:cfg.groups.flatMap(g=>g.items);
+  return all.find(x=>x.id===value)||null;
+}
+function getProtocolVariableState(p){
+  const cfg=getProtocolVariableConfig(p);if(!cfg)return null;
+  let raw=localStorage.getItem(cfg.storage);
+  if(cfg.type==='vicio'){
+    if(!raw) return {id:'doces'};
+    try{return JSON.parse(raw);}catch(_){return {id:raw};}
+  }
+  return {id:raw||'vender',custom:''};
+}
+function saveProtocolVariableState(p,state){
+  const cfg=getProtocolVariableConfig(p);if(!cfg)return;
+  localStorage.setItem(cfg.storage,JSON.stringify(state));
+}
+function selectedProtocolVariableValue(p){
+  const cfg=getProtocolVariableConfig(p);if(!cfg)return null;
+  const state=getProtocolVariableState(p);
+  const option=findProtocolVariableOption(p,state?.id);
+  if(cfg.type==='vicio'){
+    if(state?.id==='personalizado') return {acao:state.acao||'',tema:state.tema||'',label:'Personalizado'};
+    return option||findProtocolVariableOption(p,'doces');
+  }
+  if(state?.id==='personalizado') return {texto:state.custom||'',label:'Personalizado'};
+  return option||findProtocolVariableOption(p,'vender');
+}
+function protocolPhraseText(item){
+  let text=String(item?.texto||'');
+  if(!activeProtocol)return text;
+  const cfg=getProtocolVariableConfig(activeProtocol);if(!cfg)return text;
+  const selected=selectedProtocolVariableValue(activeProtocol);if(!selected)return text;
+  if(cfg.type==='vicio'){
+    const acao=selected.acao||'';
+    const tema=selected.tema||'';
+    if(!acao||!tema)return text;
+    text=text.replace(/\(comi doces\)/gi,acao);
+    text=text.replace(/\bcom doce\b/gi,'com '+tema);
+    text=text.replace(/\bdoce\b/gi,tema);
+    return text;
+  }
+  const suffix=selected.texto||'';
+  if(!suffix)return text;
+  return text.replace(/\(ao vender\)/gi,suffix);
+}
+function renderProtocolVariableConfig(){
+  const wrap=document.getElementById('protocol-variable-config');if(!wrap||!activeProtocol)return;
+  const cfg=getProtocolVariableConfig(activeProtocol);
+  if(!cfg){wrap.hidden=true;wrap.innerHTML='';return;}
+  wrap.hidden=false;
+  const state=getProtocolVariableState(activeProtocol);
+  let html=`<div class="protocol-variable-label">${escapeHtml(cfg.title)}</div><select id="protocol-variable-select" aria-label="${escapeHtml(cfg.title)}">`;
+  if(cfg.groups){
+    cfg.groups.forEach(group=>{
+      html+=`<optgroup label="${escapeHtml(group.label)}">`;
+      group.items.forEach(item=>{html+=`<option value="${escapeHtml(item.id)}">${escapeHtml(item.label)}</option>`;});
+      html+='</optgroup>';
+    });
+    html+='<option value="personalizado">✏️ Personalizar</option>';
+  }else{
+    cfg.items.forEach(item=>{html+=`<option value="${escapeHtml(item.id)}">${escapeHtml(item.label)}</option>`;});
+    html+='<option value="personalizado">✏️ Personalizar</option>';
+  }
+  html+='</select>';
+  if(cfg.type==='vicio'){
+    html+=`<div id="protocol-vicio-custom" class="protocol-custom-grid is-hidden">
+      <input id="protocol-vicio-acao" type="text" placeholder="Ação na frase — ex.: usei cigarros">
+      <input id="protocol-vicio-tema" type="text" placeholder="Tema — ex.: cigarros">
+    </div>`;
+  }else{
+    html+=`<div id="protocol-medo-custom" class="protocol-custom-grid is-hidden">
+      <input id="protocol-medo-texto" type="text" placeholder="Ex.: ao apresentar meu projeto">
+    </div>`;
+  }
+  html+=`<div class="protocol-variable-help">${escapeHtml(cfg.help)}</div><div class="protocol-variable-selected" id="protocol-variable-selected"></div>`;
+  wrap.innerHTML=html;
+  const select=document.getElementById('protocol-variable-select');select.value=state?.id||'doces';
+  select.onchange=()=>handleProtocolVariableChange();
+  handleProtocolVariableChange(false);
+}
+function handleProtocolVariableChange(speak=true){
+  if(!activeProtocol)return;
+  const cfg=getProtocolVariableConfig(activeProtocol);if(!cfg)return;
+  const select=document.getElementById('protocol-variable-select');if(!select)return;
+  const id=select.value;
+  if(cfg.type==='vicio'){
+    const custom=document.getElementById('protocol-vicio-custom');
+    const customState=getProtocolVariableState(activeProtocol)||{};
+    if(custom)custom.classList.toggle('is-hidden',id!=='personalizado');
+    if(id==='personalizado'){
+      const acao=document.getElementById('protocol-vicio-acao');const tema=document.getElementById('protocol-vicio-tema');
+      if(acao&&tema){acao.value=customState.acao||'';tema.value=customState.tema||'';}
+      saveProtocolVariableState(activeProtocol,{id,acao:acao?.value||'',tema:tema?.value||''});
+      [acao,tema].forEach(input=>{if(input)input.oninput=()=>{saveProtocolVariableState(activeProtocol,{id,acao:acao?.value||'',tema:tema?.value||''});refreshProtocolVariableDisplay(false);};});
+    }else saveProtocolVariableState(activeProtocol,{id});
+  }else{
+    const custom=document.getElementById('protocol-medo-custom');
+    const customState=getProtocolVariableState(activeProtocol)||{};
+    if(custom)custom.classList.toggle('is-hidden',id!=='personalizado');
+    if(id==='personalizado'){
+      const input=document.getElementById('protocol-medo-texto');if(input){input.value=customState.custom||'';input.oninput=()=>{saveProtocolVariableState(activeProtocol,{id,custom:input.value});refreshProtocolVariableDisplay(false);};}
+      saveProtocolVariableState(activeProtocol,{id,custom:input?.value||''});
+    }else saveProtocolVariableState(activeProtocol,{id});
+  }
+  refreshProtocolDisplayAndSpeech(speak);
+}
+function refreshProtocolVariableDisplay(speak=false){refreshProtocolDisplayAndSpeech(speak);}
+function refreshProtocolDisplayAndSpeech(speak){
+  if(!activeProtocol)return;
+  renderProtocolPhrase();
+  if(speak)speakProtocolPhrase();
+}
+function renderProtocolVariableSummary(){
+  const el=document.getElementById('protocol-variable-selected');if(!el||!activeProtocol)return;
+  const cfg=getProtocolVariableConfig(activeProtocol);if(!cfg){el.textContent='';return;}
+  const selected=selectedProtocolVariableValue(activeProtocol);
+  let label='';
+  if(cfg.type==='vicio'){
+    label=selected?.label==='Personalizado'?(selected.acao&&selected.tema?`${selected.acao} · ${selected.tema}`:'Personalizado'):selected?.label||'';
+  }else label=selected?.label==='Personalizado'?(selected.texto||'Personalizado'):selected?.label||'';
+  el.innerHTML=label?`Tema selecionado: <strong>${escapeHtml(label)}</strong>`:'';
+}
+
 function renderProtocolPhrase(){
   if(!activeProtocol)return;const all=protocolFullList(activeProtocol),item=all[activePhraseIndex];if(!item)return;
-  document.getElementById('session-title').textContent=protocolDisplayTitle(activeProtocol.titulo);
+  document.getElementById('session-title').textContent=protocolDisplayTitle(activeProtocol.titulo,activeProtocol.slug);
   document.getElementById('session-counter').textContent=`${activePhraseIndex+1} de ${all.length}`;
   document.getElementById('session-source').textContent=protocolDataSource==='supabase'?'Banco':'Erro';
   document.getElementById('session-progress-bar').style.width=((activePhraseIndex+1)/all.length*100)+'%';
@@ -541,6 +757,7 @@ function renderProtocolPhrase(){
   document.getElementById('phrase-number').textContent=item.tipo==='fechamento'?`Fechamento ${all.slice(0,activePhraseIndex+1).filter(x=>x.tipo==='fechamento').length}`:`Frase ${activePhraseIndex+1}`;
   document.getElementById('protocol-next-btn').textContent=activePhraseIndex===all.length-1?'Finalizar ✓':'Próxima →';
   const b=document.getElementById('protocol-pause-btn');b.classList.remove('active');protocolPaused=false;updateProtocolVoiceControls();
+  renderProtocolVariableSummary();
 }
 
 function scoreProtocolVoice(v){
@@ -580,7 +797,7 @@ function testProtocolVoice(){
 }
 function speakProtocolPhrase(){
   const item=currentProtocolPhrase();if(!item||protocolIsSilent()||!('speechSynthesis'in window))return;window.speechSynthesis.cancel();
-  protocolUtterance=new SpeechSynthesisUtterance(item.texto||'');protocolUtterance.lang='pt-BR';protocolUtterance.rate=.91;protocolUtterance.pitch=.98;const voice=getPtVoice();if(voice)protocolUtterance.voice=voice;
+  protocolUtterance=new SpeechSynthesisUtterance(protocolPhraseText(item));protocolUtterance.lang='pt-BR';protocolUtterance.rate=.91;protocolUtterance.pitch=.98;const voice=getPtVoice();if(voice)protocolUtterance.voice=voice;
   protocolUtterance.onend=()=>{protocolPaused=false;const b=document.getElementById('protocol-pause-btn');if(b){b.textContent='Ⅱ Pausar';b.classList.remove('active');}};window.speechSynthesis.speak(protocolUtterance);
 }
 function repeatProtocolPhrase(){
