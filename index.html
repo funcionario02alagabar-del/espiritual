@@ -75,11 +75,17 @@ margin-bottom:7px;font-size:13px;color:var(--dim);cursor:pointer}.check-item.don
 .protocol-card-info{flex:1;min-width:0}.protocol-title{font-size:15px;font-weight:700;line-height:1.42;overflow-wrap:anywhere}.protocol-desc{font-size:12px;color:var(--dim);line-height:1.62;margin-top:7px;overflow-wrap:anywhere}
 .protocol-meta{display:flex;justify-content:space-between;gap:12px;font-size:11px;color:var(--dim);margin-top:16px}.protocol-open{width:100%;padding:11px 13px;border:1px solid #ffffff12;border-radius:12px;background:#ffffff08;color:var(--text);font-weight:600;cursor:pointer}
 .protocol-open:disabled{opacity:.55;cursor:default}.protocol-list-view.hidden{display:none}.protocol-session{display:none}.protocol-session.active{display:block}.protocol-back{border:0;background:transparent;color:var(--dim);padding:4px 0 12px;cursor:pointer;font-size:12px}
-.protocol-category{display:inline-flex;align-items:center;margin-top:9px;padding:5px 8px;border-radius:999px;background:#ffffff08;border:1px solid #ffffff10;color:var(--accent2);font-size:10px;font-weight:700;line-height:1;text-transform:capitalize}.protocol-badges{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:9px}.protocol-badges .protocol-category{margin-top:0}.protocol-origin{display:inline-flex;align-items:center;padding:5px 8px;border-radius:999px;background:#ffffff05;border:1px solid #ffffff0d;color:var(--dim);font-size:9px;font-weight:600;line-height:1}.protocol-origin.created{color:var(--accent);border-color:#b8d0ff2a;background:#b8d0ff09}.protocol-origin.mixed{color:var(--accent2);border-color:#8de0cf2a;background:#8de0cf09}
-.protocol-empty,.protocol-error{padding:15px;border-radius:14px;border:1px solid #ffffff12;background:#ffffff06;font-size:12px;line-height:1.6;color:var(--dim)}
+.protocol-category{display:inline-flex;align-items:center;margin-top:9px;padding:5px 8px;border-radius:999px;background:#ffffff08;border:1px solid #ffffff10;color:var(--accent2);font-size:10px;font-weight:700;line-height:1;text-transform:capitalize}.protocol-badges{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:9px}.protocol-badges .protocol-category{margin-top:0}.protocol-origin{display:inline-flex;align-items:center;padding:5px 8px;border-radius:999px;background:#ffffff05;border:1px solid #ffffff0d;color:var(--dim);font-size:9px;font-weight:600;line-height:1}.protocol-origin.created{color:var(--accent);border-color:#b8d0ff2a;background:#b8d0ff09}
+.protocol-empty,.protocol-error{padding:15px;border-radius:14px;border:1px solid #ffffff12;background:#ffffff06;font-size:12px;line-height:1.6;color:var(--dim)}.protocol-choice{margin:0 0 14px;padding:16px;border:1px solid #ffffff12;border-radius:18px;background:linear-gradient(145deg,#14243a,#0d192a)}
+.protocol-choice.hidden{display:none}.protocol-choice-kicker{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent2)}
+.protocol-choice-title{font-size:16px;font-weight:700;margin-top:6px}.protocol-choice-sub{font-size:11px;color:var(--dim);line-height:1.5;margin-top:5px}
+.protocol-choice-group{margin-top:12px}.protocol-choice-group label{display:block;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);margin-bottom:7px}
+.protocol-choice-select{width:100%}.protocol-choice-grid{display:flex;flex-wrap:wrap;gap:7px}.choice-pill{border:1px solid #ffffff12;background:#ffffff08;color:var(--dim);border-radius:999px;padding:8px 11px;font-size:10px;font-weight:600;cursor:pointer}.choice-pill.active{background:var(--accent2);color:#07111f;border-color:transparent}
+.protocol-personalize{display:none;margin-top:10px;grid-template-columns:1fr 1fr;gap:8px}.protocol-personalize.show{display:grid}.protocol-personalize input{min-width:0}.protocol-start-note{display:flex;justify-content:space-between;gap:10px;margin-top:12px;padding-top:10px;border-top:1px solid #ffffff10;font-size:10px;color:var(--dim)}
+@media(max-width:460px){.protocol-personalize{grid-template-columns:1fr}.protocol-start-note{flex-direction:column}}
+
 .protocol-error{border-color:#f39a9a33;color:#f5c2c2}
 .protocol-retry{margin-top:10px;border:1px solid #ffffff14;background:#ffffff08;color:var(--text);border-radius:10px;padding:8px 11px;cursor:pointer;font-size:11px;font-weight:600}
-.protocol-variable-config{margin:14px 18px 0;padding:13px;border:1px solid #ffffff12;border-radius:14px;background:#ffffff06}.protocol-variable-label{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent2);margin-bottom:7px}.protocol-variable-config select,.protocol-variable-config input{width:100%;margin-top:5px}.protocol-variable-help{font-size:10px;line-height:1.5;color:var(--dim);margin-top:7px}.protocol-variable-selected{font-size:11px;color:var(--dim);margin-top:8px}.protocol-variable-selected strong{color:var(--text)}.protocol-custom-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}.protocol-custom-grid.is-hidden{display:none}@media(max-width:460px){.protocol-custom-grid{grid-template-columns:1fr}}
 .session-card{overflow:hidden;border:1px solid #ffffff12;border-radius:22px;background:radial-gradient(circle at 50% -20%,#b8d0ff20,transparent 42%),linear-gradient(155deg,#14243a,#0b1727)}
 .session-head{padding:18px 18px 0}.session-title{font-size:15px;font-weight:700}.session-sub{display:flex;justify-content:space-between;margin-top:7px;font-size:11px;color:var(--dim)}
 .session-progress{padding:0 18px}.phrase-stage{min-height:300px;padding:28px 20px 24px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
@@ -190,6 +196,7 @@ margin-bottom:7px;font-size:13px;color:var(--dim);cursor:pointer}.check-item.don
 
   <div id="protocol-session" class="protocol-session">
     <button class="protocol-back" onclick="closeProtocol()">← Voltar aos protocolos</button>
+    <div id="protocol-choice" class="protocol-choice hidden"></div>
     <div class="session-card">
       <div class="session-head">
         <div class="session-title" id="session-title"></div>
@@ -200,7 +207,6 @@ margin-bottom:7px;font-size:13px;color:var(--dim);cursor:pointer}.check-item.don
           <button class="voice-test" onclick="testProtocolVoice()">Testar</button>
         </div>
       </div>
-      <div id="protocol-variable-config" class="protocol-variable-config" hidden></div>
       <div class="session-progress"><div class="progress-bg"><div class="progress-fill" id="session-progress-bar" style="width:0%"></div></div></div>
       <div class="phrase-stage">
         <div class="phrase-tag" id="phrase-tag">Frase atual</div>
@@ -214,7 +220,7 @@ margin-bottom:7px;font-size:13px;color:var(--dim);cursor:pointer}.check-item.don
       </div>
       <div class="session-secondary"><button onclick="previousProtocolPhrase()">← Anterior</button><button onclick="restartProtocol()">↺ Recomeçar protocolo</button></div>
     </div>
-    <div class="session-note">“Sem voz — leitura manual” deixa o protocolo totalmente silencioso. Nos protocolos com tema variável, você pode trocar o tema a qualquer momento.</div>
+    <div class="session-note">“Sem voz — leitura manual” deixa o protocolo totalmente silencioso. A voz só é usada quando você escolhe uma voz do navegador. No “Além da Infância”, a sessão sugerida é de 5 minutos.</div>
   </div>
 </div>
 
@@ -442,7 +448,7 @@ function protocolDisplayTitle(t, slug=''){
     'protocolo-quantico-desbloqueio-emocional-dinheiro':'Desbloqueio Emocional — Dinheiro',
     'procrastinacao':'Procrastinação',
     'protocolo-quantico-vicios-emocionais-e-gerais':'Vícios Emocionais e Gerais',
-    'protocolo-quantico-vicios-emocionais-e-gerais-so-por-hoje':'Só por Hoje — Padrões e Comportamentos',
+    'protocolo-quantico-vicios-emocionais-e-gerais-so-por-hoje':'Só por Hoje — Vícios Emocionais e Gerais',
     'protocolo-quantico-para-vendas':'Vendas',
     'protocolo-quantico-para-escassez-financeira':'Escassez Financeira',
     'protocolo-quantico-para-aliviar-a-ansiedade-vicio':'Ansiedade — Vício',
@@ -451,7 +457,8 @@ function protocolDisplayTitle(t, slug=''){
     'protocolo-quantico-para-ansiedade-sentir-impotente':'Ansiedade — Sentir-se Impotente',
     'protocolo-quantico-para-escassez-financeira-criado-por-nos':'Escassez Financeira — Criado por Nós',
     'protocolo-quantico-emocoes-e-gatilhos-relacionados-ao-dinheiro':'Emoções e Gatilhos — Dinheiro',
-    'protocolo-quantico-crencas-limitantes-sobre-sorte-jogos-e-ganhos':'Crenças Limitantes — Sorte, Jogos e Ganhos'
+    'protocolo-quantico-crencas-limitantes-sobre-sorte-jogos-e-ganhos':'Crenças Limitantes — Sorte, Jogos e Ganhos',
+    'protocolo-quantico-alem-da-infancia':'Além da Infância'
   };
   if(slug && bySlug[slug]) return bySlug[slug];
   const cleaned=String(t||'Protocolo').replace(/^PROTOCOLO QUANTICO\s*-\s*/i,'').replace(/\s+/g,' ').trim().toLowerCase();
@@ -466,7 +473,6 @@ function protocolCategoryLabel(c){
     'vicios':'Vícios',
     'vendas':'Vendas',
     'procrastinacao':'Procrastinação',
-    'habitos':'Hábitos',
     'emocional':'Emocional',
     'bem-estar':'Bem-estar',
     'hábitos':'Hábitos',
@@ -475,7 +481,7 @@ function protocolCategoryLabel(c){
   return m[c]||String(c||'Outros').replace(/[-_]+/g,' ').replace(/\b\w/g,x=>x.toUpperCase());
 }
 function protocolOriginLabel(o){
-  return o==='criado_por_nos'?'Criado por nós':o==='misto'?'Material + complementos':'Material original';
+  return o==='criado_por_nos'?'Criado por nós':'Material original';
 }
 function protocolCleanDescription(desc){
   return String(desc||'')
@@ -489,7 +495,7 @@ function protocolIcon(c){return c==='dinheiro'?'◇':c==='ansiedade'?'◌':c==='
 function renderProtocolFilters(){
   const wrap=document.getElementById('protocol-filter');if(!wrap)return;
   const cats=[...new Set(protocolos.map(p=>p.categoria).filter(Boolean))];
-  const preferred=['dinheiro','ansiedade','vicios','habitos','estresse','dependencia_emocional','vendas','procrastinacao'];
+  const preferred=['dinheiro','ansiedade','dependencia_emocional','estresse','vicios','vendas','procrastinacao'];
   cats.sort((a,b)=>{const ia=preferred.indexOf(a),ib=preferred.indexOf(b);if(ia!==-1||ib!==-1)return (ia===-1?999:ia)-(ib===-1?999:ib);return a.localeCompare(b,'pt-BR');});
   wrap.innerHTML='';
   const allCats=['todos',...cats.filter(c=>c!=='todos')];
@@ -547,7 +553,7 @@ function renderProtocols(){
     const el=document.createElement('div');el.className='protocol-card';
     el.innerHTML=`<div class="protocol-card-top"><div class="protocol-icon">${escapeHtml(protocolIcon(p.categoria))}</div>
       <div class="protocol-card-info"><div class="protocol-title">${escapeHtml(protocolDisplayTitle(p.titulo,p.slug))}</div>
-      <div class="protocol-badges"><span class="protocol-category">${escapeHtml(protocolCategoryLabel(p.categoria))}</span><span class="protocol-origin ${p.origem==='criado_por_nos'?'created':p.origem==='misto'?'mixed':''}">${escapeHtml(protocolOriginLabel(p.origem))}</span></div>
+      <div class="protocol-badges"><span class="protocol-category">${escapeHtml(protocolCategoryLabel(p.categoria))}</span><span class="protocol-origin ${p.origem==='criado_por_nos'?'created':''}">${escapeHtml(protocolOriginLabel(p.origem))}</span></div>
       <div class="protocol-desc">${escapeHtml(protocolCleanDescription(p.descricao||''))}</div></div></div>
       <div class="protocol-meta"><span>${all.length} frases</span><span>${done?'Concluído':pct+'%'}</span></div>
       <div class="progress-bg"><div class="progress-fill" style="width:${pct}%"></div></div>
@@ -555,199 +561,112 @@ function renderProtocols(){
     el.querySelector('.protocol-open').onclick=()=>openProtocol(p.slug,done);grid.appendChild(el);
   });
 }
+const ALEM_SENTIMENTOS=[
+  {group:'Principais',name:'Traumas',key:'traumas',plural:'traumas',singular:'trauma',subject:'traumas',associado:'traumas',copula:'é'},
+  {group:'Principais',name:'Culpas',key:'culpas',plural:'culpas',singular:'culpa',subject:'culpas',associado:'culpas',copula:'é'},
+  {group:'Principais',name:'Medos',key:'medos',plural:'medos',singular:'medo',subject:'medos',associado:'medos',copula:'é'},
+  {group:'Principais',name:'Carência',key:'carencia',plural:'carências',singular:'carência',subject:'carência',associado:'carência',copula:'é'},
+  {group:'Principais',name:'Apego',key:'apego',plural:'apegos',singular:'apego',subject:'apego',associado:'apego',copula:'é'},
+  {group:'Principais',name:'Prazeres',key:'prazeres',plural:'prazeres',singular:'prazer',subject:'prazeres',associado:'prazer',copula:'é'},
+  {group:'Principais',name:'Expectativas',key:'expectativas',plural:'expectativas',singular:'expectativa',subject:'expectativas',associado:'expectativa',copula:'é'},
+  {group:'Principais',name:'Rejeição',key:'rejeicao',plural:'rejeições',singular:'rejeição',subject:'rejeições',associado:'rejeição',copula:'é'},
+  {group:'Principais',name:'Decepção',key:'decepcao',plural:'decepções',singular:'decepção',subject:'decepções',associado:'decepção',copula:'é'},
+  {group:'Principais',name:'Conflitos',key:'conflitos',plural:'conflitos',singular:'conflito',subject:'conflitos',associado:'conflito',copula:'é'},
+  {group:'Principais',name:'Inferioridade',key:'inferioridade',plural:'inferioridades',singular:'inferioridade',subject:'inferioridades',associado:'inferioridade',copula:'é'},
+  {group:'Principais',name:'Humilhação',key:'humilhacao',plural:'humilhações',singular:'humilhação',subject:'humilhações',associado:'humilhação',copula:'é'},
+  {group:'Principais',name:'Frustração',key:'frustracao',plural:'frustrações',singular:'frustração',subject:'frustrações',associado:'frustração',copula:'é'},
+  {group:'Principais',name:'Impotência',key:'impotencia',plural:'impotências',singular:'impotência',subject:'impotências',associado:'impotência',copula:'é'},
+  {group:'Principais',name:'Incapacidade',key:'incapacidade',plural:'incapacidades',singular:'incapacidade',subject:'incapacidades',associado:'incapacidade',copula:'é'},
+  {group:'Principais',name:'Fuga',key:'fuga',plural:'vontades de fugir',singular:'fuga',subject:'vontade de fugir',associado:'fuga',copula:'é'},
+  {group:'Principais',name:'Procrastinação',key:'procrastinacao',plural:'procrastinações',singular:'procrastinação',subject:'procrastinação',associado:'procrastinação',copula:'é'},
+  {group:'Principais',name:'Timidez',key:'timidez',plural:'episódios de timidez',singular:'timidez',subject:'timidez',associado:'timidez',copula:'é'},
+  {group:'Principais',name:'Raiva',key:'raiva',plural:'raivas',singular:'raiva',subject:'raivas',associado:'raiva',copula:'é'},
+  {group:'Principais',name:'Vingança',key:'vinganca',plural:'vinganças',singular:'vingança',subject:'vinganças',associado:'vingança',copula:'é'},
+  {group:'Principais',name:'Ciúmes',key:'ciumes',plural:'ciúmes',singular:'ciúme',subject:'ciúmes',associado:'ciúme',copula:'é'},
+  {group:'Outros',name:'Cobiça',key:'cobica',plural:'cobiças',singular:'cobiça',subject:'cobiças',associado:'cobiça',copula:'é'},
+  {group:'Outros',name:'Cólera',key:'colera',plural:'cóleras',singular:'cólera',subject:'cóleras',associado:'cólera',copula:'é'},
+  {group:'Outros',name:'Constrangimento',key:'constrangimento',plural:'constrangimentos',singular:'constrangimento',subject:'constrangimentos',associado:'constrangimento',copula:'é'},
+  {group:'Outros',name:'Fobia',key:'fobia',plural:'fobias',singular:'fobia',subject:'fobias',associado:'fobia',copula:'é'},
+  {group:'Outros',name:'Fracasso',key:'fracasso',plural:'fracassos',singular:'fracasso',subject:'fracassos',associado:'fracasso',copula:'é'},
+  {group:'Outros',name:'Fragilidade',key:'fragilidade',plural:'fragilidades',singular:'fragilidade',subject:'fragilidades',associado:'fragilidade',copula:'é'},
+  {group:'Outros',name:'Escassez',key:'escassez',plural:'escassezes',singular:'escassez',subject:'escassez',associado:'escassez',copula:'é'},
+  {group:'Outros',name:'Ilusão',key:'ilusao',plural:'ilusões',singular:'ilusão',subject:'ilusões',associado:'ilusão',copula:'é'},
+  {group:'Outros',name:'Imperfeição',key:'imperfeicao',plural:'imperfeições',singular:'imperfeição',subject:'imperfeições',associado:'imperfeição',copula:'é'},
+  {group:'Outros',name:'Indignação',key:'indignacao',plural:'indignações',singular:'indignação',subject:'indignações',associado:'indignação',copula:'é'},
+  {group:'Outros',name:'Impaciência',key:'impaciencia',plural:'impaciências',singular:'impaciência',subject:'impaciências',associado:'impaciência',copula:'é'},
+  {group:'Outros',name:'Instabilidade',key:'instabilidade',plural:'instabilidades',singular:'instabilidade',subject:'instabilidades',associado:'instabilidade',copula:'é'},
+  {group:'Outros',name:'Hipocrisia',key:'hipocrisia',plural:'hipocrisias',singular:'hipocrisia',subject:'hipocrisias',associado:'hipocrisia',copula:'é'}
+];
+let alemInfanciaSelection=localStorage.getItem('alem_infancia_sentimento')||'traumas';
+
+function getAlemSentimento(){return ALEM_SENTIMENTOS.find(x=>x.key===alemInfanciaSelection)||ALEM_SENTIMENTOS[0];}
+function applyAlemSentimentoToPhrase(text,s){
+  return String(text||'')
+    .replaceAll('{{plural}}',s.plural)
+    .replaceAll('{{singular}}',s.singular)
+    .replaceAll('{{copula}}',s.copula);
+}
+function buildAlemPhrases(s){
+  return [
+    {numero:1,texto:`Código alma a minha consciência permite ${s.plural} que eu recebi do primeiro dia de minha existência até o final da infância acabaram`},
+    {numero:2,texto:`Código alma a minha consciência permite ${s.plural} que eu senti do primeiro dia de minha existência até o final da infância acabaram`},
+    {numero:3,texto:`Código alma a minha consciência permite ${s.plural} que eu gerei do primeiro dia de minha existência até o final da infância acabaram`},
+    {numero:4,texto:`Código alma a minha consciência permite ${s.plural} que eu recebi da minha avó na gestação da minha mãe acabaram`},
+    {numero:5,texto:`Código alma a minha consciência permite prazeres que senti todas as vezes que senti ${s.singular} acabaram`},
+    {numero:6,texto:`Código alma a minha consciência permite ${s.plural} que eu recebi durante a minha vida intrauterina acabaram`},
+    {numero:7,texto:`Código alma a minha consciência permite sentimento de certeza de que ${s.singular} ${s.copula} ruim para mim acabou`},
+    {numero:8,texto:`Código espírito a minha consciência permite hereditariedade de ${s.plural} que eu recebi na minha concepção acabaram`},
+    {numero:9,texto:`Código espírito a minha consciência permite todas crenças negativas que eu recebi sobre ${s.subject} acabaram`},
+    {numero:10,texto:`Código espírito a minha consciência permite crenças negativas sobre ${s.subject} que eu recebi do primeiro dia de minha existência até o final da infância acabaram`}
+  ];
+}
+function syncAlemProtocolContent(){
+  if(!activeProtocol || activeProtocol.slug!=='protocolo-quantico-alem-da-infancia') return;
+  const s=getAlemSentimento();
+  activeProtocol={...activeProtocol,frases:buildAlemPhrases(s)};
+}
+function renderAlemChoice(){
+  const box=document.getElementById('protocol-choice');
+  if(!box) return;
+  if(!activeProtocol || activeProtocol.slug!=='protocolo-quantico-alem-da-infancia'){
+    box.classList.add('hidden');box.innerHTML='';return;
+  }
+  box.classList.remove('hidden');
+  const groups=['Principais','Outros'];
+  box.innerHTML=`
+    <div class="protocol-choice-kicker">Além da Infância</div>
+    <div class="protocol-choice-title">Escolha o sentimento que deseja trabalhar</div>
+    <div class="protocol-choice-sub">A sequência segue o mesmo padrão do material. Sessão sugerida: 5 minutos.</div>
+    ${groups.map(g=>`<div class="protocol-choice-group"><label>${g}</label><div class="protocol-choice-grid">${ALEM_SENTIMENTOS.filter(x=>x.group===g).map(x=>`<button type="button" class="choice-pill ${x.key===alemInfanciaSelection?'active':''}" data-alem-key="${x.key}">${escapeHtml(x.name)}</button>`).join('')}</div></div>`).join('')}
+    <div class="protocol-start-note"><span>Selecionado: <strong id="alem-selected-label">${escapeHtml(getAlemSentimento().name)}</strong></span><span>5 minutos sugeridos</span></div>`;
+  box.querySelectorAll('[data-alem-key]').forEach(btn=>btn.addEventListener('click',()=>{
+    alemInfanciaSelection=btn.getAttribute('data-alem-key')||'traumas';
+    localStorage.setItem('alem_infancia_sentimento',alemInfanciaSelection);
+    const idx=activePhraseIndex;
+    if('speechSynthesis' in window)window.speechSynthesis.cancel();
+    syncAlemProtocolContent();
+    const total=activeProtocol.frases.length;
+    activePhraseIndex=Math.max(0,Math.min(idx,total-1));
+    localStorage.setItem(protocolStorageKey(activeProtocol.slug),String(activePhraseIndex));
+    renderAlemChoice();
+    renderProtocolPhrase();
+    speakProtocolPhrase();
+  }));
+}
+
 function openProtocol(slug,restart=false){
   const p=protocolos.find(x=>x.slug===slug);if(!p)return;const all=protocolFullList(p);if(!all.length){toast('Este protocolo ainda não tem frases','err');return;}
-  activeProtocol=p;let saved=parseInt(localStorage.getItem(protocolStorageKey(p.slug))||'0',10);if(restart||saved>=all.length)saved=0;activePhraseIndex=Math.max(0,Math.min(saved,all.length-1));
+  activeProtocol=p;if(p.slug==='protocolo-quantico-alem-da-infancia')syncAlemProtocolContent();const full=protocolFullList(activeProtocol);let saved=parseInt(localStorage.getItem(protocolStorageKey(p.slug))||'0',10);if(restart||saved>=full.length)saved=0;activePhraseIndex=Math.max(0,Math.min(saved,full.length-1));
   document.getElementById('protocol-list-view').classList.add('hidden');document.getElementById('protocol-session').classList.add('active');
-  renderProtocolVariableConfig();renderProtocolPhrase();speakProtocolPhrase();window.scrollTo({top:0,behavior:'smooth'});
+  renderAlemChoice();renderProtocolPhrase();speakProtocolPhrase();window.scrollTo({top:0,behavior:'smooth'});
 }
 function closeProtocol(){
   if('speechSynthesis'in window)window.speechSynthesis.cancel();activeProtocol=null;protocolPaused=false;
-  document.getElementById('protocol-session').classList.remove('active');document.getElementById('protocol-list-view').classList.remove('hidden');const vc=document.getElementById('protocol-variable-config');if(vc){vc.hidden=true;vc.innerHTML='';}renderProtocols();window.scrollTo({top:0,behavior:'smooth'});
+  document.getElementById('protocol-session').classList.remove('active');document.getElementById('protocol-list-view').classList.remove('hidden');const choice=document.getElementById('protocol-choice');if(choice){choice.classList.add('hidden');choice.innerHTML='';}renderProtocols();window.scrollTo({top:0,behavior:'smooth'});
 }
 function currentProtocolPhrase(){return activeProtocol?protocolFullList(activeProtocol)[activePhraseIndex]||null:null;}
-const PROTOCOL_VARIABLES={
-  'protocolo-quantico-para-aliviar-a-ansiedade-vicio':{
-    type:'vicio',
-    storage:'protocol_variable_vicio',
-    title:'O que você deseja trabalhar hoje?',
-    help:'Escolha um tema. A frase será ajustada automaticamente para ficar natural.',
-    groups:[
-      {label:'Alimentação',items:[
-        {id:'doces',label:'Doces',acao:'comi doces',tema:'doces'},
-        {id:'refrigerante',label:'Refrigerante',acao:'tomei refrigerante',tema:'refrigerante'},
-        {id:'lanches',label:'Lanches',acao:'comi lanches',tema:'lanches'}
-      ]},
-      {label:'Comportamentos',items:[
-        {id:'procrastinacao',label:'Procrastinação',acao:'procrastinei',tema:'procrastinação'},
-        {id:'celular',label:'Celular',acao:'usei o celular',tema:'celular'},
-        {id:'redes-sociais',label:'Redes sociais',acao:'usei redes sociais',tema:'redes sociais'},
-        {id:'jogos',label:'Jogos',acao:'joguei jogos',tema:'jogos'},
-        {id:'compras',label:'Compras',acao:'fiz compras',tema:'compras'},
-        {id:'mentir',label:'Mentir',acao:'menti',tema:'mentiras'},
-        {id:'beber',label:'Beber',acao:'bebi',tema:'bebidas'},
-        {id:'apostar',label:'Apostar',acao:'apostei',tema:'apostas'},
-        {id:'jogar',label:'Jogar',acao:'joguei',tema:'jogar'}
-      ]},
-      {label:'Sexualidade',items:[
-        {id:'pornografia',label:'Pornografia',acao:'assisti pornografia',tema:'pornografia'},
-        {id:'masturbacao',label:'Masturbação',acao:'me masturbei',tema:'masturbação'},
-        {id:'conteudo-sexual',label:'Conteúdo sexual',acao:'consumi conteúdo sexual',tema:'conteúdo sexual'},
-        {id:'pensamentos-sexuais',label:'Pensamentos sexuais repetitivos',acao:'tive pensamentos sexuais repetitivos',tema:'pensamentos sexuais repetitivos'}
-      ]}
-    ]
-  },
-  'protocolo-quantico-para-ansiedade-medo-de-errar':{
-    type:'medo-errar',
-    storage:'protocol_variable_medo_errar',
-    title:'Onde você sente medo de errar?',
-    help:'Escolha a situação. O complemento será aplicado em todas as frases do protocolo.',
-    items:[
-      {id:'vender',label:'Ao vender',texto:'ao vender'},
-      {id:'trabalho',label:'No trabalho',texto:'no trabalho'},
-      {id:'falar-publico',label:'Ao falar em público',texto:'ao falar em público'},
-      {id:'estudos',label:'Nos estudos',texto:'nos estudos'},
-      {id:'relacionamentos',label:'Nos relacionamentos',texto:'nos relacionamentos'},
-      {id:'decisoes',label:'Ao tomar decisões',texto:'ao tomar decisões'},
-      {id:'apresentar',label:'Ao me apresentar',texto:'ao me apresentar'},
-      {id:'computador',label:'Ao usar o computador',texto:'ao usar o computador'}
-    ]
-  }
-};
-
-function getProtocolVariableConfig(p){
-  return PROTOCOL_VARIABLES[p?.slug]||null;
-}
-function protocolVariableStorageKey(p){
-  const cfg=getProtocolVariableConfig(p);return cfg?cfg.storage:null;
-}
-function findProtocolVariableOption(p,value){
-  const cfg=getProtocolVariableConfig(p);if(!cfg)return null;
-  const all=cfg.items?cfg.items:cfg.groups.flatMap(g=>g.items);
-  return all.find(x=>x.id===value)||null;
-}
-function getProtocolVariableState(p){
-  const cfg=getProtocolVariableConfig(p);if(!cfg)return null;
-  let raw=localStorage.getItem(cfg.storage);
-  if(cfg.type==='vicio'){
-    if(!raw) return {id:'doces'};
-    try{return JSON.parse(raw);}catch(_){return {id:raw};}
-  }
-  return {id:raw||'vender',custom:''};
-}
-function saveProtocolVariableState(p,state){
-  const cfg=getProtocolVariableConfig(p);if(!cfg)return;
-  localStorage.setItem(cfg.storage,JSON.stringify(state));
-}
-function selectedProtocolVariableValue(p){
-  const cfg=getProtocolVariableConfig(p);if(!cfg)return null;
-  const state=getProtocolVariableState(p);
-  const option=findProtocolVariableOption(p,state?.id);
-  if(cfg.type==='vicio'){
-    if(state?.id==='personalizado') return {acao:state.acao||'',tema:state.tema||'',label:'Personalizado'};
-    return option||findProtocolVariableOption(p,'doces');
-  }
-  if(state?.id==='personalizado') return {texto:state.custom||'',label:'Personalizado'};
-  return option||findProtocolVariableOption(p,'vender');
-}
-function protocolPhraseText(item){
-  let text=String(item?.texto||'');
-  if(!activeProtocol)return text;
-  const cfg=getProtocolVariableConfig(activeProtocol);if(!cfg)return text;
-  const selected=selectedProtocolVariableValue(activeProtocol);if(!selected)return text;
-  if(cfg.type==='vicio'){
-    const acao=selected.acao||'';
-    const tema=selected.tema||'';
-    if(!acao||!tema)return text;
-    text=text.replace(/\(comi doces\)/gi,acao);
-    text=text.replace(/\bcom doce\b/gi,'com '+tema);
-    text=text.replace(/\bdoce\b/gi,tema);
-    return text;
-  }
-  const suffix=selected.texto||'';
-  if(!suffix)return text;
-  return text.replace(/\(ao vender\)/gi,suffix);
-}
-function renderProtocolVariableConfig(){
-  const wrap=document.getElementById('protocol-variable-config');if(!wrap||!activeProtocol)return;
-  const cfg=getProtocolVariableConfig(activeProtocol);
-  if(!cfg){wrap.hidden=true;wrap.innerHTML='';return;}
-  wrap.hidden=false;
-  const state=getProtocolVariableState(activeProtocol);
-  let html=`<div class="protocol-variable-label">${escapeHtml(cfg.title)}</div><select id="protocol-variable-select" aria-label="${escapeHtml(cfg.title)}">`;
-  if(cfg.groups){
-    cfg.groups.forEach(group=>{
-      html+=`<optgroup label="${escapeHtml(group.label)}">`;
-      group.items.forEach(item=>{html+=`<option value="${escapeHtml(item.id)}">${escapeHtml(item.label)}</option>`;});
-      html+='</optgroup>';
-    });
-    html+='<option value="personalizado">✏️ Personalizar</option>';
-  }else{
-    cfg.items.forEach(item=>{html+=`<option value="${escapeHtml(item.id)}">${escapeHtml(item.label)}</option>`;});
-    html+='<option value="personalizado">✏️ Personalizar</option>';
-  }
-  html+='</select>';
-  if(cfg.type==='vicio'){
-    html+=`<div id="protocol-vicio-custom" class="protocol-custom-grid is-hidden">
-      <input id="protocol-vicio-acao" type="text" placeholder="Ação na frase — ex.: usei cigarros">
-      <input id="protocol-vicio-tema" type="text" placeholder="Tema — ex.: cigarros">
-    </div>`;
-  }else{
-    html+=`<div id="protocol-medo-custom" class="protocol-custom-grid is-hidden">
-      <input id="protocol-medo-texto" type="text" placeholder="Ex.: ao apresentar meu projeto">
-    </div>`;
-  }
-  html+=`<div class="protocol-variable-help">${escapeHtml(cfg.help)}</div><div class="protocol-variable-selected" id="protocol-variable-selected"></div>`;
-  wrap.innerHTML=html;
-  const select=document.getElementById('protocol-variable-select');select.value=state?.id||'doces';
-  select.onchange=()=>handleProtocolVariableChange();
-  handleProtocolVariableChange(false);
-}
-function handleProtocolVariableChange(speak=true){
-  if(!activeProtocol)return;
-  const cfg=getProtocolVariableConfig(activeProtocol);if(!cfg)return;
-  const select=document.getElementById('protocol-variable-select');if(!select)return;
-  const id=select.value;
-  if(cfg.type==='vicio'){
-    const custom=document.getElementById('protocol-vicio-custom');
-    const customState=getProtocolVariableState(activeProtocol)||{};
-    if(custom)custom.classList.toggle('is-hidden',id!=='personalizado');
-    if(id==='personalizado'){
-      const acao=document.getElementById('protocol-vicio-acao');const tema=document.getElementById('protocol-vicio-tema');
-      if(acao&&tema){acao.value=customState.acao||'';tema.value=customState.tema||'';}
-      saveProtocolVariableState(activeProtocol,{id,acao:acao?.value||'',tema:tema?.value||''});
-      [acao,tema].forEach(input=>{if(input)input.oninput=()=>{saveProtocolVariableState(activeProtocol,{id,acao:acao?.value||'',tema:tema?.value||''});refreshProtocolVariableDisplay(false);};});
-    }else saveProtocolVariableState(activeProtocol,{id});
-  }else{
-    const custom=document.getElementById('protocol-medo-custom');
-    const customState=getProtocolVariableState(activeProtocol)||{};
-    if(custom)custom.classList.toggle('is-hidden',id!=='personalizado');
-    if(id==='personalizado'){
-      const input=document.getElementById('protocol-medo-texto');if(input){input.value=customState.custom||'';input.oninput=()=>{saveProtocolVariableState(activeProtocol,{id,custom:input.value});refreshProtocolVariableDisplay(false);};}
-      saveProtocolVariableState(activeProtocol,{id,custom:input?.value||''});
-    }else saveProtocolVariableState(activeProtocol,{id});
-  }
-  refreshProtocolDisplayAndSpeech(speak);
-}
-function refreshProtocolVariableDisplay(speak=false){refreshProtocolDisplayAndSpeech(speak);}
-function refreshProtocolDisplayAndSpeech(speak){
-  if(!activeProtocol)return;
-  renderProtocolPhrase();
-  if(speak)speakProtocolPhrase();
-}
-function renderProtocolVariableSummary(){
-  const el=document.getElementById('protocol-variable-selected');if(!el||!activeProtocol)return;
-  const cfg=getProtocolVariableConfig(activeProtocol);if(!cfg){el.textContent='';return;}
-  const selected=selectedProtocolVariableValue(activeProtocol);
-  let label='';
-  if(cfg.type==='vicio'){
-    label=selected?.label==='Personalizado'?(selected.acao&&selected.tema?`${selected.acao} · ${selected.tema}`:'Personalizado'):selected?.label||'';
-  }else label=selected?.label==='Personalizado'?(selected.texto||'Personalizado'):selected?.label||'';
-  el.innerHTML=label?`Tema selecionado: <strong>${escapeHtml(label)}</strong>`:'';
-}
-
 function renderProtocolPhrase(){
-  if(!activeProtocol)return;const all=protocolFullList(activeProtocol),item=all[activePhraseIndex];if(!item)return;
+  if(!activeProtocol)return;if(activeProtocol.slug==='protocolo-quantico-alem-da-infancia')syncAlemProtocolContent();const all=protocolFullList(activeProtocol),item=all[activePhraseIndex];if(!item)return;
   document.getElementById('session-title').textContent=protocolDisplayTitle(activeProtocol.titulo,activeProtocol.slug);
   document.getElementById('session-counter').textContent=`${activePhraseIndex+1} de ${all.length}`;
   document.getElementById('session-source').textContent=protocolDataSource==='supabase'?'Banco':'Erro';
@@ -757,7 +676,6 @@ function renderProtocolPhrase(){
   document.getElementById('phrase-number').textContent=item.tipo==='fechamento'?`Fechamento ${all.slice(0,activePhraseIndex+1).filter(x=>x.tipo==='fechamento').length}`:`Frase ${activePhraseIndex+1}`;
   document.getElementById('protocol-next-btn').textContent=activePhraseIndex===all.length-1?'Finalizar ✓':'Próxima →';
   const b=document.getElementById('protocol-pause-btn');b.classList.remove('active');protocolPaused=false;updateProtocolVoiceControls();
-  renderProtocolVariableSummary();
 }
 
 function scoreProtocolVoice(v){
@@ -797,7 +715,7 @@ function testProtocolVoice(){
 }
 function speakProtocolPhrase(){
   const item=currentProtocolPhrase();if(!item||protocolIsSilent()||!('speechSynthesis'in window))return;window.speechSynthesis.cancel();
-  protocolUtterance=new SpeechSynthesisUtterance(protocolPhraseText(item));protocolUtterance.lang='pt-BR';protocolUtterance.rate=.91;protocolUtterance.pitch=.98;const voice=getPtVoice();if(voice)protocolUtterance.voice=voice;
+  protocolUtterance=new SpeechSynthesisUtterance(item.texto||'');protocolUtterance.lang='pt-BR';protocolUtterance.rate=.91;protocolUtterance.pitch=.98;const voice=getPtVoice();if(voice)protocolUtterance.voice=voice;
   protocolUtterance.onend=()=>{protocolPaused=false;const b=document.getElementById('protocol-pause-btn');if(b){b.textContent='Ⅱ Pausar';b.classList.remove('active');}};window.speechSynthesis.speak(protocolUtterance);
 }
 function repeatProtocolPhrase(){
